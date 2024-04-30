@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Customer detail</h1>
+<li>
+    <span>Name: {{ customer.name }}</span>
+    <span>Phone: {{ customer.phone }}</span>
+    <span>Customer ID: {{ customer.id }}</span>    
+    <span>Balance: {{ customer.balance|round(2) }}</span>
+</li>
+<h2>Orders</h2>
+    {% for order in customer.orders %}
+    <li>
+        <span>Order ID: {{ order.id }}</span>
+        <span>Price: {{ order.total|round(2) }}</span>
+    </li>  
+{% endfor %}
+{% endblock %}
