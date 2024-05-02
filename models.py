@@ -11,13 +11,18 @@ class Customer(db.Model):
     phone = mapped_column(String(20), nullable=False)
     balance = mapped_column(Numeric, nullable=False, default=0)
     orders = relationship("Order", back_populates="customer")
+    email =  mapped_column(String(200), nullable=True, unique=True)
+    password = mapped_column(String(200), nullable=True)
+
 
     def to_json(self):
         return {
             "id": self.id,
             "name": self.name,
             "phone": self.phone,
-            "balance": str(self.balance)
+            "balance": str(self.balance),
+            "email": self.email,
+            "password": self.password
         }
 
     def validation(self):

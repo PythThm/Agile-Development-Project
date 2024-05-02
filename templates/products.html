@@ -4,9 +4,8 @@
 <h1>Products</h1>
 {% for product in products %}
 <li>
+    <a href="{{ url_for('html.product_detail', product_id=product.id)}}">View details</a> <!-- This is a link to the product_detail page -->
     <span>{{ product.name }}</span>
-    <span>{{ product.price|round(2) }}</span>
-    <span>{{ product.available }}</span>
 </li>
 {% endfor %}
 {% endblock %}

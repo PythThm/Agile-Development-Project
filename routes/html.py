@@ -8,6 +8,10 @@ html_bp = Blueprint("html", __name__)
 def home():
     return render_template('home.html')
 
+@html_bp.route('/login')
+def login():
+    return render_template("login.html")
+
 @html_bp.route('/home')
 def home_page():
     return render_template('home.html', name='welcome to the store')
@@ -21,6 +25,11 @@ def customer():
 def product():
     products = Product.query.all()
     return render_template('products.html', products=products)
+
+@html_bp.route('/products/<int:product_id>')
+def product_detail(product_id):
+    product = Product.query.get_or_404(product_id)
+    return render_template('product_detail.html', product=product)
 
 @html_bp.route('/customers/<int:customer_id>')
 def customer_detail(customer_id):

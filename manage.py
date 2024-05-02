@@ -32,7 +32,7 @@ def import_data():
     with open("data/customers.csv", "r") as file:
         reader = csv.DictReader(file)
         for record in reader:
-            customer = Customer(name=record["name"], phone=record["phone"])
+            customer = Customer(name=record["name"], phone=record["phone"], email=record["email"], password=record["password"])
             db.session.add(customer)
         db.session.commit()
 
