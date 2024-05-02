@@ -25,7 +25,7 @@ app.register_blueprint(html_bp, url_prefix="/")
 
 app.instance_path = Path("data").resolve()
 app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{ app.instance_path }/store.sqlite'
-app.config["SECRET_KEY"] = "secretkyey"
+app.config["SECRET_KEY"] = "secretkey"
 db.init_app(app)
 
 

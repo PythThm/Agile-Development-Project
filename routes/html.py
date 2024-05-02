@@ -8,10 +8,6 @@ html_bp = Blueprint("html", __name__)
 def home():
     return render_template('home.html')
 
-@html_bp.route('/login')
-def login():
-    return render_template("login.html")
-
 @html_bp.route('/home')
 def home_page():
     return render_template('home.html', name='welcome to the store')
@@ -61,3 +57,17 @@ def order_process_web(order_id):
         return message, 400
     db.session.commit()
     return redirect(url_for("html.orders"))
+
+
+# auth
+@html_bp.route('/login')
+def login():
+    return render_template('login.html')
+
+@html_bp.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+@html_bp.route('/logout')
+def logout():
+    return render_template('logout.html')
