@@ -71,3 +71,7 @@ def signup():
 @html_bp.route('/logout')
 def logout():
     return render_template('logout.html')
+
+@html_bp.route('/profile')
+def profile():
+    return render_template('profile.html')
