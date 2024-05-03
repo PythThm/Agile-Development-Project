@@ -10,7 +10,7 @@ def home():
 
 @html_bp.route('/home')
 def home_page():
-    return render_template('home.html', name='welcome to the store')
+    return render_template('home.html', name='welcome to the Green Basket')
 
 @html_bp.route('/customers')
 def customer():
@@ -59,7 +59,7 @@ def order_process_web(order_id):
     return redirect(url_for("html.orders"))
 
 
-# auth
+# Authentication and Authorization
 @html_bp.route('/login')
 def login():
     return render_template('login.html')
