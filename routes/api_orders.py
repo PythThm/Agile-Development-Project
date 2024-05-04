@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 import datetime
 from db import db
-from models import Order, ProductOrder, Product, Customer
+from models import Order, ProductOrder, Product, User
 
 api_orders_bp = Blueprint("api_orders", __name__)
 
@@ -41,7 +41,7 @@ def order_process(order_id):
         return "Not available", 400
     order = Order.query.get(order_id)
     
-    customer = Customer.query.get(order.customer_id)
+    customer = User.query.get(order.customer_id)
 
     if customer.balance < 0:
         return "Customer has insufficient balance", 400

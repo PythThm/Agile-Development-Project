@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, Blueprint
 from pathlib import Path
 from db import db
-from models import Customer, Product, Order, ProductOrder
+from models import User, Product, Order, ProductOrder
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
 login_manager = LoginManager()

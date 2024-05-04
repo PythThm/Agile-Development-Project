@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from db import db
-from models import Customer, Order, Product, ProductOrder
+from models import User, Order, Product, ProductOrder
 
 html_bp = Blueprint("html", __name__)
 
@@ -13,8 +13,8 @@ def home_page():
     return render_template('home.html', name='welcome to the Green Basket')
 
 @html_bp.route('/customers')
-def customer():
-    customers = Customer.query.all()
+def user():
+    customers = User.query.all()
     return render_template('customers.html', customers=customers)
 
 @html_bp.route('/products')
@@ -29,8 +29,8 @@ def product_detail(product_id):
 
 @html_bp.route('/customers/<int:customer_id>')
 def customer_detail(customer_id):
-    customer = Customer.query.get_or_404(customer_id)
-    return render_template('customer_detail.html', customer=customer)
+    user = User.query.get_or_404(customer_id)
+    return render_template('customer_detail.html', user=user)
 
 @html_bp.route('/orders')
 def orders():

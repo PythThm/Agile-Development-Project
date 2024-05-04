@@ -2,7 +2,7 @@ from db import db
 from sqlalchemy import Boolean, Float, Numeric, ForeignKey, Integer, String
 from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import functions as func
-from models import Customer, Product, Order, ProductOrder
+from models import User, Product, Order, ProductOrder
 import csv
 from app import app 
 from pathlib import Path
@@ -21,6 +21,10 @@ def drop_table():
     with app.app_context():
         db.drop_all()
 
+def create_table():
+    with app.app_context():
+        db.create_all()
+
 def import_data():
     with open("data/products.csv", "r") as file:
         reader = csv.DictReader(file)
@@ -32,18 +36,18 @@ def import_data():
     with open("data/customers.csv", "r") as file:
         reader = csv.DictReader(file)
         for record in reader:
-            customer = Customer(name=record["name"], phone=record["phone"], email=record["email"], password=record["password"])
-            db.session.add(customer)
+            user = User(name=record["name"], phone=record["phone"], email=record["email"], password=record["password"])
+            db.session.add(user)
         db.session.commit()
 
 def random_order(ran_num):
     for i in range(ran_num):
-        cust_stmt = db.select(Customer).order_by(func.random()).limit(1)
-        customer = db.session.execute(cust_stmt).scalar()
+        cust_stmt = db.select(User).order_by(func.random()).limit(1)
+        user = db.session.execute(cust_stmt).scalar()
 
         created_date = datetime.now() -timedelta(days=random.randint(1, 365))
 
-        order = Order(customer=customer, created=created_date)
+        order = Order(user=user, created=created_date)
         db.session.add(order)
 
         product_stmt = db.select(Product).order_by(func.random()).limit(1)
@@ -67,7 +71,7 @@ def random_available():
     db.session.commit()
 
 def random_balance():
-    customers = Customer.query.all()
+    customers = User.query.all()
     for customer in customers:
         customer.balance = random.randint(0, 1000)
     db.session.commit()

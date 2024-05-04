@@ -5,12 +5,12 @@ from datetime import datetime
 
 from db import db
 
-class Customer(db.Model):
+class User(db.Model):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(200), nullable=False, unique=True)
     phone = mapped_column(String(20), nullable=False)
     balance = mapped_column(Numeric, nullable=False, default=0)
-    orders = relationship("Order", back_populates="customer")
+    orders = relationship("Order", back_populates="user")
     email =  mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)
 
@@ -42,8 +42,8 @@ class Customer(db.Model):
 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, ForeignKey("customer.id"), nullable=False)
-    customer = relationship("Customer", back_populates="orders")
+    user_id = db.Column(db.Integer, ForeignKey("user.id"), nullable=False)
+    user = relationship("User", back_populates="orders")
     total = mapped_column(Numeric, nullable=False, default=0)
     item = relationship("ProductOrder", back_populates="order", cascade="all, delete-orphan")
 
@@ -76,8 +76,8 @@ class Order(db.Model):
     def process(self, strategy="adjust"):
         if self.processed:
             return True, "Order already processed"
-        if self.customer.balance < 0:
-            return False, "Customer has insufficient balance"
+        if self.user.balance < 0:
+            return False, "User has insufficient balance"
 
         self.strategy = strategy  
         
@@ -93,7 +93,7 @@ class Order(db.Model):
                     quantity = product_available.available
 
             product_available.available -= quantity
-            self.customer.balance -= i.product.price * quantity
+            self.user.balance -= i.product.price * quantity
             self.strategy = strategy  # Update the strategy used
             self.processed = datetime.now()
             db.session.commit()
