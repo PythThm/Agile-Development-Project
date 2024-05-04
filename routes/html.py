@@ -22,9 +22,9 @@ def product():
     products = Product.query.all()
     return render_template('products.html', products=products)
 
-@html_bp.route('/products/<name>')
-def product_detail(name):
-    product = db.one_or_404(db.select(Product).filter_by(name=name))
+@html_bp.route('/products/<productname>')
+def product_detail(productname):
+    product = db.one_or_404(db.select(Product).filter_by(name=productname))
     return render_template('product_detail.html', product=product)
 
 @html_bp.route('/customers/<int:customer_id>')
