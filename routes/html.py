@@ -6,7 +6,7 @@ html_bp = Blueprint("html", __name__)
 
 @html_bp.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', name='welcome to the Green Basket')
 
 @html_bp.route('/home')
 def home_page():
@@ -22,9 +22,9 @@ def product():
     products = Product.query.all()
     return render_template('products.html', products=products)
 
-@html_bp.route('/products/<int:product_id>')
-def product_detail(product_id):
-    product = Product.query.get_or_404(product_id)
+@html_bp.route('/products/<productname>')
+def product_detail(productname):
+    product = db.one_or_404(db.select(Product).filter_by(name=productname))
     return render_template('product_detail.html', product=product)
 
 @html_bp.route('/customers/<int:customer_id>')
@@ -75,3 +75,9 @@ def logout():
 @html_bp.route('/profile')
 def profile():
     return render_template('profile.html')
+
+
+# Image testing
+@html_bp.route('/imagetesting')
+def upload():
+    return render_template('imagetesting.html')
