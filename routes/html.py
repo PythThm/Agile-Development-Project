@@ -6,7 +6,7 @@ html_bp = Blueprint("html", __name__)
 
 @html_bp.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', name='welcome to the Green Basket')
 
 @html_bp.route('/home')
 def home_page():
@@ -75,3 +75,9 @@ def logout():
 @html_bp.route('/profile')
 def profile():
     return render_template('profile.html')
+
+
+# Image testing
+@html_bp.route('/imagetesting')
+def upload():
+    return render_template('imagetesting.html')
