@@ -7,5 +7,8 @@
     <a href="{{ url_for('html.product_detail', productname=product.name)}}">View details</a> <!-- This is a link to the product_detail page -->
     <span>{{ product.name }}</span>
 </li>
+<form action="">
+    <button type="submit" name="additem" value="{{ product.name }}">add to cart</button>
+</form>
 {% endfor %}
 {% endblock %}
