@@ -9,20 +9,10 @@ from pathlib import Path
 import random
 from datetime import datetime, timedelta
 
-
-app.instance_path = Path("data").resolve()
-app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{ app.instance_path }/store.sqlite'
-
-def create_table():
-    with app.app_context():
-        db.create_all()
-
 def drop_table():
-    with app.app_context():
         db.drop_all()
 
 def create_table():
-    with app.app_context():
         db.create_all()
 
 def import_data():
@@ -45,7 +35,7 @@ def random_order(ran_num):
         cust_stmt = db.select(User).order_by(func.random()).limit(1)
         user = db.session.execute(cust_stmt).scalar()
 
-        created_date = datetime.now() -timedelta(days=random.randint(1, 365))
+        created_date = datetime.now().replace(microsecond=0)
 
         order = Order(user=user, created=created_date)
         db.session.add(order)

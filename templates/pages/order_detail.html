@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Orders</h2>
+<li>
+    <span>Order ID: {{ order.id }}</span>
+    <span>Charged Price: {{ order.total|round(2) }}</span>
+    <span>Customer ID: {{ order.user_id }}</span>
+
+</li>
+<h2>Order details</h2>
+{% for order in order.item %}
+<li>
+    <span>Product_id: {{ order.product_id }}</span>
+    <span>Product: {{ order.product.name }}</span>
+    <span>Quantity: {{ order.quantity }}</span>
+    <span>Individual Price: {{ order.product.price|round(2) }}</span>
+</li>
+
+{% endfor %}
+{% endblock %}

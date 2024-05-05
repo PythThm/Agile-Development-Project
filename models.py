@@ -1,15 +1,13 @@
-from sqlalchemy import Boolean, Float, Numeric, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Numeric, ForeignKey, Integer, String
 from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import func
 from datetime import datetime
-
 from db import db
 
 class User(db.Model):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(200), nullable=True)
     phone = mapped_column(String(20), nullable=True)
-    balance = mapped_column(Numeric, nullable=True, default=0)
     orders = relationship("Order", back_populates="user")
     email =  mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)
@@ -20,7 +18,6 @@ class User(db.Model):
             "id": self.id,
             "name": self.name,
             "phone": self.phone,
-            "balance": str(self.balance),
             "email": self.email,
             "password": self.password
         }
@@ -41,15 +38,14 @@ class User(db.Model):
         return self.phone
 
 class Order(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey("user.id"), nullable=False)
+    id = mapped_column(Integer, primary_key=True)
+    user_id = mapped_column(Integer, ForeignKey(User.id), nullable=False)
     user = relationship("User", back_populates="orders")
     total = mapped_column(Numeric, nullable=False, default=0)
     item = relationship("ProductOrder", back_populates="order", cascade="all, delete-orphan")
-
-    created = mapped_column(db.DateTime, server_default=func.now())
-    processed = mapped_column(db.DateTime, nullable=True)
-    strategy = db.Column(db.String(20))  # Add a column to store the strategy used
+    created = mapped_column(DateTime(timezone=True), default=datetime.now().replace(microsecond=0))
+    processed = mapped_column(DateTime(timezone=True), nullable=True)
+    strategy = mapped_column(String(20))  # Add a column to store the strategy used
 
     def total_calc(self):
         total = 0
@@ -66,9 +62,9 @@ class Order(db.Model):
     def to_json(self):
         return {
             "id": self.id,
-            "customer_id": self.customer_id,
-            "total": str(self.total),
-            "created": str(self.created),
+            "customer_id": self.user_id,
+            "total": self.total,
+            "created": self.created,
             "processed": str(self.processed) if self.processed else None,
             "strategy": self.strategy
         }
@@ -106,12 +102,12 @@ class Order(db.Model):
                 
 
 class ProductOrder(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    order_id = db.Column(db.Integer, ForeignKey("order.id"), nullable=False)
-    product_id = db.Column(db.Integer, ForeignKey("product.id"), nullable=False)
+    id = mapped_column(Integer, primary_key=True)
+    order_id = mapped_column(Integer, ForeignKey("order.id"), nullable=False)
+    product_id = mapped_column(Integer, ForeignKey("product.id"), nullable=False)
     order = relationship("Order", back_populates="item")
     product = relationship("Product", back_populates="orders")
-    quantity = db.Column(db.Integer, nullable=False, default=0)
+    quantity = mapped_column(Integer, nullable=False, default=0)
 
     def validation(self):
         if int(self.quantity) < 0:
@@ -126,6 +122,7 @@ class Product(db.Model):
     orders = relationship("ProductOrder")
 
     def to_json(self):
+        self.price = round(self.price, 2)
         return {
             "id": self.id,
             "name": self.name,

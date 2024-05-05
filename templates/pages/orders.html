@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Order List</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order_ID</th>
+            <th>Customer</th>
+            <th>Created</th>
+            <th>Processed</th>
+            <th>Total</th>
+            <th>Option</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.user.name }}</td>
+            <td>{{ order.created }}</td>
+            <td>{{ order.processed }}</td>
+            <td>{{ order.total|round(2) }}</td>
+            <td>
+                <a href="/orders/{{order.id}}/delete" class="btn"
+                    onclick="return confirm('Are you sure to delete?')">Delete</a>
+            </td>
+
+            <td><a href="{{ url_for('orders.order_detail', order_id=order.id) }}" class="btn">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}
+
+<!-- 
+<form method="POST" action="{{ url_for('orders.order_process_web', order_id=order.id) }}">
+    <button type="submit" class="btn">Process</button>
+</form> -->

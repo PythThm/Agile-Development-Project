@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Login</h1>
+
+<form method="POST" action="/login">
+    <div class="form-align">
+        <div class="form-label">
+            <p class="gap">Email</p>
+            <input type="email" name="email" placeholder="Your Email" autofocus="">
+        </div>
+        <div class="form-label">
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Your Password">
+        </div>
+        <div class="form-label">
+            <label class="checkbox">
+                <input type="checkbox" name="remember" value="Remember me">
+                Remember Me
+            </label>
+        </div>
+        <br>
+        <small>Forget Password?</small>
+        <button type="submit" class="btn">Login</button>
+</form>
+
+
+{% endblock %}
