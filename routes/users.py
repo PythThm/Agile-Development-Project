@@ -10,7 +10,7 @@ def users():
     users = User.query.all()
     return render_template('pages/customers.html', users=users)
 
-# List user
+# List a user
 @users_bp.route('/<int:user_id>')
 def user_detail(user_id):
     user = User.query.get_or_404(user_id)

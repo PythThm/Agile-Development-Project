@@ -98,28 +98,12 @@ class Order(db.Model):
 
 # Route function remains the same
 
-
-                
-
-class ProductOrder(db.Model):
-    id = mapped_column(Integer, primary_key=True)
-    order_id = mapped_column(Integer, ForeignKey("order.id"), nullable=False)
-    product_id = mapped_column(Integer, ForeignKey("product.id"), nullable=False)
-    order = relationship("Order", back_populates="item")
-    product = relationship("Product", back_populates="orders")
-    quantity = mapped_column(Integer, nullable=False, default=0)
-
-    def validation(self):
-        if int(self.quantity) < 0:
-            return 0
-        return self.quantity
-
 class Product(db.Model):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(200), nullable=False, unique=True)
     price = mapped_column(Numeric, nullable=False, default=0) # :3
     available = mapped_column(Integer, nullable=False, default=0)
-    orders = relationship("ProductOrder")
+    orders = relationship("ProductOrder", back_populates="product", cascade="all, delete-orphan")
 
     def to_json(self):
         self.price = round(self.price, 2)
@@ -145,5 +129,21 @@ class Product(db.Model):
             raise ValueError("Name cannot be empty")
         return self.name
     
+                
+
+class ProductOrder(db.Model):
+    id = mapped_column(Integer, primary_key=True)
+    order_id = mapped_column(Integer, ForeignKey("order.id"), nullable=False)
+    product_id = mapped_column(Integer, ForeignKey("product.id"), nullable=False)
+    order = relationship("Order", back_populates="item")
+    product = relationship("Product", back_populates="orders")
+    quantity = mapped_column(Integer, nullable=False, default=0)
+
+    def validation(self):
+        if int(self.quantity) < 0:
+            return 0
+        return self.quantity
+
+
 
         

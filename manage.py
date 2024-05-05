@@ -7,7 +7,7 @@ import csv
 from app import app 
 from pathlib import Path
 import random
-from datetime import datetime, timedelta
+from datetime import datetime
 
 def drop_table():
         db.drop_all()
@@ -71,8 +71,6 @@ def random_balance():
 #     for order in orders:
 #         order.process()
 #     db.session.commit()
-
-
 
 if __name__ == "__main__":
     with app.app_context():
