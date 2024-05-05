@@ -3,7 +3,7 @@ from pathlib import Path
 from db import db
 
 from routes import api_users_bp, api_products_bp, api_orders_bp, api_images_bp
-from routes import users_bp, products_bp, orders_bp, auth_bp 
+from routes import users_bp, products_bp, orders_bp, auth_bp, supports_bp, admin_bp
 
 from flask_login import LoginManager
 
@@ -34,6 +34,8 @@ app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(users_bp, url_prefix="/users")
 app.register_blueprint(products_bp, url_prefix="/products")
 app.register_blueprint(orders_bp, url_prefix="/orders")
+app.register_blueprint(supports_bp, url_prefix="/supports")
+app.register_blueprint(admin_bp, url_prefix="/admin")
 
 if __name__ == '__main__':
     app.run(debug=True, port=8888)

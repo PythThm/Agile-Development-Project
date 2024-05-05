@@ -9,3 +9,5 @@ from .users import users_bp
 from .products import products_bp
 from .orders import orders_bp
 from .auth import auth_bp
+from .supports import supports_bp
+from .admin import admin_bp

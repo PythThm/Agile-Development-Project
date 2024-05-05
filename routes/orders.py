@@ -30,3 +30,6 @@ def order_process_web(order_id):
     db.session.commit()
     return redirect(url_for("orders.orders"))
 
+@orders_bp.route('/cart')
+def cart():
+    return render_template('pages/cart.html')
