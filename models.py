@@ -7,9 +7,9 @@ from db import db
 
 class User(db.Model):
     id = mapped_column(Integer, primary_key=True)
-    name = mapped_column(String(200), nullable=False, unique=True)
-    phone = mapped_column(String(20), nullable=False)
-    balance = mapped_column(Numeric, nullable=False, default=0)
+    name = mapped_column(String(200), nullable=True)
+    phone = mapped_column(String(20), nullable=True)
+    balance = mapped_column(Numeric, nullable=True, default=0)
     orders = relationship("Order", back_populates="user")
     email =  mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)

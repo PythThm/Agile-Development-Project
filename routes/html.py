@@ -60,17 +60,17 @@ def order_process_web(order_id):
 
 
 # Authentication and Authorization
-@html_bp.route('/login')
-def login():
-    return render_template('login.html')
+# @html_bp.route('/login')
+# def login():
+#     return render_template('login.html')
 
-@html_bp.route('/signup')
-def signup():
-    return render_template('signup.html')
+# @html_bp.route('/signup')
+# def signup():
+#     return render_template('signup.html')
 
-@html_bp.route('/logout')
-def logout():
-    return render_template('logout.html')
+# @html_bp.route('/logout')
+# def logout():
+#     return render_template('logout.html')
 
 @html_bp.route('/profile')
 def profile():
