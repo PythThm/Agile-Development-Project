@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, redirect, url_for, render_template
+from flask import Blueprint, jsonify, request, redirect, url_for, render_template, current_app
 import os
 from werkzeug.utils import secure_filename
 
@@ -12,5 +12,5 @@ def testing1():
 def imageupload():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(os.path.join(app.config['static'], secure_filename(f.filename)))
+        f.save(os.path.join(current_app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
     return redirect(url_for('html.home'))

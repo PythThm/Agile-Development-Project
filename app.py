@@ -10,6 +10,8 @@ app = Flask(__name__)
 
 
 
+
+
 from routes.api_customers import api_customers_bp
 app.register_blueprint(api_customers_bp, url_prefix="/api/customers")
 
@@ -32,6 +34,7 @@ app.register_blueprint(auth, url_prefix="/", name="auth_blueprint")
 app.instance_path = Path("data").resolve()
 app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{ app.instance_path }/store.sqlite'
 app.config["SECRET_KEY"] = "secretkey"
+app.config['UPLOAD_FOLDER'] = 'static'
 db.init_app(app)
 
 
