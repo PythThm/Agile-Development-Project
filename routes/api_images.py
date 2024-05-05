@@ -1,9 +1,12 @@
 from flask import Blueprint, jsonify, request, redirect, url_for
 import os
-from app import app
 from werkzeug.utils import secure_filename
 
 api_images_bp = Blueprint('api_images', __name__)
+
+@api_images_bp.route("/")
+def testing1():
+    return redirect("/imagetesting.html")
 
 @api_images_bp.route("/upload", methods = ['POST'])
 def imageupload():

@@ -19,8 +19,14 @@ app.register_blueprint(api_products_bp, url_prefix="/api/products")
 from routes.api_orders import api_orders_bp
 app.register_blueprint(api_orders_bp, url_prefix="/api/orders")
 
-from routes.html import html_bp
-app.register_blueprint(html_bp, url_prefix="/")
+from routes.api_images import api_images_bp
+app.register_blueprint(api_images_bp, url_prefix="/api/images")
+
+from routes.html import html_bp as main_blueprint
+app.register_blueprint(main_blueprint)
+
+from routes.auth import auth
+app.register_blueprint(auth, url_prefix="/", name="auth_blueprint")
 
 
 app.instance_path = Path("data").resolve()
