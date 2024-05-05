@@ -8,7 +8,7 @@ class User(db.Model):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(200), nullable=True)
     phone = mapped_column(String(20), nullable=True)
-    orders = relationship("Order", back_populates="user")
+    orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
     email =  mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)
 

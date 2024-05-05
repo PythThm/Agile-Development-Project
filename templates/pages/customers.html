@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Customer Information</h1>
+<h1>Customers</h1>
 
 <table>
     <thead>
@@ -10,19 +10,25 @@
             <th scope="col" width="90">Name</th>
             <th scope="col" width="90">Phone</th>
             <th scope="col" width="90">Email</th>
-            <th scope="col" width="70">Details</th>
+            <th scope="col" width="40">History</th>
+            <th scope="col" width="70">Options</th>
         </tr>
     </thead>
     <tbody>
-        {% for customer in customers %}
+        {% for user in users %}
         <tr>
-            <td>{{ customer.id }}</td>
-            <td>{{ customer.name }}</td>
-            <td>{{ customer.phone }}</td>
-            <td> test@gmail.com</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.email }}</td>
             <td>
                 <!-- This is a link to the customer_detail page -->
-                <a href="{{ url_for('users.customer_detail', customer_id=customer.id) }}" class="btn">View</a>
+                <a href="{{ url_for('users.user_detail', user_id=user.id) }}" class="btn">View</a>
+            </td>
+            <td>
+                <a href="/users/{{user.id}}/update" class="btn">Edit</a>
+                <a href="/users/{{user.id}}/delete" class="btn"
+                    onclick="return confirm('Are you sure to delete?')">Delete</a>
             </td>
         </tr>
         {% endfor %}

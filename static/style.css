@@ -5,6 +5,7 @@
   --background: #1b1b1b;
   --bg-variant: #2e2e2e;
   --bg-variant-dark: #1f1e1e;
+  --accent-color: #00a2ff;
 }
 
 body {
@@ -39,6 +40,11 @@ nav > div {
 
 a {
   color: var(--font-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-color);
 }
 
 form {
@@ -55,8 +61,13 @@ form {
 }
 .form-label p {
   font-size: smaller;
+  width: 60px;
+  margin: 5px;
 }
 
+.checkbox {
+  margin-top: 15px;
+}
 .gap {
   margin-right: 23px;
 }
@@ -122,7 +133,7 @@ input[type="submit"]:hover {
   color: var(--font-color);
   padding: 3px 6px;
   text-decoration: none;
-  margin-left: 6px;
+  /* margin-left: 6px; */
   border: 0;
 }
 

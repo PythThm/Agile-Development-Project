@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <h1>Update Profile</h1>
+    <table class="task_table">
+
+        <form action="/users/{{user.id}}/update" method="POST">
+            <div class="form-align">
+
+                <input type="hidden" name="id" value="{{user.id}}">
+                <div class="form-label">
+                    <p>name</p>
+                    <input type="text" name="name" value="{{user.name}}">
+                </div>
+                <div class="form-label">
+                    <p>phone</p>
+                    <input type="text" name="phone" value="{{user.phone}}">
+                </div>
+                <div class="form-label">
+                    <p>email</p>
+                    <input type="text" name="email" value="{{user.email}}">
+                </div>
+                <div class="form-label">
+                    <p>password</p>
+                    <input type="text" name="password" value="{{user.password}}">
+                </div>
+                <br>
+                <input type="submit" value="Update Profile">
+            </div>
+        </form>
+
+</div>
+</div>
+{% endblock %}
