@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+from flask_login import current_user, login_required
 from db import db 
 from models import User
 
@@ -15,10 +16,6 @@ def users():
 def user_detail(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('pages/customer_detail.html', user=user)
-
-@users_bp.route('/profile')
-def profile():
-    return render_template('pages/profile.html')
 
 # Update user
 @users_bp.route("/<int:user_id>/update", methods=["GET", "POST"])
@@ -51,3 +48,9 @@ def user_delete(user_id):
 @users_bp.route('/imagetesting')
 def upload():
     return render_template('imagetesting.html')
+
+# Profile
+@users_bp.route('/profile')
+@login_required
+def profile():
+    return render_template('pages/profile.html', name=current_user.name)
