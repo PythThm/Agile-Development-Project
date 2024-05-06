@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="post">
+    <h1>Checkout Page</h1>
+    <h2>Contact Info</h2>
+    <input type="email" name="email" required>
+    <input type="text" name="Phone Number" placeholder="Phone Number (optional)">
+
+    <h2>Delivery Info</h2>
+    <input type="text" name="customername" placeholder="Full Name" required>
+    <input type="text" name="address" placeholder="Address" required>
+    <input type="text" name="city" placeholder="City" required>
+    <input type="text" name="postalcode" placeholder="Postal Code" required>
+
+    <h2>Pick your option...</h2>
+    <input type="radio" name="delivery" value='delivery' required>
+    <input type="radio" name="pickup" value="pick up at store">
+
+
+    <input type="submit">
+</form>
+{% endblock %}

@@ -33,3 +33,7 @@ def order_process_web(order_id):
 @orders_bp.route('/cart')
 def cart():
     return render_template('pages/cart.html')
+
+@orders_bp.route('/checkout')
+def checkout():
+    return render_template('pages/checkout.html')
