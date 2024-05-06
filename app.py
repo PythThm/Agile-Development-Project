@@ -20,11 +20,6 @@ def create_app():
     login_manager.init_app(app)
 
     # Set up database
-    app.instance_path = Path("data").resolve()
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///store.db"
-    app.config["SECRET_KEY"] = "secretkey"
-    app.config['UPLOAD_FOLDER'] = "static"
-    db.init_app(app)
 
     # Define user loader function
     @login_manager.user_loader
