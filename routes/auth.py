@@ -6,6 +6,11 @@ from flask_login import login_user
 
 auth_bp = Blueprint("auth", __name__)
 
+# Profile
+@auth_bp.route('/profile')
+def profile():
+    return render_template('pages/profile.html')
+
 # Login
 @auth_bp.route('/login')
 def login():
@@ -28,7 +33,7 @@ def login_post():
 
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
-    return redirect(url_for('users.profile'))
+    return redirect(url_for('auth.profile'))
 
 
 # Signup
