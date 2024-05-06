@@ -1,6 +1,7 @@
-from flask import Blueprint, redirect, url_for, render_template
+from flask import Blueprint, redirect, url_for, render_template, request
 from db import db 
 from models import Order
+from time import sleep
 
 orders_bp = Blueprint("orders", __name__)
 
@@ -34,6 +35,21 @@ def order_process_web(order_id):
 def cart():
     return render_template('pages/cart.html')
 
-@orders_bp.route('/checkout')
+@orders_bp.route('/checkout', methods = ['POST', 'GET'])
 def checkout():
+    if request.method == 'POST':
+        creditcard = request.form['ccn']
+        if creditcard == '4444 4444 4444 4444':
+            return redirect(url_for('orders.failure'))
+        return redirect(url_for('orders.success'))
     return render_template('pages/checkout.html')
+
+@orders_bp.route('/success')
+def success():
+    sleep(3)
+    return redirect(url_for('home'))
+
+@orders_bp.route('/failure')
+def failure():
+    sleep(3)
+    return redirect(url_for('orders.checkout'))
