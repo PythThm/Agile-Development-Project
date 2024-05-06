@@ -4,7 +4,7 @@
 
 <h1>Login</h1>
 
-<form method="POST" action="/login">
+<form method="post" action="{{ url_for('auth.login_post') }}">    
     <div class="form-align">
         <div class="form-label">
             <p class="gap">Email</p>
@@ -32,4 +32,4 @@
     </div>
 {% endif %}
 {% endwith %}
-{% endblock %}
+{% endblock %}  
