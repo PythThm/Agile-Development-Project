@@ -46,10 +46,12 @@ def checkout():
 
 @orders_bp.route('/success')
 def success():
+    render_template('pages/success.html')
     sleep(3)
     return redirect(url_for('home'))
 
 @orders_bp.route('/failure')
 def failure():
+    render_template('pages/failure.html')
     sleep(3)
     return redirect(url_for('orders.checkout'))
