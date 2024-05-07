@@ -6,8 +6,6 @@ from models import User
 from routes import api_users_bp, api_products_bp, api_orders_bp, api_images_bp
 from routes import users_bp, products_bp, orders_bp, auth_bp, supports_bp, admin_bp
 
-# test
-
 app = Flask(__name__)
 app.instance_path = Path("data").resolve()
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///store.db"

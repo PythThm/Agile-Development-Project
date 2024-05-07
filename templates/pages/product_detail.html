@@ -17,9 +17,11 @@
         <span>Stock: {{ product.available }}</span>
     </li>
 
-</ul>
-<form action="" method="post">
-    <button type="submit" value="{{ product.name }}" class="btn">Add to Cart</button>
-</form>
-
+{% if not current_user.is_admin %}
+    <li>
+        <form action="" method="post">
+            <button type="submit" value="{{ product.name }}" class="btn">Add to Cart</button>
+        </form>
+    </li>
+{% endif %}
 {% endblock %}

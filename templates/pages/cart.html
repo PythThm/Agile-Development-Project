@@ -2,4 +2,8 @@
 
 {% block content %}
 <h1>My Cart</h1>
+<div>
+    <h2>Cart</h2>
+    <p>Here are the items in your cart</p>
+    <a href="{{ url_for('orders.checkout')}}">Checkout</a>
 {% endblock %}

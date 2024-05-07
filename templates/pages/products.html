@@ -6,12 +6,13 @@
 <h1>Products List</h1>
 
 <!-- Admin Only -->
-<form action="/products" method="POST" class="form-inline">
-    name<input type="text" name="name" placeholder="Enter name">
-    price<input type="text" name="price" placeholder="Enter price">
-    <input type="submit" value="Add New Product" class="button">
-</form>
-
+{% if current_user.is_authenticated and current_user.is_admin %}
+    <form action="/products" method="POST" class="form-inline">
+        name<input type="text" name="name" placeholder="Enter name">
+        price<input type="text" name="price" placeholder="Enter price">
+        <input type="submit" value="Add New Product" class="button">
+    </form>
+{% endif %}
 
 <table>
     <thead>
@@ -20,7 +21,11 @@
             <th scope="col" width="40">Price</th>
             <th scope="col" width="20">Available</th>
             <th scope="col" width="40">Details</th>
+
+            {% if not current_user.is_admin %}
             <th scope="col" width="60">Cart</th>
+            {%endif%}
+
             <th scope="col" width="40">Options</th>
         </tr>
     </thead>
@@ -36,16 +41,22 @@
                 </a>
             </td>
             <td>
+                <!-- Only show add to cart button if user is not admin # -->
+                {% if not current_user.is_admin %}
                 <form action="">
                     <button type="submit" value="{{ product.name }}" class="btn">Add to
                         Cart</button>
                 </form>
+                {% endif %}
+
             </td>
             <!-- Only Admin can see edit and delete buttons -->
+            {% if current_user.is_authenticated and current_user.is_admin %}
             <td><a href="/products/{{product.id}}" class="btn">Edit</a>
                 <a href="/products/{{product.id}}/delete" class="btn"
                     onclick="return confirm('Are you sure to delete?')">Delete</a>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
