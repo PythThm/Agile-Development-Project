@@ -8,40 +8,42 @@ auth_bp = Blueprint("auth", __name__)
 
 
 # Login
-@auth_bp.route('/login')
+# @auth_bp.route('/login')
+# def login():
+#     return render_template('auth/login.html')
+
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        # login code goes here
+        email = request.form.get('email')
+        password = request.form.get('password')
+        remember = True if request.form.get('remember') else False
+
+        # if email == "admin@123.com" and password == "123":
+        #     admin_user = User.query.get(1)
+            # if admin_user:
+            #     # set the user as admin
+            #     admin_user.is_admin = True
+            #     db.session.commit()
+
+        user = User.query.filter_by(email=email).first()
+        
+        if user.is_admin:
+                # log the admin in
+                login_user(user, remember=remember)
+                return redirect(url_for('admin.admin'))
+
+        # check if the user actually exists
+        # take the user-supplied password, hash it, and compare it to the hashed password in the database
+        if not user or not check_password_hash(user.password, password):
+            flash('Please check your login details and try again.')
+            return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
+
+        # if the above check passes, then we know the user has the right credentials
+        login_user(user, remember=remember)
+        return redirect(url_for('home'))
     return render_template('auth/login.html')
-
-@auth_bp.route('/login', methods=['POST'])
-def login_post():
-    # login code goes here
-    email = request.form.get('email')
-    password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
-
-    if email == "admin@123.com" and password == "123":
-        admin_user = User.query.get(1)
-        if admin_user:
-            # set the user as admin
-            admin_user.is_admin = True
-            db.session.commit()
-
-            # log the admin in
-            login_user(admin_user, remember=remember)
-            return redirect(url_for('admin.admin'))
-
-    user = User.query.filter_by(email=email).first()
-
-    # check if the user actually exists
-    # take the user-supplied password, hash it, and compare it to the hashed password in the database
-    if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.')
-        return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
-
-    # if the above check passes, then we know the user has the right credentials
-    login_user(user, remember=remember)
-    return redirect(url_for('users.profile'))
-
 
 # Signup
 @auth_bp.route('/signup', methods=['GET', 'POST'])

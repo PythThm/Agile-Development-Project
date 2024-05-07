@@ -26,7 +26,15 @@ def import_data():
     with open("data/customers.csv", "r") as file:
         reader = csv.DictReader(file)
         for record in reader:
-            user = User(name=record["name"], phone=record["phone"], email=record["email"], password=record["password"])
+
+            is_admin = record['is_admin']    
+
+            if is_admin == 'True':
+                is_admin = True
+            elif is_admin == 'False':
+                is_admin = False
+                
+            user = User(name=record["name"], phone=record["phone"], email=record["email"], password=record["password"], is_admin=is_admin)
             db.session.add(user)
         db.session.commit()
 

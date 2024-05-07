@@ -1,4 +1,4 @@
-from sqlalchemy import DateTime, Numeric, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Numeric, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import func
 from datetime import datetime
@@ -7,12 +7,12 @@ from flask_login import UserMixin
 
 class User( UserMixin, db.Model):
     id = mapped_column(Integer, primary_key=True)
-    name = mapped_column(String(200), nullable=True)
+    name = mapped_column(String(200), nullable=False)
     phone = mapped_column(String(20), nullable=True)
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
-    email =  mapped_column(String(200), nullable=True, unique=True)
+    email =  mapped_column(String(200), nullable=True)
     password = mapped_column(String(200), nullable=True)
-    is_admin = mapped_column(Integer, default=False)
+    is_admin = mapped_column(Boolean, default=False)
 
 
     def to_json(self):
