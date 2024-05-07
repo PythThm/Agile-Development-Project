@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template,request, redirect, url_for
+from flask import Blueprint, render_template,request, redirect, url_for, flash
 from db import db 
-from models import Product
+from models import Product, Category
 
 products_bp = Blueprint("products", __name__)
 
@@ -17,7 +17,7 @@ def product_detail(productname):
 
 # create product
 @products_bp.route("/", methods=['GET', 'POST'])
-def products_list():
+def additem():
     if request.method == 'POST':
 
         name = request.form['name']
@@ -37,6 +37,20 @@ def products_list():
             products.append(json_record)
 
         return render_template("products.html", products = products)
+
+# Create Category
+@products_bp.route('/addcategory', methods=['GET', 'POST'])
+def addcategory():
+    if request.method=='POST':
+        getCategory = request.form.get('category')
+        category = Category(name=getCategory)
+        db.session.add(category)
+        db.session.commit()
+        flash(f'The category {getCategory} was added to your database')
+        return redirect(url_for('products.addcategory'))
+    
+    return render_template('admin/additem.html')
+
 
 # Update product
 @products_bp.route("/<int:product_id>", methods=["GET", "POST"])

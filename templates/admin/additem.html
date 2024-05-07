@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if items %}
+<h1>Add Item</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="form-label">
+        <p>Category</p>
+        <select name="category" id="category" class="custom-select" required>
+            <option value="">Add a category</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <div class="form-align">
+        <div class="form-label">
+            <p>Name</p>
+            <input type="text" name="name" placeholder="Name" required>
+        </div>
+
+        <div class="form-label">
+            <p>Price</p>
+            <input type="text" name="price" placeholder="Price" required>
+        </div>
+        <div class="form-label">
+            <p>Quantity</p>
+            <input type="text" name="quantity" placeholder="Quantity" required>
+        </div>
+        <div class="form-label">
+            <p>Description</p>
+            <input type="text" name="description" placeholder="Description" required>
+        </div><br>
+        <div class="form-label">
+            <p>Photo</p>
+            <input type="file" name="item-photo" required>
+        </div>
+
+        <br>
+        <input type="submit" value="Add Item">
+</form>
+{% else %}
+<h1>Add Category</h1>
+<form action="" method="POST">
+    <input type="text" name="category" placeholder="Enter Name"><br>
+    <input type="submit" value="Add Category">
+</form>
+{% endif %}
+<br>
+
+
+</div>
+{% endblock %}

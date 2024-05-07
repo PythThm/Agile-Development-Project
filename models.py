@@ -101,11 +101,25 @@ class Order(db.Model):
 
 # Route function remains the same
 
+class Category(db.Model):
+    id = mapped_column(Integer, primary_key=True)
+    name = mapped_column(String(30), nullable=False, unique=True)
+    cat = relationship("Product", back_populates="category", cascade="all, delete-orphan")
+
+
 class Product(db.Model):
     id = mapped_column(Integer, primary_key=True)
-    name = mapped_column(String(200), nullable=False, unique=True)
-    price = mapped_column(Numeric, nullable=False, default=0) # :3
-    available = mapped_column(Integer, nullable=False, default=0)
+    name = mapped_column(String(30), nullable=False, unique=True)
+    price = mapped_column(Integer, nullable=True)
+    available = mapped_column(Integer, nullable=True)
+    description = mapped_column(String(500), nullable=True)
+    created = mapped_column(DateTime, nullable=False, default=datetime.now().replace(microsecond=0))
+
+    category_id = mapped_column(Integer, ForeignKey('category.id'), nullable=True)
+    category = relationship('Category', back_populates="cat")
+
+    photo = mapped_column(String(10), nullable=False, default='item.jpg')   
+
     orders = relationship("ProductOrder", back_populates="product", cascade="all, delete-orphan")
 
     def to_json(self):
