@@ -17,9 +17,10 @@
 <table>
     <thead>
         <tr>
-            <th scope="col" width="30">Name</th>
-            <th scope="col" width="40">Price</th>
-            <th scope="col" width="20">Available</th>
+            <th scope="col" width="30">Image</th>
+            <th scope="col" width="100">Name</th>
+            <th scope="col" width="50">Price</th>
+            <th scope="col" width="50">Available</th>
             <th scope="col" width="40">Details</th>
 
             {% if not current_user.is_admin %}
@@ -32,7 +33,8 @@
     <tbody>
         {% for product in products %}
         <tr>
-            <td><img src="{{ url_for('static', filename='productpics/' ~ product.name ~ '.jpg')}}"> </td>
+            <td><img src="{{ url_for('static', filename='productpics/' + product.photo)}}" class="productpic thumbnail">
+            </td>
             <td>{{ product.name }}</td>
             <td>{{ product.price|round(2) }}</td>
             <td>{{ product.available }}</td>

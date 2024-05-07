@@ -11,3 +11,4 @@ from .orders import orders_bp
 from .auth import auth_bp
 from .supports import supports_bp
 from .admin import admin_bp
+

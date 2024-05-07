@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template,request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from db import db 
 from models import Product, Category
+from config import photos
+import secrets
 
 products_bp = Blueprint("products", __name__)
 
@@ -16,27 +18,26 @@ def product_detail(productname):
     return render_template('pages/product_detail.html', product=product)
 
 # create product
-@products_bp.route("/", methods=['GET', 'POST'])
+@products_bp.route('/additem', methods=['GET', 'POST'])
 def additem():
-    if request.method == 'POST':
+    if request.method=='POST':
 
         name = request.form['name']
-        price =request.form['price']
-        new_product = Product(name=name, price=price)
+        price = request.form['price']
+        quantity = request.form['quantity']
+        description = request.form['description']
+        category_id = request.form['category']
+        photo = photos.save(request.files['item-photo'], name=secrets.token_hex(10) + ".")
 
-        db.session.add(new_product)
+        item = Product(name=name, price=price, available=quantity, description=description, category_id=category_id, photo=photo)     
+
+        db.session.add(item)
         db.session.commit()
-        return redirect(url_for("products.products_list"))
+        # flash(f'The item {name} was added to your database')
+        return redirect(url_for('products.additem'))
     
-    else:
-        statement = db.select(Product).order_by(Product.id)
-        results = db.session.execute(statement)
-        products = []
-        for product in results.scalars():
-            json_record = Product.to_json(product)
-            products.append(json_record)
-
-        return render_template("products.html", products = products)
+    categories = Category.query.all()
+    return render_template('admin/additem.html', items='items', categories=categories)    
 
 # Create Category
 @products_bp.route('/addcategory', methods=['GET', 'POST'])
@@ -46,7 +47,7 @@ def addcategory():
         category = Category(name=getCategory)
         db.session.add(category)
         db.session.commit()
-        flash(f'The category {getCategory} was added to your database')
+        # flash(f'The category {getCategory} was added to your database')
         return redirect(url_for('products.addcategory'))
     
     return render_template('admin/additem.html')
