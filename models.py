@@ -12,6 +12,7 @@ class User( UserMixin, db.Model):
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
     email =  mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)
+    is_admin = mapped_column(Integer, default=False)
 
 
     def to_json(self):
@@ -20,7 +21,8 @@ class User( UserMixin, db.Model):
             "name": self.name,
             "phone": self.phone,
             "email": self.email,
-            "password": self.password
+            "password": self.password,
+            "is_admin": self.is_admin
         }
 
     def validation(self):
