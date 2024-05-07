@@ -2,7 +2,7 @@
 {% block content %}
 
 <h1>Product detail</h1>
-<img src="{{ url_for('static', filename='productpics/' ~ product.name ~ '.jpg')}}"> 
+<img src="{{ url_for('static', filename='productpics/' + product.photo)}}" class="productpic">
 <ul>
     <li>
         <span>Name: {{ product.name }}</span>
@@ -16,12 +16,15 @@
     <li>
         <span>Stock: {{ product.available }}</span>
     </li>
+    <li>
+        <span>Description: {{ product.description }}</span>
+    </li>
 
-{% if not current_user.is_admin %}
+    {% if not current_user.is_admin %}
     <li>
         <form action="" method="post">
             <button type="submit" value="{{ product.name }}" class="btn">Add to Cart</button>
         </form>
     </li>
-{% endif %}
-{% endblock %}
+    {% endif %}
+    {% endblock %}

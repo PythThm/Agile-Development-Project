@@ -218,6 +218,10 @@ input[type="submit"]:hover {
   margin-bottom: 19px;
 }
 
+.productpic {
+  width: 500px;
+}
+
 .thumbnail {
   border: 1px solid transparent;
   width: 150px;

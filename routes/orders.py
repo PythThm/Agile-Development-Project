@@ -8,7 +8,7 @@ orders_bp = Blueprint("orders", __name__)
 @orders_bp.route('/')
 def orders():
     orders = Order.query.all()
-    return render_template('pages/orders.html', orders=orders)
+    return render_template('admin/orders.html', orders=orders)
 
 @orders_bp.route('/<int:order_id>')
 def order_detail(order_id):
