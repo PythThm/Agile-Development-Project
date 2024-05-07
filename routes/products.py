@@ -29,7 +29,7 @@ def additem():
         category_id = request.form['category']
         photo = photos.save(request.files['item-photo'], name=secrets.token_hex(10) + ".")
 
-        item = Product(name=name, price=price, available=quantity, description=description, category_id=category_id, photo=photo)     
+        item = Product(name=name, price=float(price), available=quantity, description=description, category_id=category_id, photo=photo)     
 
         db.session.add(item)
         db.session.commit()
