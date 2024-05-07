@@ -33,7 +33,7 @@ def additem():
 
         db.session.add(item)
         db.session.commit()
-        # flash(f'The item {name} was added to your database')
+  
         return redirect(url_for('products.additem'))
     
     categories = Category.query.all()
@@ -47,7 +47,7 @@ def addcategory():
         category = Category(name=getCategory)
         db.session.add(category)
         db.session.commit()
-        # flash(f'The category {getCategory} was added to your database')
+
         return redirect(url_for('products.addcategory'))
     
     return render_template('admin/additem.html')
