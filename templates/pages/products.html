@@ -6,28 +6,33 @@
 <h1>Products List</h1>
 
 <!-- Admin Only -->
-<form action="/products" method="POST" class="form-inline">
-    name<input type="text" name="name" placeholder="Enter name">
-    price<input type="text" name="price" placeholder="Enter price">
-    <input type="submit" value="Add New Product" class="button">
-</form>
-
+<!-- {% if current_user.is_authenticated and current_user.is_admin %}
+    <form action="/products" method="POST" class="form-inline">
+        name<input type="text" name="name" placeholder="Enter name">
+        price<input type="text" name="price" placeholder="Enter price">
+        <input type="submit" value="Add New Product" class="button">
+    </form>
+{% endif %} -->
 
 <table>
     <thead>
         <tr>
-            <th scope="col" width="30">Name</th>
-            <th scope="col" width="40">Price</th>
-            <th scope="col" width="20">Available</th>
-            <th scope="col" width="40">Details</th>
-            <th scope="col" width="60">Cart</th>
-            <th scope="col" width="40">Options</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th width="50">Price</th>
+            <th width="50">Available</th>
+            <th>Details</th>
+            {% if not current_user.is_admin %}
+            <th width="80">Cart</th>
+            {%endif%}
+            <th width="90">Options</th>
         </tr>
     </thead>
     <tbody>
         {% for product in products %}
         <tr>
-            <td><img src="{{ url_for('static', filename='productpics/' ~ product.name ~ '.jpg')}}"> </td>
+            <td><img src="{{ url_for('static', filename='productpics/' + product.photo)}}" class="productpic thumbnail">
+            </td>
             <td>{{ product.name }}</td>
             <td>{{ product.price|round(2) }}</td>
             <td>{{ product.available }}</td>
@@ -35,17 +40,22 @@
                 <a href="{{ url_for('products.product_detail', productname=product.name)}}" class="btn">View
                 </a>
             </td>
+            <!-- Only show add to cart button if user is not admin # -->
+            {% if not current_user.is_admin %}
             <td>
                 <form action="">
                     <button type="submit" value="{{ product.name }}" class="btn">Add to
                         Cart</button>
                 </form>
             </td>
+            {% endif %}
             <!-- Only Admin can see edit and delete buttons -->
+            {% if current_user.is_authenticated and current_user.is_admin %}
             <td><a href="/products/{{product.id}}" class="btn">Edit</a>
                 <a href="/products/{{product.id}}/delete" class="btn"
                     onclick="return confirm('Are you sure to delete?')">Delete</a>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

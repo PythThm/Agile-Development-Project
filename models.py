@@ -1,4 +1,4 @@
-from sqlalchemy import DateTime, Numeric, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Numeric, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import func
 from datetime import datetime
@@ -7,11 +7,12 @@ from flask_login import UserMixin
 
 class User( UserMixin, db.Model):
     id = mapped_column(Integer, primary_key=True)
-    name = mapped_column(String(200), nullable=True)
+    name = mapped_column(String(200), nullable=False)
     phone = mapped_column(String(20), nullable=True)
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
-    email =  mapped_column(String(200), nullable=True, unique=True)
+    email =  mapped_column(String(200), nullable=True)
     password = mapped_column(String(200), nullable=True)
+    is_admin = mapped_column(Boolean, default=False)
 
 
     def to_json(self):
@@ -20,7 +21,8 @@ class User( UserMixin, db.Model):
             "name": self.name,
             "phone": self.phone,
             "email": self.email,
-            "password": self.password
+            "password": self.password,
+            "is_admin": self.is_admin
         }
 
     def validation(self):
@@ -99,11 +101,25 @@ class Order(db.Model):
 
 # Route function remains the same
 
+class Category(db.Model):
+    id = mapped_column(Integer, primary_key=True)
+    name = mapped_column(String(30), nullable=False, unique=True)
+    cat = relationship("Product", back_populates="category", cascade="all, delete-orphan")
+
+
 class Product(db.Model):
     id = mapped_column(Integer, primary_key=True)
-    name = mapped_column(String(200), nullable=False, unique=True)
-    price = mapped_column(Numeric, nullable=False, default=0) # :3
-    available = mapped_column(Integer, nullable=False, default=0)
+    name = mapped_column(String(30), nullable=False, unique=True)
+    price = mapped_column(Integer, nullable=True)
+    available = mapped_column(Integer, nullable=True)
+    description = mapped_column(String(500), nullable=True)
+    created = mapped_column(DateTime, nullable=False, default=datetime.now().replace(microsecond=0))
+
+    category_id = mapped_column(Integer, ForeignKey('category.id'), nullable=True)
+    category = relationship('Category', back_populates="cat")
+
+    photo = mapped_column(String(10), nullable=False, default='item.jpg')   
+
     orders = relationship("ProductOrder", back_populates="product", cascade="all, delete-orphan")
 
     def to_json(self):

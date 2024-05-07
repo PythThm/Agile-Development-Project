@@ -9,7 +9,7 @@ users_bp = Blueprint("users", __name__)
 @users_bp.route('/')
 def users():
     users = User.query.all()
-    return render_template('pages/customers.html', users=users)
+    return render_template('admin/customers.html', users=users)
 
 # List a user
 @users_bp.route('/<int:user_id>')
