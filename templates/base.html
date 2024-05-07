@@ -1,21 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Green Basket Storefront{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">Green Basket</div>
         <nav>
-            <a href="/home">Homepage</a>
-            <a href="/customers">customers</a>
-            <a href="/products">products</a>
-            <a href="/orders">orders</a>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('help') }}">Help</a>
         </nav>
-        
-        <div>
-            {% block content %}
-            {% endblock %}
+        <div class="icons">
+            {% if user_logged_in %}
+                <a href="#cart"><img src="{{ url_for('static', filename='homepage/cart.jpg') }}" alt="Shopping Cart"></a>
+                <a href="{{ url_for('logout') }}" class="button">Log Out</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="button">Sign In</a>
+                <button id="signUp">Sign Up</button>
+            {% endif %}
         </div>
-    </body>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        Something
+    </footer>
+</body>
 </html>

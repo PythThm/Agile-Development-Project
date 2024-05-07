@@ -1,21 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Flask Template Example</title>
-</head>
-<body>
-    <nav>
-        <a href="/home">Homepage</a>
-        <a href="/customers">customers</a>
-        <a href="/products">products</a>
-        <a href="/orders">orders</a>
-    </nav>
-    <h1>Hello, {{ name }}!</h1>
-    <ul>
-        {% for element in my_list %}
-            <li>List element: {{ element }}</p>
-        {% endfor %}
-    </ul>
-        
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Home - Green Basket Storefront{% endblock %}
+
+{% block content %}
+<section class="categories">
+    <div class="category-header">
+        <h2>Shop Categories</h2>
+    </div>
+    <div class="category-images">
+        <img src="{{ url_for('static', filename='images/produce.jpg') }}" alt="Produce">
+        <img src="{{ url_for('static', filename='images/meat.jpeg') }}" alt="Meat">
+        <img src="{{ url_for('static', filename='images/bread.jpg') }}" alt="Bakery">
+        <img src="{{ url_for('static', filename='images/dairy.webp') }}" alt="Dairy">
+    </div>
+</section>
+<section class="products" id="products">
+    <div class="product-header">
+        <h2>Start Shopping</h2>
+    </div>
+    <div class="product-list">
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/product1.jpg') }}" alt="Product Name">
+            <h3>Product Name</h3>
+            <p>$19.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/product2.jpg') }}" alt="Product Name">
+            <h3>Product Name</h3>
+            <p>$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/product3.jpg') }}" alt="Product Name">
+            <h3>Product Name</h3>
+            <p>$39.99</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section>
+<section class="about">
+    <h2>About Green Basket</h2>
+    <p>Hi we are a great team!</p>
+</section>
+{% endblock %}
