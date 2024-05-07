@@ -17,17 +17,15 @@
 <table>
     <thead>
         <tr>
-            <th scope="col" width="30">Image</th>
-            <th scope="col" width="100">Name</th>
-            <th scope="col" width="50">Price</th>
-            <th scope="col" width="50">Available</th>
-            <th scope="col" width="40">Details</th>
-
+            <th>Image</th>
+            <th>Name</th>
+            <th width="50">Price</th>
+            <th width="50">Available</th>
+            <th>Details</th>
             {% if not current_user.is_admin %}
-            <th scope="col" width="60">Cart</th>
+            <th width="80">Cart</th>
             {%endif%}
-
-            <th scope="col" width="40">Options</th>
+            <th width="90">Options</th>
         </tr>
     </thead>
     <tbody>
@@ -42,16 +40,15 @@
                 <a href="{{ url_for('products.product_detail', productname=product.name)}}" class="btn">View
                 </a>
             </td>
+            <!-- Only show add to cart button if user is not admin # -->
+            {% if not current_user.is_admin %}
             <td>
-                <!-- Only show add to cart button if user is not admin # -->
-                {% if not current_user.is_admin %}
                 <form action="">
                     <button type="submit" value="{{ product.name }}" class="btn">Add to
                         Cart</button>
                 </form>
-                {% endif %}
-
             </td>
+            {% endif %}
             <!-- Only Admin can see edit and delete buttons -->
             {% if current_user.is_authenticated and current_user.is_admin %}
             <td><a href="/products/{{product.id}}" class="btn">Edit</a>

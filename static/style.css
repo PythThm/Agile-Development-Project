@@ -90,7 +90,7 @@ table {
 
 th,
 td {
-  text-align: left;
+  text-align: center;
   padding: 3px 0;
 }
 
@@ -112,6 +112,17 @@ input {
 input:focus {
   background-color: var(--bg-variant);
   /* border: 1px solid var(--font-color); */
+}
+
+textarea {
+  background-color: transparent;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid var(--background);
+  padding: 6px 6px;
+  border: 1px solid var(--font-color);
+  margin: 10px 2px;
+  outline: none;
+  color: var(--font-color);
 }
 
 label {
@@ -226,4 +237,14 @@ input[type="submit"]:hover {
   border: 1px solid transparent;
   width: 150px;
   padding: 10px;
+}
+
+input::file-selector-button {
+  border: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: var(--bg-variant);
+  color: var(--font-color);
+  padding: 4px 6px;
+  margin-right: 5px;
+  cursor: pointer;
 }
