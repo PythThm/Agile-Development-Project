@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 import datetime
 from db import db
 from models import Order, ProductOrder, Product, User
+from sqlalchemy import func
 
 api_orders_bp = Blueprint("api_orders", __name__)
 
@@ -75,6 +76,33 @@ def order_process(order_id):
     else:
         return jsonify(order.to_json()), 200
     
+@api_orders_bp.route("/dailysales")
+def daily():
+    today = datetime.datetime.now().date()
+    results= db.session.query(func.sum(Order.total).label('dailysales')).filter(Order.created.like(f'%{today}%'))
+    sumoftodaysales = round(db.session.execute(results).scalar(), 2)
+    if sumoftodaysales == None:
+        sumoftodaysales = 0
+    else:
+        sumoftodaysales = round(sumoftodaysales, 2)
+    return jsonify(dailysales=sumoftodaysales)
     
-
-
+    
+@api_orders_bp.route("/totalsales")
+def total():
+    result = Order.query.with_entities(func.sum(Order.total).label("totalsales"))
+    totalsales = round(db.session.execute(result).scalar(),2)
+    return jsonify(totalsales=totalsales)
+    
+@api_orders_bp.route("/yearlysales")
+def yearly():
+    yearnow = datetime.datetime.now().year
+    # sumofyear = Order.query.with_entities(func.sum(Order.total).label("dailysales").filter_by(created=yearnow))
+    results= db.session.query(func.sum(Order.total).label('yearsales')).filter(Order.created.like(f'%{yearnow}%'))
+    sumofyear = db.session.execute(results).scalar()
+    if sumofyear == None:
+        sumofyear = 0
+    else:
+        sumofyear = round(sumofyear, 2)
+    return jsonify(yearlysales=sumofyear)
+    
