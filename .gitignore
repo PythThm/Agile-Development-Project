@@ -5,3 +5,4 @@ __pycache__/
 routes/__pycache__/
 /routes/__pycache__
 /routes/__pycache__
+*.db
