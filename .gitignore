@@ -4,3 +4,5 @@ __pycache__/
 .idea
 routes/__pycache__/
 /routes/__pycache__
+/routes/__pycache__
+*.db
