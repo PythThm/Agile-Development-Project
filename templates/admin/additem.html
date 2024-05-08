@@ -4,6 +4,7 @@
 
 {% if items %}
 <h1>Add Item</h1>
+
 <form action="" method="POST" enctype="multipart/form-data">
     <div class="form-label">
         <p>Category</p>
@@ -33,7 +34,7 @@
             <p>Description</p>
             <!-- <input type="text" name="description" placeholder="Description" required> -->
             <textarea name="description" placeholder="Description" style="width: 400px; height: 200px;"
-                required>   </textarea>
+                required></textarea>
         </div><br>
         <div class="form-label">
             <p>Photo</p>
@@ -51,7 +52,9 @@
 </form>
 {% endif %}
 <br>
+<br>
+<div>
+    <a href="{{ url_for('admin.admin') }}">Go Back</a>
 
 
-</div>
-{% endblock %}
+    {% endblock %}

@@ -4,12 +4,11 @@
 <h1>Dashboard</h1>
 <div>
     <h2>Admin</h2>
-    <p>Welcome to the Admin Dashboard</p>
-
-    <a href="{{ url_for('users.users') }}">Customers</a>
-    <a href="{{ url_for('orders.orders') }}">Orders</a>
-    <a href="{{ url_for('products.additem') }}">Add Item</a>
-    <a href="{{ url_for('products.addcategory') }}">Add Category</a>
-
+    <div>
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('orders.orders') }}">Orders</a>
+        <a href="{{ url_for('admin.additem') }}">Add Item</a>
+        <a href="{{ url_for('admin.addcategory') }}">Add Category</a>
+    </div>
 </div>
 {% endblock %}

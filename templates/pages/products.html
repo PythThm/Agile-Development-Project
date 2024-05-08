@@ -3,64 +3,70 @@
 {% block content %}
 
 
-<h1>Products List</h1>
+<h1>Enjoy your Shopping</h1>
 
-<!-- Admin Only -->
-<!-- {% if current_user.is_authenticated and current_user.is_admin %}
-    <form action="/products" method="POST" class="form-inline">
-        name<input type="text" name="name" placeholder="Enter name">
-        price<input type="text" name="price" placeholder="Enter price">
-        <input type="submit" value="Add New Product" class="button">
-    </form>
-{% endif %} -->
 
-<table>
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th width="50">Price</th>
-            <th width="50">Available</th>
-            <th>Details</th>
-            {% if not current_user.is_admin %}
-            <th width="80">Cart</th>
-            {%endif%}
-            <th width="90">Options</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product in products %}
-        <tr>
-            <td><img src="{{ url_for('static', filename='productpics/' + product.photo)}}" class="productpic thumbnail">
-            </td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price|round(2) }}</td>
-            <td>{{ product.available }}</td>
-            <td>
-                <a href="{{ url_for('products.product_detail', productname=product.name)}}" class="btn">View
-                </a>
-            </td>
-            <!-- Only show add to cart button if user is not admin # -->
-            {% if not current_user.is_admin %}
-            <td>
-                <form action="">
-                    <button type="submit" value="{{ product.name }}" class="btn">Add to
-                        Cart</button>
+<!-- category -->
+<div class="category">
+    <p>Categories</p>
+    {% for category in categories %}
+    <a href="{{url_for('products.getcategory', id=category.id)}}">
+        <h3>{{ category.name }}</h3>
+    </a>
+    {% endfor %}
+</div>
+
+{% if category_items %}
+<div class="row">
+    {% for c in category_items %}
+    <div class="column">
+        <img src="{{url_for('static', filename='productpics/' + c.photo)}}" alt="{{c.name}}">
+        <div class="card">
+            <div class="info">
+                <h3>{{c.name}}</h2>
+                    <p>${{c.price}}</p>
+            </div>
+            <div class="options">
+                <form action="{{ url_for('orders.addcart') }}" method="post">
+                    <div><label for="">Qty: </label><input style="width: 50px;" type="number" name="quantity" value="1"
+                            min="1" max="{{ c.quantity }}">
+                        <input type="hidden" name="c_id" value="{{ c.id }}">
+                        <input type="submit" value="Add to Cart">
+                    </div>
                 </form>
-            </td>
-            {% endif %}
-            <!-- Only Admin can see edit and delete buttons -->
-            {% if current_user.is_authenticated and current_user.is_admin %}
-            <td><a href="/products/{{product.id}}" class="btn">Edit</a>
-                <a href="/products/{{product.id}}/delete" class="btn"
-                    onclick="return confirm('Are you sure to delete?')">Delete</a>
-            </td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </tbody>
+                <a href="{{url_for('products.productdetail', id=c.id)}}" class="btn">Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<!-- category end -->
 
-</table>
-
+<div class="row">
+    {% for product in products %}
+    <div class="column">
+        <img src="{{url_for('static', filename='productpics/' + product.photo)}}" class="productpic thumbnail"
+            alt="{{product.name}}">
+        <div class="card">
+            <div class="info">
+                <h3>{{ product.name }}</h2>
+                    <p>${{ product.price|round(2) }}</p>
+            </div>
+            <div class="options">
+                <form action="{{ url_for('orders.addcart') }}" method="post">
+                    <div><label for="">Qty: </label><input style="width: 50px;" type="number" name="quantity" value="1"
+                            min="1" max="{{ product.available }}">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <input type="submit" value="Add to Cart">
+                    </div>
+                </form>
+                <a href="{{ url_for('products.product_detail', productname=product.name)}}" class="btn">Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
 
 {% endblock %}

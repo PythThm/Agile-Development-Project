@@ -5,5 +5,3 @@ __pycache__/
 routes/__pycache__/
 /routes/__pycache__
 
-/data/store.db
-/static/productpics/
