@@ -50,7 +50,16 @@ def create_app():
     # Home route
     @app.route("/")
     def home():
-        return render_template('index.html')
+        return render_template("index.html")
+    
+    @app.route("/help")
+    def help():
+        return "No support page yet xd"
+    
+    @app.route("/login")
+    def login():
+        return "No login yet xd"
+
 
     return app
 

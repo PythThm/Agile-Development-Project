@@ -1,5 +1,46 @@
 {% extends "base.html" %}
 
+{% block title %}Home - Green Basket Storefront{% endblock %}
+
 {% block content %}
-<h1>Welcome to Green Basket</h1>
+<section class="categories">
+    <div class="category-header">
+        <h2>Shop Categories</h2>
+    </div>
+    <div class="category-images">
+        <img src="{{ url_for('static', filename='./productpics/produce.jpg') }}" alt="Produce">
+        <img src="{{ url_for('static', filename='./productpics/meat.jpeg') }}" alt="Meat">
+        <img src="{{ url_for('static', filename='./productpics/bread.jpg') }}" alt="Bakery">
+        <img src="{{ url_for('static', filename='./productpics/dairy.webp') }}" alt="Dairy">
+    </div>
+</section>
+<section class="products" id="products">
+    <div class="product-header">
+        <h2>Start Shopping</h2>
+    </div>
+    <div class="product-list">
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='./productpics/apple.jpg') }}" alt="Product Name">
+            <h3>Product Name</h3>
+            <p>$19.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='./productpics/bananas.jpg') }}" alt="Product Name">
+            <h3>Product Name</h3>
+            <p>$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='./productpics/lemon.jpg') }}" alt="Product Name">
+            <h3>Product Name</h3>
+            <p>$39.99</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section>
+<section class="about">
+    <h2>About Green Basket</h2>
+    <p>Hi we are a great team!</p>
+</section>
 {% endblock %}
