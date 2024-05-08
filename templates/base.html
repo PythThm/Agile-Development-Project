@@ -8,21 +8,46 @@
 </head>
 <body>
     <header>
-        <div class="logo">Green Basket</div>
+        <div class="logo">
+            <img src="GreenBasket_Logo.svg" alt="green basket logo">
+        </div>
         <nav>
             <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('help') }}">Help</a>
+            <a href="{{ url_for('help') }}">Support</a>
         </nav>
-        <div class="icons">
-            {% if user_logged_in %}
-                <a href="#cart"><img src="{{ url_for('static', filename='./static/productpics/') }}" alt="Shopping Cart"></a>
-                <a href="{{ url_for('logout') }}" class="button">Log Out</a>
-            {% else %}
-                <a href="{{ url_for('login') }}" class="button">Sign In</a>
-                <button id="signUp">Sign Up</button>
-            {% endif %}
+        <div>
+            <a href="">
+                <img src="image.jpg" alt="Profile Image">
+              </a>
+              <a href="#cart">
+                <img src="image.jpg" alt="Shopping Cart Image">
+              </a>
         </div>
+        <!-- <div class="icons">
+            {% if user_logged_in %}
+            <a href="#cart"><img src="{{ url_for('static', filename='./static/productpics/') }}" alt="Shopping Cart"></a>
+            <a href="{{ url_for('logout') }}" class="button">Log Out</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="button">Sign In</a>
+            <button id="signUp">Sign Up</button>
+            {% endif %}
+        </div> -->
     </header>
+    
+    
+    <div id="productbar">
+        <ul>
+            <a href="">Fruits</a>
+            <a href="">Vegegtables</a>
+            <a href="">Dairy</a>
+            <a href="">Meat</a>
+        </ul>
+    </div>
+    
+    <div class="banner">
+        <img src="/static/flippedbanner.jpg" alt="assortment of fresh fruits and vegetables">
+    </div>
+    
     {% block content %}
     {% endblock %}
     <footer>
