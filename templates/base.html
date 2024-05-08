@@ -12,12 +12,12 @@
             <img src="GreenBasket_Logo.svg" alt="green basket logo">
         </div>
         <nav>
-            <a href="{{ url_for('help') }}">Support</a>
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('products.products') }}">Products</a>
             <a href="{{ url_for('orders.cart') }}">Cart</a>
+            <a href="{{ url_for('help') }}">Support</a>
         </nav>
-        <div class="icons">
+        <div>
             {% if not current_user.is_authenticated %}
             <a href="{{ url_for('auth.login') }}">Login</a>
 
@@ -30,12 +30,12 @@
             <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% endif %}
         </div>
-        <div>
+        <div class="icons">
             <a href="">
-                <img src="image.jpg" alt="Profile Image">
+                <img src="{{ url_for('static', filename='./productpics/user.jpg') }}" alt="User Profile">
               </a>
               <a href="#cart">
-                <img src="image.jpg" alt="Shopping Cart Image">
+                <img src="{{ url_for('static', filename='./productpics/cart.jpg') }}" alt="Shopping Cart Image">
               </a>
         </div>
         <!-- <div class="icons">
