@@ -1,4 +1,9 @@
-{% extends "base.html" %}
+{% extends "base.html" %}\
+
+{% block head %}
+<meta http-equiv="refresh" content="5; {{ url_for('home') }}" />
+{% endblock %}
+
 {% block content %}
 <h1>Payment Confirmed!</h1>
 <h2>Please wait while you're returned to the home page</h2>
