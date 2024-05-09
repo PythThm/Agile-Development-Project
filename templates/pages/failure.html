@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+
+{% block head %}
+<meta http-equiv="refresh" content="5; {{ url_for('orders.checkout') }}" />
+{% endblock %}
+
 {% block content %}
 <h1>An issue was found with your credit card</h1>
 <h2>Please try again</h2>
