@@ -19,8 +19,6 @@
             <a href="{{ url_for('products.products') }}">Products</a>
             <a href="{{ url_for('orders.cart') }}">Cart</a>
             <a href="{{ url_for('help') }}">Support</a>
-        </nav>
-        <div>
             {% if not current_user.is_authenticated %}
             <a href="{{ url_for('auth.login') }}">Login</a>
 
@@ -32,7 +30,8 @@
             <a href="{{ url_for('admin.admin') }}">Dashboard</a>
             <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% endif %}
-        </div>
+        </nav>
+
         <div class="icons">
             <a href="">
                 <img src="{{ url_for('static', filename='./productpics/user.jpg') }}" alt="User Profile">
