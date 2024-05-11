@@ -17,7 +17,7 @@
         <nav>
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('products.products') }}">Products</a>
-            <a href="{{ url_for('orders.cart') }}">Cart</a>
+            <!-- <a href="{{ url_for('orders.cart') }}">Cart</a> -->
             <a href="{{ url_for('help') }}">Support</a>
             {% if not current_user.is_authenticated %}
             <a href="{{ url_for('auth.login') }}">Login</a>
@@ -33,10 +33,10 @@
         </nav>
 
         <div class="icons">
-            <a href="">
+            <a href="{{ url_for('users.profile')}}">
                 <img src="{{ url_for('static', filename='./productpics/user.jpg') }}" alt="User Profile">
               </a>
-              <a href="#cart">
+              <a href="{{ url_for('orders.cart') }}">
                 <img src="{{ url_for('static', filename='./productpics/cart.jpg') }}" alt="Shopping Cart Image">
               </a>
         </div>
