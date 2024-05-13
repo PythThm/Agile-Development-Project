@@ -282,11 +282,28 @@ header {
   display:flex;
   align-items: center;
 }
+.banner img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.title {
+  text-align: center;
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 100px;
+  background-color: #ffffff;
 
+}
 .logo {
   font-size: 24px;
   font-weight: bold;
   flex-grow: 1;
+  display: flex;
 }
 
 nav {
@@ -405,8 +422,95 @@ nav a {
   text-transform: uppercase;
 }
 
+/* For Profile Page */
+.title {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.profile_nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+
+}
+.profile_nav div ul, .profile_nav div li{
+  list-style-type: none;
+  text-decoration: none;
+  padding: 0;
+  color: black;
+}
+#profile_photo img{
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 20px 20px 0px 20px;
+  padding: 10px;
+}
+.profile_nav .leftNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  height: 400px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 3px solid #87A922;
+  justify-content: center;
+}
+.profile_nav .rightNav {
+  display: flex;
+  width: 500px;
+  height: auto;
+  justify-content: left;
+  padding-left: 100px;
+}
+.box{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 5px 0px 20px 0px;
+  border: 2px solid #87A922;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+  width: 500px;
+  height: 40px;
+
+}
+.leftNav ul li{
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  width: 200px;
+  height: 20px;
+
+}
+.leftNav ul{
+  margin: 0px 0px 25px 0px;
+}
+
+.about{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+  padding: 30px 0;
+  text-decoration: none;
+  background-color: #AD4D27;
+  color: white;
+
+}
+
+
 footer {
-  background-color: #f0f0f0;
+  background-color: #87A922;
   padding: 10px;
 }
 
