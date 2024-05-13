@@ -61,3 +61,26 @@ def test_order_total_calc(init_database):
     db.session.commit()
 
     assert order.total_calc() == 30
+
+# Product and Order validation tests
+def test_order_validation_total():
+    order = Order(total=-1)
+    assert order.total_calc() == 0
+
+def test_product_validation_name():
+    product = Product(name=" ")
+    with pytest.raises(ValueError):
+        product.validation_name()
+
+def test_product_validation_price():
+    product = Product(price=-1)
+    assert product.validation_price() == 0
+
+def test_product_validation_available():
+    product = Product(available=-1)
+    assert product.validation_available() == 0
+
+def test_category_validation_name():
+    category = Category(name=" ")
+    with pytest.raises(ValueError):
+        category.validation_name()

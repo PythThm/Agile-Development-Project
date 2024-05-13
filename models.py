@@ -106,6 +106,17 @@ class Category(db.Model):
     name = mapped_column(String(30), nullable=False, unique=True)
     cat = relationship("Product", back_populates="category", cascade="all, delete-orphan")
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name
+        }
+    
+    def validation_name(self):
+        if not self.name.strip():
+            raise ValueError("Name cannot be empty")
+        return self.name
+
 
 class Product(db.Model):
     id = mapped_column(Integer, primary_key=True)
@@ -131,7 +142,7 @@ class Product(db.Model):
             "available": self.available
         }
 
-    def validation(self):
+    def validation_price(self):
         if float(self.price) < 0:
             return 0
         return self.price
