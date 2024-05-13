@@ -17,8 +17,9 @@
             <tr>
                 <td>{{loop.index}}</td>
                 <td>{{category.name}}</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                <td><a href="{{ url_for('admin.updatecategory', id=category.id) }}">Edit</a></td>
+                <td><a href="/admin/delete-category/{{ category.id }}"
+                        onclick="return confirm('Are you sure to delete?')">Delete</a>
                 </td>
 
 
