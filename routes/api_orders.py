@@ -80,7 +80,7 @@ def order_process(order_id):
 def daily():
     today = datetime.datetime.now().date()
     results= db.session.query(func.sum(Order.total).label('dailysales')).filter(Order.created.like(f'%{today}%'))
-    sumoftodaysales = round(db.session.execute(results).scalar(), 2)
+    sumoftodaysales = db.session.execute(results).scalar()
     if sumoftodaysales == None:
         sumoftodaysales = 0
     else:

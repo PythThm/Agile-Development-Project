@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if updatecategory %}
+<h1>Update Category</h1>
+<form action="" method="POST">
+    <input type="text" name="category" value="{{ updatecategory.name }}"><br>
+    <input type="submit" value="Update Category">
+</form>
+<br>
+<a href="{{ url_for('admin.category') }}">Go Back</a>
+
+{% endif %}
+
+<br>
+
+
+</div>
+{% endblock %}

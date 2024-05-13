@@ -11,6 +11,8 @@
 - flask_sqlalchemy==3.1.1
 - Requests==2.31.0
 - SQLAlchemy>=2.0.0
+- flask-uploads>=0.2.1
+- flask-reuploaded>=1.4.0
 
 ## What to do
 

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Update Category</h1>
+<div class="container">
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% if categories %}
+            {% for category in categories %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{category.name}}</td>
+                <td><a href="{{ url_for('admin.updatecategory', id=category.id) }}">Edit</a></td>
+                <td><a href="/admin/delete-category/{{ category.id }}"
+                        onclick="return confirm('Are you sure to delete?')">Delete</a>
+                </td>
+
+
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+<a href="{{ url_for('admin.admin') }}">Go Back</a>
+{% endblock %}

@@ -253,15 +253,34 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4fdf4;
+  background-color: #ffffff;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #e8f5e9;
+  padding: 25px 150px;
+  background-color: #ffffff;
+}
+
+#productbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #AD4D27;
+  
+}
+
+#productbar a {
+  margin: 20px 50px;
+  text-decoration: none;
+  color: white;
+}
+
+.banner{
+  display:flex;
+  align-items: center;
 }
 
 .logo {
@@ -341,10 +360,17 @@ nav a {
   padding: 20px 0;
 }
 
+.product-header{
+  position: relative;
+  
+
+}
+
 .product-list {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin: 0px 315px;
 }
 
 .product-card {
