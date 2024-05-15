@@ -84,3 +84,5 @@ def test_category_validation_name():
     category = Category(name=" ")
     with pytest.raises(ValueError):
         category.validation_name()
+
+
