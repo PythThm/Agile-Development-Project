@@ -343,8 +343,6 @@ nav a {
   height: 24px;
   width: 24px;
 }
-
-
 .icons button, .icons .button {
   padding: 8px 16px;
   background-color: green;
@@ -432,6 +430,39 @@ nav a {
   border-radius: 5px;
   text-transform: uppercase;
 }
+input{
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #87A922;
+  width: 300px;
+}
+.checkbox{
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+/* For Login.html page */
+
+.form-align{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.login{
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #87A922;
+  background-color: rgba(190, 190, 190, 0.2);
+  margin: 0px 37vw;
+  font-size: 18px;
+}
+
 
 /* For Profile Page */
 .title {
@@ -451,9 +482,12 @@ nav a {
 .profile_nav div ul, .profile_nav div li{
   list-style-type: none;
   text-decoration: none;
-  padding: 0;
+  padding: 0px;
   color: black;
 }
+
+/* code for left nav bar. But it is now removed. */
+/* 
 #profile_photo img{
   display: flex;
   width: 100px;
@@ -473,17 +507,31 @@ nav a {
   border: 3px solid #87A922;
   justify-content: center;
 }
+.leftNav ul li{
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  width: 200px;
+  height: 20px;
+}
+.leftNav ul{
+  margin: 0px 0px 25px 0px;
+} */
 .profile_nav .rightNav {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 500px;
   height: auto;
   justify-content: left;
-  padding-left: 100px;
+  /* padding-left: 100px; */
 }
 .rightNav{
   display: flex;
   flex-direction: column;
-
 }
 .box{
   display: flex;
@@ -498,21 +546,6 @@ nav a {
   text-indent: 10px;
   width: 500px;
   height: 40px;
-
-}
-.leftNav ul li{
-  padding: 10px;
-  margin: 20px;
-  border-radius: 10px;
-  background-color: white;
-  color: black;
-  text-align: center;
-  width: 200px;
-  height: 20px;
-
-}
-.leftNav ul{
-  margin: 0px 0px 25px 0px;
 }
 
 .PButton {
