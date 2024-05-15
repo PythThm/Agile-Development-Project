@@ -17,8 +17,16 @@
         <nav>
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('products.products') }}">Products</a>
-            <!-- <a href="{{ url_for('orders.cart') }}">Cart</a> -->
-            <a href="{{ url_for('help') }}">Support</a>
+          
+            <a href="{{ url_for('orders.cart') }}">Cart</a>
+
+            {% if not current_user.is_admin %}
+            <a href="{{ url_for('supports.supports') }}">Support</a>
+            {% else %}
+            <a href="{{ url_for('supports.view_issues') }}">View Issues</a>
+            {% endif %}
+
+
             {% if not current_user.is_authenticated %}
             <a href="{{ url_for('auth.login') }}">Login</a>
 

@@ -2,4 +2,16 @@
 
 {% block content %}
 <h1>Support</h1>
+<p>For any questions or concerns, please fill out the form below:</p>
+<form action="{{ url_for('supports.submit_issues') }}" method="POST">
+  <div class="form-group">
+    <label for="issue_title">Issue Title:</label>
+    <input type="text" id="issue_title" name="issue_title" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="issue_description">Issue Description:</label>
+    <textarea id="issue_description" name="issue_description" class="form-control" rows="5" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock %}
