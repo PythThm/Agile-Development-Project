@@ -28,6 +28,22 @@ def category():
 
         return render_template('admin/category.html', categories = categories)
 
+
+# Create Category
+@admin_bp.route('/addcategory', methods=['GET', 'POST'])
+def addcategory():
+    if request.method=='POST':
+        getCategory = request.form.get('category')
+        category = Category(name=getCategory)
+        db.session.add(category)
+        db.session.commit()
+
+        return redirect(url_for('admin.addcategory'))
+    
+    return redirect(url_for('admin.category'))
+
+
+
 # Update Category
 @admin_bp.route('/update-category/<int:id>', methods=['GET', 'POST'])
 def updatecategory(id):
