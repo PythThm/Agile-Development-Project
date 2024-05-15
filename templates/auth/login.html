@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<h1>Login</h1>
+<h1 class="title">Login</h1>
 
 <form method="post" action="{{ url_for('auth.login') }}">
-    <div class="form-align">
+    <div class="form-align login">
         <div class="form-label">
             <p class="gap">Email</p>
             <input type="email" name="email" placeholder="Your Email" autofocus="">
@@ -16,7 +16,8 @@
         </div>
         <div class="form-label">
             <label class="checkbox">
-                <input type="checkbox" name="remember" value="Remember me">
+                <!-- 1 -->
+                <input class="checkbox" type="checkbox" name="remember" value="Remember me">
                 Remember Me
             </label>
         </div>
