@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <h1>Create Category</h1>
+    <form action="{{ url_for( 'admin.addcategory' ) }}" method="POST">
+        <input type="text" name="category" placeholder="Enter Name"><br>
+        <input type="submit" value="Add Category">
+    </form>
+
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% if categories %}
+            {% for category in categories %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{category.name}}</td>
+                <td><a href="{{ url_for('admin.updatecategory', id=category.id) }}">Edit</a></td>
+                <td><a href="/admin/delete-category/{{ category.id }}"
+                        onclick="return confirm('Are you sure to delete?')">Delete</a>
+                </td>
+
+
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+<a href="{{ url_for('admin.admin') }}">Go Back</a>
+{% endblock %}
