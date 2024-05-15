@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if items %}
+
 <h1>Add Item</h1>
 <form action="" method="POST" enctype="multipart/form-data">
     <div class="form-label">
@@ -43,13 +43,7 @@
         <br>
         <input type="submit" value="Add Item">
 </form>
-{% else %}
-<h1>Add Category</h1>
-<form action="" method="POST">
-    <input type="text" name="category" placeholder="Enter Name"><br>
-    <input type="submit" value="Add Category">
-</form>
-{% endif %}
+
 <br>
 
 
