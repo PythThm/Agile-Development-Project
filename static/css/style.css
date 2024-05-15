@@ -617,7 +617,7 @@ footer {
   .product-card h3{
     z-index: 1;
     position: relative;
-    margin: 28px 138px 20px 133px;
+    margin: 28px 20px 133px 138px;
 
     width: 218px;
     height: 53px;
@@ -631,7 +631,7 @@ footer {
     line-height: 30px;
     letter-spacing: -0.44px;
   }
-  .product-list{
+   .product-list{
     margin: 0px 0px;
   }
   .icons{
