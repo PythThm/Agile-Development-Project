@@ -5,15 +5,15 @@ from datetime import datetime
 from db import db
 from flask_login import UserMixin
 
-class User( UserMixin, db.Model):
+class User(UserMixin, db.Model):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(200), nullable=False)
     phone = mapped_column(String(20), nullable=True)
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
-    email =  mapped_column(String(200), nullable=True)
+    email = mapped_column(String(200), nullable=True)
     password = mapped_column(String(200), nullable=True)
     is_admin = mapped_column(Boolean, default=False)
-
+    balance = mapped_column(Numeric, default=0)
 
     def to_json(self):
         return {
@@ -22,7 +22,8 @@ class User( UserMixin, db.Model):
             "phone": self.phone,
             "email": self.email,
             "password": self.password,
-            "is_admin": self.is_admin
+            "is_admin": self.is_admin,
+            "balance": float(self.balance)
         }
 
     def validation(self):
@@ -39,6 +40,7 @@ class User( UserMixin, db.Model):
         if not self.phone.strip():
             raise ValueError("Phone cannot be empty")
         return self.phone
+
 
 class Order(db.Model):
     id = mapped_column(Integer, primary_key=True)

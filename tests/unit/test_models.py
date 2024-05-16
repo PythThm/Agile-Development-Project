@@ -29,7 +29,7 @@ def client(app):
 def init_database(app):
     with app.app_context():
         db.create_all()
-        user = User(email='test@example.com', name='testuser', password=generate_password_hash('password', method='pbkdf2:sha256'))
+        user = User(email='test@example.com', name='testuser', password=generate_password_hash('password', method='pbkdf2:sha256'), balance=100)
         db.session.add(user)
         db.session.commit()
 
@@ -61,3 +61,46 @@ def test_order_total_calc(init_database):
     db.session.commit()
 
     assert order.total_calc() == 30
+
+def test_order_process(init_database):
+    user = User(email='test3@example.com', name='testuser3', password=generate_password_hash('password', method='pbkdf2:sha256'), balance=100)
+    product = Product(name="Test Product 2", price=20, available=5)
+    order = Order(user=user)
+    product_order = ProductOrder(order=order, product=product, quantity=3)
+
+    db.session.add(user)
+    db.session.add(product)
+    db.session.add(order)
+    db.session.add(product_order)
+    db.session.commit()
+
+    success, message = order.process(strategy="adjust")
+
+    assert success == True
+    assert message == "Order processed"
+    assert product.available == 2
+    assert user.balance == 40
+    assert order.processed is not None
+
+
+def test_order_validation_total():
+    order = Order(total=-1)
+    assert order.total_calc() == 0
+
+def test_product_validation_name():
+    product = Product(name=" ")
+    with pytest.raises(ValueError):
+        product.validation_name()
+
+def test_product_validation_price():
+    product = Product(price=-1)
+    assert product.validation_price() == 0
+
+def test_product_validation_available():
+    product = Product(available=-1)
+    assert product.validation_available() == 0
+
+def test_category_validation_name():
+    category = Category(name=" ")
+    with pytest.raises(ValueError):
+        category.validation_name()
