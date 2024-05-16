@@ -1,9 +1,62 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>My Cart</h1>
-<div>
-    <h2>Cart</h2>
-    <p>Here are the items in your cart</p>
-    <a href="{{ url_for('orders.checkout')}}">Checkout</a>
+<h1>Shopping Cart</h1>
+<div class="container">
+
+    {% include "messages.html" %}
+
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+
+            {% for key, product in session['shoppingcart'].items() %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td><img src="{{url_for('static', filename='productpics/' + product.image)}}" alt="{{product.name}}"
+                        width="60" , height="60"></td>
+                <td>{{product.name}}</td>
+                <form action="{{ url_for('orders.updatecart', code=key) }}" method="post">
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <td>${{product.price}}</td>
+                    <td><input type="number" name="quantity" min="1" max="10" value="{{product.quantity}}"></td>
+                    {% set subtotal = product.quantity|int * product.price|float %}
+                    <td>${{ subtotal|round(2) }}</td>
+                    <td><input type="submit" value="Update"></td>
+                </form>
+                <td><a href="{{url_for('orders.deletecartitem', id=key )}}" class="btn">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table>
+        <tr>
+            <td><a href="{{ url_for('products.products') }}">Continue Shopping</a></td>
+            <td width="31%"></td>
+            <td width="15%"><a href="{{ url_for('orders.clearcart') }}" class="btn">Clear Cart</a></td>
+            <td>Tax ${{ tax }}</td>
+            <td>
+                <h4>Total ${{ estimated }}</h4>
+            </td>
+        </tr>
+    </table>
+
+    <div class="checkout">
+        <a href="{{ url_for('orders.checkout')}}">
+            <h2> Go to Checkout</h2>
+        </a>
+
+    </div>
+
+
+</div>
 {% endblock %}

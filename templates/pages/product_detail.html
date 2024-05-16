@@ -2,29 +2,39 @@
 {% block content %}
 
 <h1>Product detail</h1>
-<img src="{{ url_for('static', filename='productpics/' + product.photo)}}" class="productpic">
-<ul>
-    <li>
-        <span>Name: {{ product.name }}</span>
-    </li>
-    <li>
-        <span>Price: ${{ product.price|round(2) }}</span>
-    </li>
-    <li>
-        <span>Product ID: {{ product.id }}</span>
-    </li>
-    <li>
-        <span>Stock: {{ product.available }}</span>
-    </li>
-    <li>
-        <span>Description: {{ product.description }}</span>
-    </li>
 
-    {% if not current_user.is_admin %}
-    <li>
-        <form action="" method="post">
-            <button type="submit" value="{{ product.name }}" class="btn">Add to Cart</button>
-        </form>
-    </li>
-    {% endif %}
-    {% endblock %}
+<br>
+<div class="column" style="width: 350px; ">
+    <img src="{{ url_for('static', filename='productpics/' + product.photo)}}" alt={{product.name}}
+        style="width: 350px; height: 350px;" class="productpic">
+    <div class="card">
+        <div class="info">
+            <h3>{{product.name}}</h2>
+                <p>${{product.price|round(2)}}</p>
+        </div>
+        <div class="details">
+            <p><strong>Quantities:</strong> {{ product.available }}</p>
+            <p><strong>Product description</strong><br>{{ product.description }}</p>
+        </div>
+        {% if not current_user.is_admin %}
+        <div class="options">
+            <form action="{{ url_for('orders.addcart') }}" method="post">
+                <div><label for="">Qty: </label><input style="width: 50px;" type="number" name="quantity" value="1"
+                        min="1" max="{{ product.available }}">
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <input type="submit" value="Add to Cart">
+                </div>
+            </form>
+
+        </div>
+        {% endif %}
+    </div>
+</div>
+<br>
+{% if current_user.is_authenticated and current_user.is_admin %}
+<a href="{{ url_for('admin.admin') }}">Go Back</a>
+{% else %}
+<a href="{{ url_for('products.products') }}">Go Back</a>
+{% endif %}
+
+{% endblock %}

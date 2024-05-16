@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_login import LoginManager
 from pathlib import Path
 from db import db
@@ -50,7 +50,7 @@ def create_app():
     # Home route
     @app.route("/")
     def home():
-        return render_template("index.html")
+        return redirect(url_for('products.products'))
     
     @app.route("/help")
     def help():

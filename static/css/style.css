@@ -249,7 +249,8 @@ input::file-selector-button {
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -268,8 +269,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #AD4D27;
-  
+  background-color: #ad4d27;
 }
 
 #productbar a {
@@ -278,11 +278,11 @@ header {
   color: white;
 }
 
-.banner{
-  display:flex;
+.banner {
+  display: flex;
   /* background-image: (90 deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.9)),
     url('/static/flippedbanner.jpg'); */
-  position:absolute;
+  position: absolute;
   align-items: center;
   background-size: cover;
   z-index: -1;
@@ -302,13 +302,12 @@ header {
 .title {
   text-align: center;
 }
-header{
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 100px;
   background-color: #ffffff;
-
 }
 .logo {
   font-size: 24px;
@@ -334,7 +333,8 @@ nav a {
   justify-content: flex-end;
 }
 
-.icons a, .icons button {
+.icons a,
+.icons button {
   margin-left: 10px;
 }
 
@@ -344,8 +344,8 @@ nav a {
   width: 24px;
 }
 
-
-.icons button, .icons .button {
+.icons button,
+.icons .button {
   padding: 8px 16px;
   background-color: green;
   color: white;
@@ -357,8 +357,9 @@ nav a {
   cursor: pointer;
 }
 
-.icons button:hover, .icons .button:hover {
-  background-color: #4CAF50;
+.icons button:hover,
+.icons .button:hover {
+  background-color: #4caf50;
 }
 
 .categories {
@@ -379,7 +380,7 @@ nav a {
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   margin: 1%;
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
   object-fit: cover;
 }
 
@@ -388,10 +389,8 @@ nav a {
   padding: 20px 0;
 }
 
-.product-header{
+.product-header {
   position: relative;
-  
-
 }
 
 .product-list {
@@ -405,7 +404,7 @@ nav a {
   display: inline-block;
   width: 30%;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
   text-align: center;
   vertical-align: top;
@@ -419,7 +418,8 @@ nav a {
   border-radius: 5px;
 }
 
-.product-card h3, .product-card p {
+.product-card h3,
+.product-card p {
   margin: 5px 0;
 }
 
@@ -446,15 +446,15 @@ nav a {
   align-items: center;
   padding: 10px 0;
   text-decoration: none;
-
 }
-.profile_nav div ul, .profile_nav div li{
+.profile_nav div ul,
+.profile_nav div li {
   list-style-type: none;
   text-decoration: none;
   padding: 0;
   color: black;
 }
-#profile_photo img{
+#profile_photo img {
   display: flex;
   width: 100px;
   height: 100px;
@@ -470,7 +470,7 @@ nav a {
   height: 400px;
   flex-shrink: 0;
   border-radius: 15px;
-  border: 3px solid #87A922;
+  border: 3px solid #87a922;
   justify-content: center;
 }
 .profile_nav .rightNav {
@@ -480,17 +480,16 @@ nav a {
   justify-content: left;
   padding-left: 100px;
 }
-.rightNav{
+.rightNav {
   display: flex;
   flex-direction: column;
-
 }
-.box{
+.box {
   display: flex;
   justify-content: left;
   align-items: center;
   margin: 5px 0px 20px 0px;
-  border: 2px solid #87A922;
+  border: 2px solid #87a922;
   border-radius: 10px;
   color: black;
   background-color: rgba(190, 190, 190, 0.3);
@@ -498,9 +497,8 @@ nav a {
   text-indent: 10px;
   width: 500px;
   height: 40px;
-
 }
-.leftNav ul li{
+.leftNav ul li {
   padding: 10px;
   margin: 20px;
   border-radius: 10px;
@@ -509,9 +507,8 @@ nav a {
   text-align: center;
   width: 200px;
   height: 20px;
-
 }
-.leftNav ul{
+.leftNav ul {
   margin: 0px 0px 25px 0px;
 }
 
@@ -522,31 +519,26 @@ nav a {
   margin: 5px 0px 20px 0px;
   /* padding: 10px 0; */
   text-decoration: none;
-  background-color: #87A922;
+  background-color: #87a922;
   color: white;
   width: 500px;
   height: 40px;
   border: 2px solid #6b8716;
   border-radius: 10px;
-
 }
 
-.about{
+.about {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 120px;
   padding: 30px 0;
   text-decoration: none;
-  background-color: #AD4D27;
+  background-color: #ad4d27;
   color: white;
-
 }
-
 
 footer {
-  background-color: #87A922;
+  background-color: #87a922;
   padding: 10px;
 }
-
-
