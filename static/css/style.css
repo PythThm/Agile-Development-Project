@@ -253,7 +253,7 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 
 header {
@@ -280,13 +280,41 @@ header {
 
 .banner{
   display:flex;
+  /* background-image: (90 deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.9)),
+    url('/static/flippedbanner.jpg'); */
+  position:absolute;
   align-items: center;
+  background-size: cover;
+  z-index: -1;
+  /* background-image:
+                linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.75),
+                    rgba(255, 255, 255, 0)),
+                    url(https://app.gemoo.com/share/image-annotation/648700020453777408?codeId=Mll53rLBjx2Ob&origin=imageurlgenerator);
+             */
 }
+.banner img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.title {
+  text-align: center;
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 100px;
+  background-color: #ffffff;
 
+}
 .logo {
   font-size: 24px;
   font-weight: bold;
   flex-grow: 1;
+  display: flex;
 }
 
 nav {
@@ -315,8 +343,6 @@ nav a {
   height: 24px;
   width: 24px;
 }
-
-
 .icons button, .icons .button {
   padding: 8px 16px;
   background-color: green;
@@ -404,9 +430,155 @@ nav a {
   border-radius: 5px;
   text-transform: uppercase;
 }
+input{
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #87A922;
+  width: 300px;
+}
+.checkbox{
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+/* For Login.html page */
+
+.form-align{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.login{
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #87A922;
+  background-color: rgba(190, 190, 190, 0.2);
+  margin: 0px 37vw;
+  font-size: 18px;
+}
+
+
+/* For Profile Page */
+.title {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 50px;
+}
+
+.profile_nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+
+}
+.profile_nav div ul, .profile_nav div li{
+  list-style-type: none;
+  text-decoration: none;
+  padding: 0px;
+  color: black;
+}
+
+/* code for left nav bar. But it is now removed. */
+/* 
+#profile_photo img{
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 20px 20px 0px 20px;
+  padding: 10px;
+}
+.profile_nav .leftNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  height: 400px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 3px solid #87A922;
+  justify-content: center;
+}
+.leftNav ul li{
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  width: 200px;
+  height: 20px;
+}
+.leftNav ul{
+  margin: 0px 0px 25px 0px;
+} */
+.profile_nav .rightNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  height: auto;
+  justify-content: left;
+  /* padding-left: 100px; */
+}
+.rightNav{
+  display: flex;
+  flex-direction: column;
+}
+.box{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 5px 0px 20px 0px;
+  border: 2px solid #87A922;
+  border-radius: 10px;
+  color: black;
+  background-color: rgba(190, 190, 190, 0.3);
+  text-align: center;
+  text-indent: 10px;
+  width: 500px;
+  height: 40px;
+}
+
+.PButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0px 20px 0px;
+  /* padding: 10px 0; */
+  text-decoration: none;
+  background-color: #87A922;
+  color: white;
+  width: 500px;
+  height: 40px;
+  border: 2px solid #6b8716;
+  border-radius: 10px;
+
+}
+
+.about{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+  padding: 30px 0;
+  text-decoration: none;
+  background-color: #AD4D27;
+  color: white;
+
+}
+
 
 footer {
-  background-color: #f0f0f0;
+  background-color: #87A922;
   padding: 10px;
 }
 

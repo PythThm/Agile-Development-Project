@@ -39,18 +39,6 @@ def additem():
     categories = Category.query.all()
     return render_template('admin/additem.html', items='items', categories=categories)    
 
-# Create Category
-@products_bp.route('/addcategory', methods=['GET', 'POST'])
-def addcategory():
-    if request.method=='POST':
-        getCategory = request.form.get('category')
-        category = Category(name=getCategory)
-        db.session.add(category)
-        db.session.commit()
-
-        return redirect(url_for('products.addcategory'))
-    
-    return render_template('admin/additem.html')
 
 
 # Update product

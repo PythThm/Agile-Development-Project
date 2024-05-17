@@ -162,5 +162,36 @@ class ProductOrder(db.Model):
         return self.quantity
 
 
+class Issue(db.Model):
+    id = mapped_column(Integer, primary_key=True)
+    title = mapped_column(String(200), nullable=False)
+    description = mapped_column(String(500), nullable=False)
+    created = mapped_column(DateTime, default=datetime.now().replace(microsecond=0))
+    resolved = mapped_column(Boolean, default=False)
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "created": self.created,
+            "resolved": self.resolved
+        }
+
+    def resolve(self):
+        self.resolved = True
+        db.session.commit()
+
+    def validation(self):
+        if not self.title.strip():
+            raise ValueError("Title cannot be empty")
+        return self.title
+
+    def validation_description(self):
+        if not self.description.strip():
+            raise ValueError("Description cannot be empty")
+        return self.description
+
+
+        
         

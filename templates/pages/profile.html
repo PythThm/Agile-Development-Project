@@ -5,4 +5,49 @@
   Welcome, {{ name }}
 </h1>
 
+<div class="profile_nav">
+  <!-- code for left navigatoin bar -->
+  <!-- <div class="leftNav ">
+    <div id="profile_photo">
+      <img src="{{ url_for('static', filename='./productpics/user.jpg') }}" alt="User Profile">
+    </div>
+    <ul>
+      <li>
+        <a href="">My Account</a>
+      </li>
+      <li>
+        <a href="">Change Password</a>
+      </li>
+      <li>
+        <a href="">Address</a>
+      </li>
+      <li>
+        <a href="">Payment Information</a>
+      </li>
+      <li>
+        <a href="">My Orders</a>
+      </li>
+    </ul>
+  </div> -->
+  
+  <!-- code for right navigatoin bar. Now in center of the page -->
+  <div class="rightNav">
+    <ul>
+      <li>First name</li>
+      <li class="box">firstname</li>
+      <li>Last name</li>
+      <li class="box">lastname</li>
+      <li>Date of birth</li>
+      <li class="box">MMDDYYYY</li>
+      <li>Email Address</li>
+      <li class="box">abc@example.com</li>
+      <li>Phone Number</li>
+      <li class="box">123 456 7890</li>
+    </ul>
+    <button class="PButton">Edit Profile</button>
+  </div>
+</div>
+
+
+
 {% endblock %}
