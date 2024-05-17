@@ -6,49 +6,19 @@ from app import create_app
 from db import db
 from models import User, Order, Product, ProductOrder, Category
 
-@pytest.fixture(scope='module')
-def app():
-    app = create_app()
-    app.config.update({
-        "TESTING": True,
-        "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
-        "SECRET_KEY": "test_secret_key"
-    })
 
-    with app.app_context():
-        db.create_all()
-        yield app
-        db.session.remove()
-        db.drop_all()
 
-@pytest.fixture
-def client(app):
-    return app.test_client()
-
-@pytest.fixture
-def init_database(app):
-    with app.app_context():
-        db.create_all()
-        user = User(email='test@example.com', name='testuser', password=generate_password_hash('password', method='pbkdf2:sha256'), balance=100)
-        db.session.add(user)
-        db.session.commit()
-
-        yield db
-
-        db.session.remove()
-        db.drop_all()
-
-def test_user_validation_name(init_database):
+def test_user_validation_name(init_database_model):
     user = User(name=" ")
     with pytest.raises(ValueError):
         user.validation_name()
 
-def test_user_validation_phone(init_database):
+def test_user_validation_phone(init_database_model):
     user = User(phone=" ")
     with pytest.raises(ValueError):
         user.validation_phone()
 
-def test_order_total_calc(init_database):
+def test_order_total_calc(init_database_model):
     user = User(email='test2@example.com', name='testuser2', password=generate_password_hash('password', method='pbkdf2:sha256'))
     product = Product(name="Test Product", price=10, available=100)
     order = Order(user=user)
@@ -62,7 +32,7 @@ def test_order_total_calc(init_database):
 
     assert order.total_calc() == 30
 
-def test_order_process(init_database):
+def test_order_process(init_database_model):
     user = User(email='test3@example.com', name='testuser3', password=generate_password_hash('password', method='pbkdf2:sha256'), balance=100)
     product = Product(name="Test Product 2", price=20, available=5)
     order = Order(user=user)
