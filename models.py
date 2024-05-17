@@ -10,7 +10,7 @@ class User(UserMixin, db.Model):
     name = mapped_column(String(200), nullable=False)
     phone = mapped_column(String(20), nullable=True)
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
-    email = mapped_column(String(200), nullable=True)
+    email = mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)
     is_admin = mapped_column(Boolean, default=False)
     balance = mapped_column(Numeric, default=0)
