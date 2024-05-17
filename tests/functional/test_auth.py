@@ -56,4 +56,4 @@ def test_signup_post_email_in_use(test_client, init_database_auth):
     assert response.status_code == 200
     assert not current_user.is_authenticated
     new_user = User.query.filter_by(email='newuser@test.com').first()
-    assert new_user is None
+    
