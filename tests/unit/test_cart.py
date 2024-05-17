@@ -4,6 +4,7 @@ from models import Product, User
 from unittest.mock import patch
 from routes.orders import mergeDicts
 
+<<<<<<< HEAD
 @pytest.fixture(scope='module')
 def app():
     app = create_app()
@@ -49,6 +50,8 @@ def new_user(init_database):
         raise
     return user
 
+=======
+>>>>>>> 51a210a3d49f33bbf7b9be7a65f6c9d83958b75f
 def test_merge_dicts():
     dict1 = {'a': 1, 'b': 2}
     dict2 = {'c': 3, 'd': 4}
@@ -56,7 +59,11 @@ def test_merge_dicts():
     expected = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
     assert result == expected
 
+<<<<<<< HEAD
 def test_addcart(client, init_database, new_user):
+=======
+def test_addcart(client, init_database_cart):
+>>>>>>> 51a210a3d49f33bbf7b9be7a65f6c9d83958b75f
     with patch('routes.orders.Product.query.filter_by') as mock_query:
         mock_product = Product(id=1, name='Test Product', price=10.0, photo='test.jpg')
         mock_query.return_value.first.return_value = mock_product
@@ -68,7 +75,11 @@ def test_addcart(client, init_database, new_user):
             assert 'shoppingcart' in sess
             assert sess['shoppingcart']['1']['quantity'] == 2
 
+<<<<<<< HEAD
 def test_updatecart(client, init_database, new_user):
+=======
+def test_updatecart(client, init_database_cart):
+>>>>>>> 51a210a3d49f33bbf7b9be7a65f6c9d83958b75f
     with client.session_transaction() as sess:
         sess['shoppingcart'] = {'1': {'name': 'Test Product', 'price': 10.0, 'quantity': 2, 'image': 'test.jpg'}}
 
@@ -79,7 +90,11 @@ def test_updatecart(client, init_database, new_user):
     with client.session_transaction() as sess:
         assert sess['shoppingcart']['1']['quantity'] == 5
 
+<<<<<<< HEAD
 def test_deletecartitem(client, init_database, new_user):
+=======
+def test_deletecartitem(client, init_database_cart):
+>>>>>>> 51a210a3d49f33bbf7b9be7a65f6c9d83958b75f
     with client.session_transaction() as sess:
         sess['shoppingcart'] = {'1': {'name': 'Test Product', 'price': 10.0, 'quantity': 2, 'image': 'test.jpg'}}
 
