@@ -50,7 +50,7 @@ class Order(db.Model):
     item = relationship("ProductOrder", back_populates="order", cascade="all, delete-orphan")
     created = mapped_column(DateTime(timezone=True), default=datetime.now().replace(microsecond=0))
     processed = mapped_column(DateTime(timezone=True), nullable=True)
-    strategy = mapped_column(String(20))  # Add a column to store the strategy used
+    strategy = mapped_column(String(20))
 
     def total_calc(self):
         total = 0
@@ -58,7 +58,7 @@ class Order(db.Model):
             total += i.product.price * i.quantity
         if self.total < 0:
             return 0
-        return round(total, 2)
+        return round(float(total),       2)
     
     def update(self):
         self.total = self.total_calc()

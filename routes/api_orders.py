@@ -18,7 +18,7 @@ def orders_json():
 @api_orders_bp.route("/", methods=["POST"])
 def order_create():
     data = request.json
-    order = Order(customer_id=data["customer_id"])
+    order = Order(user_id=data["user_id"])
     db.session.add(order)
     db.session.commit()
     return jsonify(order.to_json()), 201
@@ -40,9 +40,8 @@ def order_process(order_id):
 
     if not data or "processed" not in data:
         return "Not available", 400
-    order = Order.query.get(order_id)
     
-    customer = User.query.get(order.customer_id)
+    customer = User.query.get(order.user_id)
 
     if customer.balance < 0:
         return "Customer has insufficient balance", 400
@@ -55,12 +54,12 @@ def order_process(order_id):
         order.total = 0
         order.items = [{}]
         order.processed = datetime.datetime.now()
-    elif strategy == "ignore":# The order is ignored and order quantity is set to 0
+    elif strategy == "ignore": # The order is ignored and order quantity is set to 0
         order.processed = datetime.datetime.now()
         order.total = 0
-        for item in order.items:
+        for item in order.item:
             item.quantity = 0
-    else: # Adjust the order quantity based on the available stock, and if there isnt enough stock we set the order quantity to the available stock
+    else: # Adjust the order quantity based on the available stock, and if there isn't enough stock we set the order quantity to the available stock
         # Check if there is enough stock
         for item in order.item:
             if item.quantity > item.product.available:
@@ -79,30 +78,28 @@ def order_process(order_id):
 @api_orders_bp.route("/dailysales")
 def daily():
     today = datetime.datetime.now().date()
-    results= db.session.query(func.sum(Order.total).label('dailysales')).filter(Order.created.like(f'%{today}%'))
+    results = db.session.query(func.sum(Order.total).label('dailysales')).filter(Order.created.like(f'%{today}%'))
     sumoftodaysales = db.session.execute(results).scalar()
     if sumoftodaysales == None:
         sumoftodaysales = 0
     else:
-        sumoftodaysales = round(sumoftodaysales, 2)
+        sumoftodaysales = round(float(sumoftodaysales), 2)
     return jsonify(dailysales=sumoftodaysales)
     
     
 @api_orders_bp.route("/totalsales")
 def total():
     result = Order.query.with_entities(func.sum(Order.total).label("totalsales"))
-    totalsales = round(db.session.execute(result).scalar(),2)
+    totalsales = round(float(db.session.execute(result).scalar()), 2)
     return jsonify(totalsales=totalsales)
     
 @api_orders_bp.route("/yearlysales")
 def yearly():
     yearnow = datetime.datetime.now().year
-    # sumofyear = Order.query.with_entities(func.sum(Order.total).label("dailysales").filter_by(created=yearnow))
-    results= db.session.query(func.sum(Order.total).label('yearsales')).filter(Order.created.like(f'%{yearnow}%'))
+    results = db.session.query(func.sum(Order.total).label('yearsales')).filter(Order.created.like(f'%{yearnow}%'))
     sumofyear = db.session.execute(results).scalar()
     if sumofyear == None:
         sumofyear = 0
     else:
-        sumofyear = round(sumofyear, 2)
+        sumofyear = round(float(sumofyear), 2)
     return jsonify(yearlysales=sumofyear)
-    
