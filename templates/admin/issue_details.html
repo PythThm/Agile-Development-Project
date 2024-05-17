@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<ul>
+    <li>
+        <span>ID: {{ issue.id }}</span>
+    </li>
+    <li>
+        <span>title: ${{ issue.title }}</span>
+    </li>
+    <li>
+        <span>description: {{ issue.description }}</span>
+    </li>
+    <li>
+        <span>Stock: {{ issue.user }}</span>
+    </li>
+    <li>
+        <span>Description: {{ issue.created }}</span>
+    </li>
+{% endblock %}
+
+<!-- TODO: show specific id and issues  -->

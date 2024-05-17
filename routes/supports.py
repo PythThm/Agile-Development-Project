@@ -31,8 +31,3 @@ def submit_issues():
 def issue_submitted():
     return render_template('supports/issue_submitted.html')
 
-@supports_bp.route('/view_issues')
-@login_required
-def view_issues():
-    issues = Issue.query.all()
-    return render_template('supports/view_issues.html', issues=issues)

@@ -81,9 +81,9 @@ def random_balance():
 #     db.session.commit()
 
 def create_random_issues():
-    for _ in range(5):
-        title = random.choice(["Your veggies stink", "The chicken was rotten", "Why do you not sell Pie", "Unhygienic"])
-        issue = Issue(title=title, description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+    for i in range(5):
+        title = random.choice(["Your veggies stink", "The chicken was rotten", "Why do you not sell Pie", "Unhygienic", "I saw your employee pick his nose"])
+        issue = Issue(title=title, user=f'realfakeuser{i}', description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
         db.session.add(issue)
     db.session.commit()
 

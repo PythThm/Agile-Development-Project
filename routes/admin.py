@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from routes import api_orders
-from models import Category
+from models import Category, Issue
 from db import db
 
 admin_bp = Blueprint("admin", __name__)
@@ -70,3 +70,16 @@ def deletecategory(id):
     db.session.commit()
    
     return redirect(url_for('admin.category'))
+
+# admin support pages
+
+@admin_bp.route('/view_issues')
+# @login_required
+def view_issues():
+    issues = Issue.query.all()
+    return render_template('admin/customer_issues.html', issues=issues)
+
+@admin_bp.route('/<issue_id>')
+def issue_detail(issue_id):
+    issue = db.one_or_404(db.select(Issue).filter_by(id=issue_id))
+    return render_template('admin/issue_details.html', issue=issue)
