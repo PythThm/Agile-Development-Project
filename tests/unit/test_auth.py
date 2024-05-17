@@ -69,6 +69,24 @@ def test_login_post_admin(test_client, add_admin):
 
 
 # Signup Tests
+def test_signup_get(test_client):
+    response = test_client.get('/auth/signup')
+    assert response.status_code == 200
+
+def test_login_get(test_client):
+    response = test_client.get('/auth/login')
+    assert response.status_code == 200
+
+def test_login_post_valid(test_client, add_user):
+    response = test_client.post('/auth/login', data=dict(email='test@test.com', password='mypassword'), follow_redirects=True)
+    assert response.status_code == 200
+    assert current_user.is_authenticated
+
+def test_login_post_invalid_password(test_client, add_user):
+    response = test_client.post('/auth/login', data=dict(email='test@test.com', password='wrongpassword'), follow_redirects=True)
+    assert response.status_code == 200
+    assert not current_user.is_authenticated
+    
 def test_signup_post_valid(test_client, init_database):
     response = test_client.post('/auth/signup', data=dict(name='newuser', email='newuser@test.com', password='mypassword'), follow_redirects=True)
     assert response.status_code == 200
