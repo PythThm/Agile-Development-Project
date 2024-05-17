@@ -4,23 +4,7 @@ from models import Order, Product, User, ProductOrder
 from werkzeug.security import generate_password_hash
 import datetime
 
-@pytest.fixture(scope='module')
-def app():
-    app = create_app()
-    app.config.update({
-        "TESTING": True,
-        "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
-        "SECRET_KEY": "test_secret_key"
-    })
 
-    with app.app_context():
-        db.create_all()
-        yield app
-        db.drop_all()
-
-@pytest.fixture(scope='module')
-def client(app):
-    return app.test_client()
 
 @pytest.fixture(scope='function', autouse=True)
 def reset_database(app):
