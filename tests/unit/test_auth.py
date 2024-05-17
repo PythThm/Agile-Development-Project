@@ -40,8 +40,7 @@ def add_admin(init_database):
 def test_login(test_client, add_user):
     response = test_client.post('/auth/login', data=dict(email='test@test.com', password='mypassword'), follow_redirects=True)
     assert response.status_code == 200
-    with test_client.session_transaction() as session:
-        assert session['_user_id'] == str(add_user.id)
+    assert current_user.is_authenticated
 
 def test_login_get(test_client):
     response = test_client.get('/auth/login')
