@@ -19,7 +19,8 @@ def stats():
     daily = get_stats(api_orders.daily, 'dailysales')
     yearly = get_stats(api_orders.yearly, 'yearlysales')
     total = get_stats(api_orders.total, 'totalsales')
-    return render_template('admin/stats.html', daily=daily, yearly=yearly, total=total)
+    monthly = get_stats(api_orders.monthly, 'monthlysales')
+    return render_template('admin/stats.html', daily=daily, yearly=yearly, total=total, monthly=monthly)
 
 # Get All Categories
 @admin_bp.route('/category')
