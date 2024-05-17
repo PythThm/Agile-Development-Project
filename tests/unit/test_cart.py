@@ -29,11 +29,25 @@ def init_database(app):
         db.session.add(product)
         db.session.commit()
 
-        user = User(name='Test User', email='test@test.com', password='mypassword')
-        db.session.add(user)
-        db.session.commit()
-
         yield db
+
+@pytest.fixture(autouse=True)
+def set_test_index():
+    if not hasattr(pytest, "current_test_index"):
+        pytest.current_test_index = 0
+    yield
+    pytest.current_test_index += 1
+
+@pytest.fixture
+def new_user(init_database):
+    user = User(name=f'Test User {pytest.current_test_index}', email=f'test_{pytest.current_test_index}@test.com', password='mypassword')
+    db.session.add(user)
+    try:
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
+        raise
+    return user
 
 def test_merge_dicts():
     dict1 = {'a': 1, 'b': 2}
@@ -42,7 +56,7 @@ def test_merge_dicts():
     expected = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
     assert result == expected
 
-def test_addcart(client, init_database):
+def test_addcart(client, init_database, new_user):
     with patch('routes.orders.Product.query.filter_by') as mock_query:
         mock_product = Product(id=1, name='Test Product', price=10.0, photo='test.jpg')
         mock_query.return_value.first.return_value = mock_product
@@ -54,7 +68,7 @@ def test_addcart(client, init_database):
             assert 'shoppingcart' in sess
             assert sess['shoppingcart']['1']['quantity'] == 2
 
-def test_updatecart(client, init_database):
+def test_updatecart(client, init_database, new_user):
     with client.session_transaction() as sess:
         sess['shoppingcart'] = {'1': {'name': 'Test Product', 'price': 10.0, 'quantity': 2, 'image': 'test.jpg'}}
 
@@ -65,7 +79,7 @@ def test_updatecart(client, init_database):
     with client.session_transaction() as sess:
         assert sess['shoppingcart']['1']['quantity'] == 5
 
-def test_deletecartitem(client, init_database):
+def test_deletecartitem(client, init_database, new_user):
     with client.session_transaction() as sess:
         sess['shoppingcart'] = {'1': {'name': 'Test Product', 'price': 10.0, 'quantity': 2, 'image': 'test.jpg'}}
 
