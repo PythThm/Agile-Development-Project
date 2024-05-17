@@ -279,6 +279,7 @@ header {
 }
 
 .banner{
+  margin-top: 150px;
   display:flex;
   position:relative;
   align-items: center;
@@ -377,7 +378,7 @@ nav a {
 
 .products {
   position:absolute;
-  top: 268px;
+  top: 160px;
   text-align: center;
   padding: 20px 0;
 }
@@ -468,7 +469,7 @@ input{
 .title {
   text-align: center;
   padding: 20px 0;
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .profile_nav {
