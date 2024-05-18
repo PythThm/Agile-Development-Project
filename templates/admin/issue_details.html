@@ -18,6 +18,8 @@
         <span>creation date: {{ issue.created }}</span>
     </li>
 </ul>
+
+<a href="/admin/{{issue.id}}/delete" class="btn" onclick="return confirm('Are you sure to delete?')">Delete</a>
 {% endblock %}
 
 <!-- TODO: show specific id and issues  -->

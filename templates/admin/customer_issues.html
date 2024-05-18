@@ -9,5 +9,6 @@
     <p>Submitted on: {{ issue.created }}</p>
     <p>Status: {{ issue.resolved }}</p>
     <a href="{{ url_for('admin.issue_detail', issue_id=issue.id) }}">View Issue</a>
+    <a href="/admin/{{issue.id}}/delete" class="btn" onclick="return confirm('Are you sure to delete?')">Delete</a>
 {% endfor %}
 {% endblock %}

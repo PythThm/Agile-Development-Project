@@ -79,7 +79,14 @@ def view_issues():
     issues = Issue.query.all()
     return render_template('admin/customer_issues.html', issues=issues)
 
-@admin_bp.route('/<issue_id>')
+@admin_bp.route('/<int:issue_id>')
 def issue_detail(issue_id):
     issue = db.one_or_404(db.select(Issue).filter_by(id=issue_id))
     return render_template('admin/issue_details.html', issue=issue)
+
+@admin_bp.route("/<int:issue_id>/delete")
+def delete_product(issue_id):
+    issue = db.get_or_404(Issue, issue_id)
+    db.session.delete(issue)
+    db.session.commit()
+    return redirect(url_for("admin.view_issues"))
