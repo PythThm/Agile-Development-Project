@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 from models import Issue
 from db import db
 
@@ -15,9 +15,11 @@ def submit_issues():
     # login code goes here
     issue_title = request.form.get('issue_title')
     issue_description = request.form.get('issue_description')
+    user = current_user.name
+    
 
     # create a new issue
-    new_issue = Issue(title=issue_title, description=issue_description)
+    new_issue = Issue(title=issue_title, description=issue_description, user=user)
 
     # add the new issue to the database
     db.session.add(new_issue)
