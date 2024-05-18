@@ -2,7 +2,7 @@ from db import db
 from sqlalchemy import Boolean, Float, Numeric, ForeignKey, Integer, String
 from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import functions as func
-from models import User, Product, Order, ProductOrder
+from models import User, Product, Order, ProductOrder, Issue
 import csv
 from app import app 
 from pathlib import Path
@@ -80,6 +80,14 @@ def random_balance():
 #         order.process()
 #     db.session.commit()
 
+def create_random_issues():
+    for i in range(5):
+        title = random.choice(["Your veggies stink", "The chicken was rotten", "Why do you not sell Pie", "Unhygienic", "I saw your employee pick his nose"])
+        issue = Issue(title=title, user=f'realfakeuser{i}', description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+        db.session.add(issue)
+    db.session.commit()
+
+
 if __name__ == "__main__":
     with app.app_context():
         drop_table()
@@ -90,4 +98,5 @@ if __name__ == "__main__":
         random_order(num_orders)
         random_available()
         random_balance()
+        create_random_issues()
         # random_process()
