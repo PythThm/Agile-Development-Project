@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_login import LoginManager
 from pathlib import Path
 from db import db
-from models import User, Product
+from models import User, Product, Category
 # image upload 
 from config import configure_uploads_app
 
@@ -51,7 +51,8 @@ def create_app():
     @app.route("/")
     def home():
         products = Product.query.all()
-        return render_template("index.html", products=products)
+        categories = Category.query.all()
+        return render_template("index.html", products=products, categories=categories)
     
     @app.route("/help")
     def help():

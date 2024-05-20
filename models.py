@@ -128,6 +128,7 @@ class Product(db.Model):
             "id": self.id,
             "name": self.name,
             "price": self.price,
+            "category": self.category_id,
             "available": self.available
         }
 
