@@ -1,16 +1,16 @@
-name,price
-apple,1.49
-bananas,3.49
-lemon,1.0
-orange,1.19
-raspberries,7.99
-potato,1.49
-onions,3.99
-tomato,2.99
+name,price,category
+apple,1.49,1
+bananas,3.49,1
+lemon,1.0,1
+orange,1.19,1
+raspberries,7.99,1
+potato,1.49,2
+onions,3.99,2
+tomato,2.99,2
 bread,1.59
-chicken breast,10.78
-chicken thigh,8.99
-ground beef,6.99
-cheese,8.99
-milk,3.49
-eggs,4.49
+chicken breast,10.78,4
+chicken thigh,8.99,4
+ground beef,6.99,4
+cheese,8.99,3
+milk,3.49,3
+eggs,4.49,3

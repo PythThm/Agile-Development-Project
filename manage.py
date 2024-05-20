@@ -2,7 +2,7 @@ from db import db
 from sqlalchemy import Boolean, Float, Numeric, ForeignKey, Integer, String
 from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import functions as func
-from models import User, Product, Order, ProductOrder, Issue
+from models import User, Product, Order, ProductOrder, Issue, Category
 import csv
 from app import app 
 from pathlib import Path
@@ -16,10 +16,18 @@ def create_table():
         db.create_all()
 
 def import_data():
+
+    with open("data/categories.csv", "r") as file:
+        reader = csv.DictReader(file)
+        for record in reader:
+            category = Category(name=record["name"])
+            db.session.add(category)
+        db.session.commit()
+
     with open("data/products.csv", "r") as file:
         reader = csv.DictReader(file)
         for record in reader:
-            product = Product(name=record["name"], price=record["price"])
+            product = Product(name=record["name"], price=record["price"], category_id=record["category"])
             db.session.add(product)
         db.session.commit()
 

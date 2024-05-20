@@ -57,15 +57,16 @@
         </div> -->
     </header>
 
-
     <div id="productbar">
         <ul>
-            <a href="">Fruits</a>
-            <a href="">Vegegtables</a>
-            <a href="">Dairy</a>
-            <a href="">Meat</a>
+            {% for category in categories %}
+            <a href="{{url_for('products.getcategory', id=category.id)}}">
+                {{ category.name }}
+            </a>
+            {% endfor %}
         </ul>
     </div>
+
 
     <div class="banner">
         <img src="/static/banner_left.jpg" alt="assortment of fresh fruits and vegetables" id="left">
@@ -74,6 +75,7 @@
 
     {% block content %}
     {% endblock %}
+
     <section class="about">
         <h2>About Green Basket</h2>
         <p>Green Basket </p>

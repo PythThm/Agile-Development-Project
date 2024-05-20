@@ -17,10 +17,14 @@
 </section> -->
 
 
+
 <section class="products" id="products">
+
     <div class="product-header">
         <h2>Welcome to Green Basket</h2>
     </div>
+
+
     <div class="product-list">
         {% for product in products %}
         <div class="product-card">
@@ -41,6 +45,7 @@
             </div>
         </div>
         {% endfor %}
+
         <!-- <div class="product-card">
             <img src="{{ url_for('static', filename='./productpics/bananas.jpg') }}" alt="Product Name">
             <h3>Product Name</h3>
