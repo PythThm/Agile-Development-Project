@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>View Issues</h1>
+{% for issue in issues %}
+    <h2>{{ issue.title }}</h2>
+    <p>{{ issue.description }}</p>
+    <p>Submitted by: {{ issue.user }}</p>
+    <p>Submitted on: {{ issue.created }}</p>
+    <p>Status: {{ issue.resolved }}</p>
+    <a href="{{ url_for('admin.issue_detail', issue_id=issue.id) }}">View Issue</a>
+    <a href="/admin/{{issue.id}}/delete" class="btn" onclick="return confirm('Are you sure to delete?')">Delete</a>
+{% endfor %}
+{% endblock %}

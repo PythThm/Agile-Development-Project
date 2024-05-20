@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from routes import api_orders
-from models import Category
+from models import Category, Issue
 from db import db
 
 admin_bp = Blueprint("admin", __name__)
@@ -19,7 +19,8 @@ def stats():
     daily = get_stats(api_orders.daily, 'dailysales')
     yearly = get_stats(api_orders.yearly, 'yearlysales')
     total = get_stats(api_orders.total, 'totalsales')
-    return render_template('admin/stats.html', daily=daily, yearly=yearly, total=total)
+    monthly = get_stats(api_orders.monthly, 'monthlysales')
+    return render_template('admin/stats.html', daily=daily, yearly=yearly, total=total, monthly=monthly)
 
 # Get All Categories
 @admin_bp.route('/category')
@@ -69,3 +70,23 @@ def deletecategory(id):
     db.session.commit()
    
     return redirect(url_for('admin.category'))
+
+# admin support pages
+
+@admin_bp.route('/view_issues')
+# @login_required
+def view_issues():
+    issues = Issue.query.all()
+    return render_template('admin/customer_issues.html', issues=issues)
+
+@admin_bp.route('/<int:issue_id>')
+def issue_detail(issue_id):
+    issue = db.one_or_404(db.select(Issue).filter_by(id=issue_id))
+    return render_template('admin/issue_details.html', issue=issue)
+
+@admin_bp.route("/<int:issue_id>/delete")
+def delete_product(issue_id):
+    issue = db.get_or_404(Issue, issue_id)
+    db.session.delete(issue)
+    db.session.commit()
+    return redirect(url_for("admin.view_issues"))

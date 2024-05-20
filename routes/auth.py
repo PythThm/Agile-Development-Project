@@ -19,8 +19,15 @@ def login():
         password = request.form.get('password')
         remember = True if request.form.get('remember') else False
 
+
         # Retrieve the user based on the provided email
         user = User.query.filter_by(email=email).first()
+
+         # Check if the user is an admin
+        if user.is_admin:
+            # Log in the admin user
+            login_user(user, remember=remember)
+            return redirect(url_for('admin.admin'))
 
         # Check if a user with the provided email exists
         if not user:
@@ -32,11 +39,7 @@ def login():
             flash('Incorrect password.')
             return redirect(url_for('auth.login'))
 
-        # Check if the user is an admin
-        if user.is_admin:
-            # Log in the admin user
-            login_user(user, remember=remember)
-            return redirect(url_for('admin.admin'))
+       
 
         # Log in the regular user
         login_user(user, remember=remember)

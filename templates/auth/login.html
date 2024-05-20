@@ -1,32 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
+<section class="loginform">
+    <h1 class="title">Login</h1>
 
-<h1 class="title">Login</h1>
-
-<form method="post" action="{{ url_for('auth.login') }}">
-    <div class="form-align login">
-        <div class="form-label">
-            <p class="gap">Email</p>
-            <input type="email" name="email" placeholder="Your Email" autofocus="">
+    <form method="post" action="{{ url_for('auth.login') }}">
+        <div class="form-align login">
+            <div class="form-label">
+                <p class="gap">Email</p>
+                <input type="email" name="email" placeholder="Your Email" autofocus="">
+            </div>
+            <div class="form-label">
+                <p>Password</p>
+                <input type="password" name="password" placeholder="Your Password">
+            </div>
+            <div class="form-label">
+                <label class="checkbox">
+                    <!-- 1 -->
+                    <input class="checkbox" type="checkbox" name="remember" value="Remember me">
+                    Remember Me
+                </label>
+            </div>
+            <br>
+            <small>Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign Up</a></small>
+            <br><br>
+            <input type="submit" value="Login">
         </div>
-        <div class="form-label">
-            <p>Password</p>
-            <input type="password" name="password" placeholder="Your Password">
-        </div>
-        <div class="form-label">
-            <label class="checkbox">
-                <!-- 1 -->
-                <input class="checkbox" type="checkbox" name="remember" value="Remember me">
-                Remember Me
-            </label>
-        </div>
-        <br>
-        <small>Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign Up</a></small>
-        <br><br>
-        <input type="submit" value="Login">
-    </div>
-</form>
+    </form>
+</section>
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 <div class="notification is-danger">
