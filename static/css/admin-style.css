@@ -17,8 +17,57 @@
   height: 100%;
 }
 
-.admin-container h1,
-h3 {
+.admin-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.admin-container > h1 {
+  color: var(--accent-color);
+}
+
+.admin-container a {
+  color: var(--font-color);
+  text-decoration: none;
+}
+
+.admin-container a:hover {
+  color: var(--accent-color);
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-contents {
+  display: flex;
+  gap: 20px;
+}
+
+.stats-contents > div > h5 {
+  margin-top: 0;
+}
+
+.stats-title > h3 {
+  color: var(--accent-color);
+}
+
+.dashboard-tables {
+  display: flex;
+}
+
+.dashboard-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-table h3 {
+  color: var(--accent-color);
+}
+
+.dashboard-tables h3 {
   color: var(--accent-color);
 }
 
