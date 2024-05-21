@@ -279,14 +279,14 @@ header {
 }
 
 .banner{
-  margin-top: 150px;
   display:flex;
-  position:relative;
   align-items: center;
   justify-content: space-between;
-  background-size: cover;
-  z-index: -1;
+  /* background-size: cover; */
   height: 346px;
+  margin-top: 160px;
+  /* position: absolute; */
+  z-index: -1;
 }
 .banner #left{
   background-position: left;
@@ -378,7 +378,7 @@ nav a {
 
 .products {
   position:absolute;
-  top: 160px;
+  top: 268px;
   text-align: center;
   padding: 20px 0;
 }
@@ -469,9 +469,15 @@ input{
 .title {
   text-align: center;
   padding: 20px 0;
-  margin-top: 0px;
+  margin-top: 50px;
 }
 
+.profile_pg{
+  position: absolute;
+  top: 125px;
+  left: 50%;
+  transform: translate(-50%);
+}
 .profile_nav {
   display: flex;
   justify-content: center;
@@ -485,11 +491,12 @@ input{
   text-decoration: none;
   padding: 0px;
   color: black;
+  
 }
 
 /* code for left nav bar. But it is now removed. */
-/* 
-#profile_photo img{
+
+/* #profile_photo img{
   display: flex;
   width: 100px;
   height: 100px;
@@ -502,21 +509,25 @@ input{
   flex-direction: column;
   align-items: center;
   width: 250px;
-  height: 400px;
+  height: 500px;
   flex-shrink: 0;
   border-radius: 15px;
   border: 3px solid #87A922;
   justify-content: center;
+  margin: 0px 30px;
 }
 .leftNav ul li{
   padding: 10px;
   margin: 20px;
   border-radius: 10px;
-  background-color: white;
+  background-color: #F3F6E9;
   color: black;
   text-align: center;
   width: 200px;
-  height: 20px;
+  height: 40px;
+}
+.leftNav a{
+  text-decoration: none;
 }
 .leftNav ul{
   margin: 0px 0px 25px 0px;
@@ -577,6 +588,96 @@ input{
 
 }
 
+/* cart page */
+.cart_pg{
+  display:flex;
+  justify-content: center;
+  text-align: center;
+  top: 150px;
+
+  /* position:absolute;
+  top: 150px;
+  left:50%;
+  transform: translateX(-50%);
+  display: inline; */
+}
+#mycart{
+  display: block;
+  position: absolute;
+  top: 150px;
+  left:50%;
+  transform: translateX(-50%);
+  display: inline;
+}
+.cart_row{
+  display: flex;
+  width:50%;  
+}
+.cart_itms  {
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  margin: 5px 0px 20px 0px;
+  border: 2px solid #87A922;
+  border-radius: 10px;
+  width: 500px;
+  height: auto;
+}
+.checkout_card{
+  height: 100px;
+  width: 500px;
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: flex-start;
+}
+.checkout_card img{
+  height:85px;
+  width:85px;
+  margin: 10px 10px;
+}
+.checkout_card h3{
+  display:block;
+  position: relative;
+  margin-left: 10px;
+}
+.checkout_card p{
+  display:block;
+  position:relative;
+  left: 30%;
+  top: 20%;
+}
+.checkout_card button{
+  text-decoration: none;
+  position: relative;
+  right: 150px;
+  top: 70px;
+  height: 20px;
+
+}
+.checkout{
+  display:flex;
+  flex: 2;
+  margin: 5px 0px 20px 0px;
+  border: 2px solid #87A922;
+  border-radius: 10px;
+  width: 400px;
+  height: auto;
+}
+.checkout_contents{
+  position: relative;
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.checkout_contents a{
+  text-decoration: none;
+}
+#suggesteditems{
+  display:flex;
+  width: 600px;
+  height: 100px;
+}
 
 footer {
   background-color: #87A922;
