@@ -229,7 +229,7 @@ input {
   margin-top: 50px;
 }
 
-.profile_pg{
+.profile_pg {
   position: absolute;
   top: 125px;
   left: 50%;
@@ -248,7 +248,6 @@ input {
   text-decoration: none;
   padding: 0px;
   color: black;
-  
 }
 
 /* code for left nav bar. But it is now removed. */
@@ -330,6 +329,7 @@ input {
   height: 40px;
   border: 2px solid #6b8716;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .about {
@@ -344,8 +344,8 @@ input {
 }
 
 /* cart page */
-.cart_pg{
-  display:flex;
+.cart_pg {
+  display: flex;
   justify-content: center;
   text-align: center;
   top: 150px;
@@ -356,80 +356,79 @@ input {
   transform: translateX(-50%);
   display: inline; */
 }
-#mycart{
+#mycart {
   display: block;
   position: absolute;
   top: 150px;
-  left:50%;
+  left: 50%;
   transform: translateX(-50%);
   display: inline;
 }
-.cart_row{
+.cart_row {
   display: flex;
-  width:50%;  
+  width: 50%;
 }
-.cart_itms  {
+.cart_itms {
   display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 1;
   margin: 5px 0px 20px 0px;
-  border: 2px solid #87A922;
+  border: 2px solid #87a922;
   border-radius: 10px;
   width: 500px;
   height: auto;
 }
-.checkout_card{
+.checkout_card {
   height: 100px;
   width: 500px;
   display: flex;
   /* justify-content: space-around; */
   justify-content: flex-start;
 }
-.checkout_card img{
-  height:85px;
-  width:85px;
+.checkout_card img {
+  height: 85px;
+  width: 85px;
   margin: 10px 10px;
 }
-.checkout_card h3{
-  display:block;
+.checkout_card h3 {
+  display: block;
   position: relative;
   margin-left: 10px;
 }
-.checkout_card p{
-  display:block;
-  position:relative;
+.checkout_card p {
+  display: block;
+  position: relative;
   left: 30%;
   top: 20%;
 }
-.checkout_card button{
+.checkout_card button {
   text-decoration: none;
   position: relative;
   right: 150px;
   top: 70px;
   height: 20px;
-
 }
-.checkout{
-  display:flex;
+.checkout {
+  display: flex;
   flex: 2;
   margin: 5px 0px 20px 0px;
-  border: 2px solid #87A922;
+  border: 2px solid #87a922;
   border-radius: 10px;
   width: 400px;
   height: auto;
 }
-.checkout_contents{
+.checkout_contents {
   position: relative;
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: center;
   margin-top: 15px;
 }
-.checkout_contents a{
+.checkout_contents a {
   text-decoration: none;
 }
-#suggesteditems{
-  display:flex;
+#suggesteditems {
+  display: flex;
   width: 600px;
   height: 100px;
 }

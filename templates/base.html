@@ -68,11 +68,11 @@
             {% endfor %}
         </ul>
         {% else %}
-        <div class="contents-container"></div>
+        <div class="sub-container"></div>
         {% endif %}
     </div>
 
-    {% if not current_user.is_authenticated and not current_user.is_admin %}
+    {% if not current_user.is_admin %}
 
     <div class="banner">
         <img src="/static/banner_left.jpg" alt="assortment of fresh fruits and vegetables" id="left">

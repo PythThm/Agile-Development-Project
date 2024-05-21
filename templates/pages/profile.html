@@ -3,7 +3,7 @@
 {% block content %}
 <section class="profile_pg">
   <h1 class="title">
-    Welcome, {{ name }}
+    Welcome, {{ user.name }}
   </h1>
 
   <div class="profile_nav">
@@ -33,22 +33,22 @@
         </li>
       </ul>
     </div> -->
-    
+
     <!-- code for right navigatoin bar. Now in center of the page -->
     <div class="rightNav">
       <ul>
         <li>First Name</li>
-        <li class="box">firstname</li>
-        <li>Last Name</li>
-        <li class="box">lastname</li>
-        <li>Date of Birth</li>
-        <li class="box">MMDDYYYY</li>
+        <li class="box">{{ user.name }}</li>
+        <!-- <li>Last Name</li>
+        <li class="box">lastname</li> -->
+        <!-- <li>Date of Birth</li>
+        <li class="box">MMDDYYYY</li> -->
         <li>Email Address</li>
-        <li class="box">abc@example.com</li>
+        <li class="box">{{ user.email }}</li>
         <li>Phone Number</li>
-        <li class="box">123 456 7890</li>
+        <li class="box">{{ user.phone }}</li>
       </ul>
-      <button class="PButton">Edit Profile</button>
+      <a href="{{ url_for('users.update_user', user_id=user.id)}}"><button class="PButton">Edit Profile</button></a>
     </div>
   </div>
 </section>

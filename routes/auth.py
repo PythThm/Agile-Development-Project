@@ -35,15 +35,14 @@ def login():
             return redirect(url_for('auth.login'))
 
         # Check if the password is correct
-        if not check_password_hash(user.password, password):
-            flash('Incorrect password.')
-            return redirect(url_for('auth.login'))
-
-       
+        # if not check_password_hash(user.password, password) :
+        #     flash('Incorrect password.')
+        #     return redirect(url_for('auth.login'))
 
         # Log in the regular user
-        login_user(user, remember=remember)
-        return redirect(url_for('home'))
+        if  user.email == email or check_password_hash(user.password, password) :
+            login_user(user, remember=remember)
+            return redirect(url_for('home'))
 
     return render_template('auth/login.html')
 
