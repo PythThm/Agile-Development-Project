@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+    <li>
+        <span>ID: {{ issue.id }}</span>
+    </li>
+    <li>
+        <span>title: ${{ issue.title }}</span>
+    </li>
+    <li>
+        <span>description: {{ issue.description }}</span>
+    </li>
+    <li>
+        <span>Stock: {{ issue.user }}</span>
+    </li>
+    <li>
+        <span>creation date: {{ issue.created }}</span>
+    </li>
+</ul>
+
+<a href="/admin/{{issue.id}}/delete" class="btn" onclick="return confirm('Are you sure to delete?')">Delete</a>
+{% endblock %}
+
+<!-- TODO: show specific id and issues  -->

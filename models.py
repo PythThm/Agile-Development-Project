@@ -128,6 +128,7 @@ class Product(db.Model):
             "id": self.id,
             "name": self.name,
             "price": self.price,
+            "category": self.category_id,
             "available": self.available
         }
 
@@ -166,6 +167,7 @@ class Issue(db.Model):
     id = mapped_column(Integer, primary_key=True)
     title = mapped_column(String(200), nullable=False)
     description = mapped_column(String(500), nullable=False)
+    user = mapped_column(String(100))
     created = mapped_column(DateTime, default=datetime.now().replace(microsecond=0))
     resolved = mapped_column(Boolean, default=False)
 

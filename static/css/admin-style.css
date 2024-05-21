@@ -1,0 +1,305 @@
+:root {
+  --font-color: #e9e5e1;
+  --background: #122718;
+  --bg-variant: #2e2e2e;
+  --bg-variant-dark: #1f1e1e;
+  --accent-color: #ffaa8b;
+}
+
+.admin-container {
+  padding-bottom: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  background: var(--background);
+  color: var(--font-color);
+  height: 100%;
+}
+
+.admin-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.admin-container > h1 {
+  color: var(--accent-color);
+}
+
+.admin-container a {
+  color: var(--font-color);
+  text-decoration: none;
+}
+
+.admin-container a:hover {
+  color: var(--accent-color);
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-contents {
+  display: flex;
+  gap: 20px;
+}
+
+.stats-contents > div > h5 {
+  margin-top: 0;
+}
+
+.stats-title > h3 {
+  color: var(--accent-color);
+}
+
+.dashboard-tables {
+  display: flex;
+}
+
+.dashboard-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-table h3 {
+  color: var(--accent-color);
+}
+
+.dashboard-tables h3 {
+  color: var(--accent-color);
+}
+
+/*
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  color: var(--font-color);
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav > div {
+  display: flex;
+  gap: 10px;
+}
+
+
+a {
+  color: var(--font-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+
+}
+
+.form-inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.form-label p {
+  font-size: smaller;
+  width: 60px;
+  margin: 5px;
+}
+
+.checkbox {
+  margin-top: 15px;
+}
+.gap {
+  margin-right: 23px;
+}
+.form-label input {
+  height: fit-content;
+}
+
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 3px 0;
+}
+
+
+input {
+  background-color: transparent;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid var(--background);
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--font-color);
+  margin: 0 2px;
+  outline: none;
+  color: var(--font-color);
+}
+
+input:focus {
+  background-color: var(--bg-variant);
+}
+
+textarea {
+  background-color: transparent;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid var(--background);
+  padding: 6px 6px;
+  border: 1px solid var(--font-color);
+  margin: 10px 2px;
+  outline: none;
+  color: var(--font-color);
+}
+
+label {
+  font-size: smaller;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: transparent;
+  color: var(--font-color);
+  padding: 4px 6px;
+  border: 1px solid var(--font-color);
+}
+
+input[type="submit"]:hover {
+  background-color: var(--bg-variant);
+}
+
+.btn {
+  cursor: pointer;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 500;
+  font-size: smaller;
+  background-color: var(--bg-variant);
+  color: var(--font-color);
+  padding: 3px 6px;
+  text-decoration: none;
+  border: 0;
+}
+
+.btn:hover {
+  font-weight: 500;
+  background-color: var(--font-color);
+  color: var(--bg-variant);
+}
+
+
+.make_order {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.make_order label {
+  margin-top: 5px;
+}
+.make_order .button {
+  margin-top: 5px;
+}
+
+.custom-select {
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: var(--bg-variant);
+  color: var(--font-color);
+  padding: 4px 6px;
+}
+
+.custom-select select {
+  display: none;
+}
+
+.order_options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.order_status {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 500;
+  font-size: smaller;
+  background-color: var(--bg-variant);
+  color: var(--font-color);
+  padding: 3px 6px;
+  text-decoration: none;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.customer_name {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+.btn.processed {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--bg-variant-dark);
+  color: var(--bg-variant);
+}
+
+.btn.pending {
+  background-color: var(--bg-variant);
+  color: var(--font-color);
+}
+
+.items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 19px;
+}
+
+.productpic {
+  width: 500px;
+}
+
+.thumbnail {
+  border: 1px solid transparent;
+  width: 150px;
+  padding: 10px;
+}
+
+input::file-selector-button {
+  border: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: var(--bg-variant);
+  color: var(--font-color);
+  padding: 4px 6px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+*/

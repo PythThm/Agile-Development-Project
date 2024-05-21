@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="products" id="products">
+
+    <div class="product-header">
+        <h2>Welcome to Green Basket</h2>
+    </div>
+
+    <div class="product-list">
+        <!-- category -->
+        {% if category_items %}
+        {% for c in category_items %}
+        <div class="product-card">
+            <a href="{{ url_for('products.product_detail', productname=c.name)}}"><img
+                    src="{{url_for('static', filename='productpics/' + c.photo)}}" class="productpic thumbnail"
+                    alt="{{c.name}}"></a>
+            <h3>{{ c.name }}</h3>
+            <p>${{ c.price|round(2) }}</p>
+            <div class="options">
+                <form action="{{ url_for('orders.addcart') }}" method="post">
+                    <div><label for="">Qty: </label><input style="width: 50px;" type="number" name="quantity" value="1"
+                            min="1" max="{{ c.quantity }}">
+                        <input type="hidden" name="product_id" value="{{ c.id }}">
+                        <button type="submit">Add to Cart</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        {% endfor %}
+
+        <!-- category end -->
+        {% else %}
+        {% for product in products %}
+        <div class="product-card">
+            <!-- Go to detail page when click image -->
+            <a href="{{ url_for('products.product_detail', productname=product.name)}}"><img
+                    src="{{url_for('static', filename='productpics/' + product.photo)}}" class="productpic thumbnail"
+                    alt="{{product.name}}"></a>
+            <h3>{{ product.name }}</h3>
+            <p>${{ product.price|round(2) }}</p>
+            <div class="options">
+                <form action="{{ url_for('orders.addcart') }}" method="post">
+                    <div><label for="">Qty: </label><input style="width: 50px;" type="number" name="quantity" value="1"
+                            min="1" max="{{ product.available }}">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit">Add to Cart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <footer>
+        Something here
+    </footer>
+</section>
+
+{% endblock %}

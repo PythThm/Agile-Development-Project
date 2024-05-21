@@ -9,6 +9,9 @@
 <h2>Today</h2>
 <p>${{ daily }}</p>
 
+<h2>This month</h2>
+<p>${{ monthly }}</p>
+
 <h2>This year</h2>
 
 <p>${{ yearly }}</p>
@@ -17,6 +20,6 @@
 
 <p>${{ total }}</p>
 
-
-
+<br>
+<a href="{{ url_for('admin.admin') }}">Go Back</a>
 {% endblock %}

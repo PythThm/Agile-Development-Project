@@ -106,3 +106,13 @@ def yearly():
         sumofyear = round(sumofyear, 2)
     return jsonify(yearlysales=sumofyear)
     
+@api_orders_bp.route("/monthlysales")
+def monthly():
+    current_month = datetime.datetime.now().strftime("%m")
+    results= db.session.query(func.sum(Order.total).label('yearsales')).filter(Order.created.like(f'%{current_month}%'))
+    sumofmonth = db.session.execute(results).scalar()
+    if sumofmonth == None:
+        sumofmonth = 0
+    else:
+        sumofmonth = round(sumofmonth, 2)
+    return jsonify(monthlysales=sumofmonth)
