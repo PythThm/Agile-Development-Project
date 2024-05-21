@@ -27,7 +27,7 @@ def import_data():
     with open("data/products.csv", "r") as file:
         reader = csv.DictReader(file)
         for record in reader:
-            product = Product(name=record["name"], price=record["price"], category_id=record["category"])
+            product = Product(name=record["name"], price=record["price"], category_id=record["category"], photo=record["photo"])
             db.session.add(product)
         db.session.commit()
 
