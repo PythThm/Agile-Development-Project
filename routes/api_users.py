@@ -24,7 +24,7 @@ def customer_create():
     db.session.commit()
     return jsonify(customer.to_json()), 201
 
-# Cuctomer IDs API
+# Customer IDs API
 @api_users_bp.route("/<int:customer_id>")
 def customer_detail_json(customer_id):
     statement = db.select(User).where(User.id == customer_id)
