@@ -31,15 +31,10 @@ header {
   color: white;
 }
 
-<<<<<<< HEAD
-.banner{
-  display:flex;
-=======
 .banner {
   margin-top: 150px;
   display: flex;
   position: relative;
->>>>>>> 5b81803ecb70c63512d396e8efa637a98ad8e92c
   align-items: center;
   justify-content: space-between;
   /* background-size: cover; */
@@ -140,14 +135,9 @@ nav a {
 }
 
 .products {
-<<<<<<< HEAD
-  position:absolute;
-  top: 268px;
-=======
   position: absolute;
   width: 100%;
   top: 160px;
->>>>>>> 5b81803ecb70c63512d396e8efa637a98ad8e92c
   text-align: center;
   padding: 20px 0;
 }
@@ -353,7 +343,6 @@ input {
   color: white;
 }
 
-<<<<<<< HEAD
 /* cart page */
 .cart_pg{
   display:flex;
@@ -445,8 +434,6 @@ input {
   height: 100px;
 }
 
-=======
->>>>>>> 5b81803ecb70c63512d396e8efa637a98ad8e92c
 footer {
   background-color: #87a922;
   padding: 10px;
