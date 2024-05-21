@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Green Basket Storefront{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/customer-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/admin-style.css') }}">
     {% block head %}
     {% endblock %}
 </head>
@@ -58,6 +59,7 @@
     </header>
 
     <div id="productbar">
+        {% if categories %}
         <ul>
             {% for category in categories %}
             <a href="{{url_for('products.getcategory', id=category.id)}}">
@@ -65,24 +67,23 @@
             </a>
             {% endfor %}
         </ul>
+        {% else %}
+        <div class="contents-container"></div>
+        {% endif %}
     </div>
 
+    {% if not current_user.is_authenticated and not current_user.is_admin %}
 
     <div class="banner">
         <img src="/static/banner_left.jpg" alt="assortment of fresh fruits and vegetables" id="left">
         <img src="/static/banner_right.jpg" alt="assortment of fresh fruits and vegetables" id="right">
     </div>
 
+    {% endif %}
     {% block content %}
+
     {% endblock %}
 
-    <section class="about">
-        <h2>About Green Basket</h2>
-        <p>Green Basket </p>
-    </section>
-    <footer>
-        Something here
-    </footer>
 </body>
 
 </html>
