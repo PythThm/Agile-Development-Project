@@ -1,17 +1,99 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Dashboard</h1>
-<div>
-    <h2>Admin</h2>
-    <p>Welcome to the Admin Dashboard</p>
+<div class="admin-container">
+    <h1>Admin Dashboard</h1>
+    <div>
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('orders.orders') }}">Orders</a>
+        <a href="{{ url_for('admin.category') }}">Category</a>
+        <a href="{{ url_for('products.additem') }}">Add Item</a>
+        <a href="{{ url_for('admin.stats') }}">Sales Statistics</a>
+        <a href="{{ url_for('admin.view_issues') }}">Customer Issues</a>
 
-    <a href="{{ url_for('users.users') }}">Customers</a>
-    <a href="{{ url_for('orders.orders') }}">Orders</a>
-    <a href="{{ url_for('admin.category') }}">Category</a>
-    <a href="{{ url_for('products.additem') }}">Add Item</a>
-    <a href="{{ url_for('admin.stats') }}">Sales Statistics</a>
-    <a href="{{ url_for('admin.view_issues') }}">Customer Issues</a>
+        <div class="stats">
+            <h3>Here are your total sales for:</h3>
 
+            <h2>Today</h2>
+            <p>${{ daily }}</p>
+
+            <h2>This month</h2>
+            <p>${{ monthly }}</p>
+
+            <h2>This year</h2>
+
+            <p>${{ yearly }}</p>
+
+            <h2>Total sales</h2>
+
+            <p>${{ total }}</p>
+
+        </div>
+        <div class="">
+            <h3>Issues</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" width="20">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+
+                    </tr>
+                </thead>
+                {% for issue in issues %}
+                <tr>
+                    <td>{{ issue.id }}</td>
+                    <td>{{ issue.title }}</td>
+                    <td>{{ issue.created }}</td>
+                </tr>
+                {% endfor %}
+                <tbody>
+            </table>
+        </div>
+        <div class="tables">
+            <div>
+                <h3>Customers</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" width="20">ID</th>
+                            <th scope="col" width="90">Name</th>
+                            <th scope="col" width="90">Email</th>
+                        </tr>
+                    </thead>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tbody>
+                </table>
+            </div>
+            <div>
+                <h3>Products</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" width="20">ID</th>
+                            <th scope="col" width="90">Name</th>
+                            <th scope="col" width="90">Quantity</th>
+                        </tr>
+                    </thead>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.available }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
 </div>
 {% endblock %}
