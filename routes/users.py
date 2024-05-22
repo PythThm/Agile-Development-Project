@@ -18,7 +18,7 @@ def user_detail(user_id):
     return render_template('pages/customer_detail.html', user=user)
 
 # Update user
-@users_bp.route("/<int:user_id>/update", methods=["GET", "POST"])
+@users_bp.route("/update/<int:user_id>/", methods=["GET", "POST"])
 def update_user(user_id):
 
     user = db.get_or_404(User, user_id)
@@ -30,9 +30,10 @@ def update_user(user_id):
         user.password = request.form['password']
 
         db.session.commit()
-        return redirect(url_for("users.users"))
-    else:
 
+        return redirect(url_for("users.profile"))
+    
+    else:
         return render_template('pages/profile_update.html', user = user)
 
 # Delete Customer
@@ -53,4 +54,4 @@ def upload():
 @users_bp.route('/profile')
 @login_required
 def profile():
-    return render_template('pages/profile.html', name=current_user.name)
+    return render_template('pages/profile.html', user=current_user)

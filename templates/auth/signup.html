@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<h1>Sign Up</h1>
+<h1 class="title">Sign Up</h1>
 
 <form method="POST" action="{{ url_for('auth.signup') }}">
-    <div class="form-align">
+    <div class="form-align signup">
         <div class="form-label">
             <p class="gap">Email</p>
             <input type="email" name="email" placeholder="Email" autofocus="" required>
@@ -16,12 +16,16 @@
         </div>
         <div class="form-label">
             <p>Password</p>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+                required>
         </div>
+        <br>
+        <small>Already Signed up? <a href="{{ url_for('auth.login') }}">Login</a></small>
+        <br>
+        <input type="submit" value="Sign Up" class="button">
     </div>
-    <br>
-    <small>Already Signed up? <a href="{{ url_for('auth.login') }}">Login</a></small>
-    <br><input type="submit" value="Sign Up">
 </form>
 
 

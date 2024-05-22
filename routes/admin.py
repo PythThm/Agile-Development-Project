@@ -1,20 +1,35 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from routes import api_orders
-from models import Category, Issue
+from models import Category, Issue, User, Product
 from db import db
 
 admin_bp = Blueprint("admin", __name__)
 
+#function to get stats
+def get_stats(route, timeframe):
+    response = route()
+    data = response.get_json()
+    return data[timeframe]
+
 @admin_bp.route('/')
 def admin():
-    return render_template('admin/dashboard.html')
+    users = User.query.order_by(User.id.desc()).limit(3).all()
+    products = Product.query.order_by(Product.id.desc()).limit(3).all()
+    issues = Issue.query.order_by(Issue.id.desc()).limit(3).all()
+
+    daily = get_stats(api_orders.daily, 'dailysales')
+    yearly = get_stats(api_orders.yearly, 'yearlysales')
+    total = get_stats(api_orders.total, 'totalsales')
+    monthly = get_stats(api_orders.monthly, 'monthlysales')
+    
+    return render_template('admin/dashboard.html', users=users, products=products, issues=issues, daily=daily, yearly=yearly, total=total, monthly=monthly)
 
 @admin_bp.route('/stats')
 def stats():
-    def get_stats(route, timeframe):
-        response = route()
-        data = response.get_json()
-        return data[timeframe]
+    # def get_stats(route, timeframe):
+    #     response = route()
+    #     data = response.get_json()
+    #     return data[timeframe]
     
     daily = get_stats(api_orders.daily, 'dailysales')
     yearly = get_stats(api_orders.yearly, 'yearlysales')

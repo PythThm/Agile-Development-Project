@@ -53,10 +53,10 @@ def update_product(product_id):
         product.available = request.form['available']
         
         db.session.commit()
-        return redirect(url_for("products.products_list"))
+        return redirect(url_for("products.products"))
     else:
         product = Product.to_json(product)
-        return render_template('pages/product_update.html', product = product )
+        return render_template('admin/product_update.html', product = product )
 
 # Delete product
 @products_bp.route("/<int:product_id>/delete")
@@ -65,3 +65,11 @@ def delete_product(product_id):
     db.session.delete(product)
     db.session.commit()
     return redirect(url_for("products.products"))
+
+# Get categories
+@products_bp.route('/category/<int:id>')
+def getcategory(id):
+    products = Product.query.all()
+    categories = Category.query.all()
+    category_items = Product.query.filter_by(category_id=id)
+    return render_template('pages/category_products.html', products=products, categories=categories, category_items=category_items)

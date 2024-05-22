@@ -1,17 +1,112 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Dashboard</h1>
-<div>
-    <h2>Admin</h2>
-    <p>Welcome to the Admin Dashboard</p>
+<div class="admin-container">
+    <h1>Admin Dashboard</h1>
+    <div class="navigation">
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('products.products') }}">Products</a>
+        <a href="{{ url_for('admin.category') }}">Category</a>
+        <a href="{{ url_for('products.additem') }}">Add Product</a>
+        <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
+        <a href="{{ url_for('admin.view_issues') }}">Customer Issues</a>
+    </div>
+    <div class="admin-contents">
+        <div class="stats">
+            <div class="stats-title">
+                <h3>Here are your total sales for:</h3>
+            </div>
+            <div class="stats-contents">
+                <div>
+                    <h5>Today</h5>
+                    <p>${{ daily }}</p>
+                </div>
+                <div>
+                    <h5>This month</h5>
+                    <p>${{ monthly }}</p>
+                </div>
+                <div>
+                    <h5>This year</h5>
 
-    <a href="{{ url_for('users.users') }}">Customers</a>
-    <a href="{{ url_for('orders.orders') }}">Orders</a>
-    <a href="{{ url_for('admin.category') }}">Category</a>
-    <a href="{{ url_for('products.additem') }}">Add Item</a>
-    <a href="{{ url_for('admin.stats') }}">Sales Statistics</a>
-    <a href="{{ url_for('admin.view_issues') }}">Customer Issues</a>
+                    <p>${{ yearly }}</p>
+                </div>
+                <div>
+                    <h5>Total sales</h5>
 
+                    <p>${{ total }}</p>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+        <div class="dashboard-tables">
+            <div>
+                <h3>Customers</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" width="20">ID</th>
+                            <th scope="col" width="90">Name</th>
+                            <th scope="col" width="90">Email</th>
+                        </tr>
+                    </thead>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tbody>
+                </table>
+            </div>
+            <div>
+                <h3>Products</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" width="20">ID</th>
+                            <th scope="col" width="90">Name</th>
+                            <th scope="col" width="90">Quantity</th>
+                        </tr>
+                    </thead>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.available }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dashboard-table">
+            <h3>Issues</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" width="20">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+
+                    </tr>
+                </thead>
+                {% for issue in issues %}
+                <tr>
+                    <td>{{ issue.id }}</td>
+                    <td>{{ issue.title }}</td>
+                    <td>{{ issue.created }}</td>
+                </tr>
+                {% endfor %}
+                <tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

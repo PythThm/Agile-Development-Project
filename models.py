@@ -8,7 +8,7 @@ from flask_login import UserMixin
 class User( UserMixin, db.Model):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(200), nullable=False)
-    phone = mapped_column(String(20), nullable=True)
+    phone = mapped_column(String(20), nullable=True, default="604-245-1256")
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
     email =  mapped_column(String(200), nullable=True)
     password = mapped_column(String(200), nullable=True)
@@ -108,11 +108,12 @@ class Category(db.Model):
 
 
 class Product(db.Model):
+    desc = "An apple is a round, edible fruit produced by an apple tree. Apple trees are cultivated worldwide and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found. Apples have been grown for thousands of years in Eurasia and were introduced to North America by European colonists."
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(30), nullable=False, unique=True)
     price = mapped_column(Integer, nullable=True)
     available = mapped_column(Integer, nullable=True)
-    description = mapped_column(String(500), nullable=True)
+    description = mapped_column(String(500), nullable=True, default=desc)
     created = mapped_column(DateTime, nullable=False, default=datetime.now().replace(microsecond=0))
 
     category_id = mapped_column(Integer, ForeignKey('category.id'), nullable=True)
@@ -128,6 +129,7 @@ class Product(db.Model):
             "id": self.id,
             "name": self.name,
             "price": self.price,
+            "category": self.category_id,
             "available": self.available
         }
 

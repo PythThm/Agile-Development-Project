@@ -1,16 +1,16 @@
-name,price
-apple,1.49
-bananas,3.49
-lemon,1.0
-orange,1.19
-raspberries,7.99
-potato,1.49
-onions,3.99
-tomato,2.99
-bread,1.59
-chicken breast,10.78
-chicken thigh,8.99
-ground beef,6.99
-cheese,8.99
-milk,3.49
-eggs,4.49
+name,price,category,photo
+apple,1.49,1,apple.jpg
+bananas,3.49,1,bananas.jpg
+lemon,1.0,1,lemon.jpg
+orange,1.19,1,orange.png
+raspberries,7.99,1,raspberries.jpg
+potato,1.49,2,potato.png
+onions,3.99,2,onions.jpg
+tomato,2.99,2,tomato.jpg
+lettuce,1.59,2,lettuce.png
+chicken breast,10.78,4,chicken-breast.png
+chicken thigh,8.99,4,chicken-thigh.png
+ground beef,6.99,4,ground-beef.png
+cheese,8.99,3,cheese.png
+milk,3.49,3,milk.png
+eggs,4.49,3,egg.png
