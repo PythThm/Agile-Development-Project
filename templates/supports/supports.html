@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>Support</h1>
 {% if not current_user.is_authenticated %}
 <h3>Please Log in first.</h3>
@@ -19,4 +20,5 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endif %}
+
 {% endblock %}

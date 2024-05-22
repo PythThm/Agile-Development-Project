@@ -1,6 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
+<h1 id="mycart">My Cart</h1>
+<div class="cart_pg">
+
+    <div class="cart_row">
+        <div class="cart_itms"> 
+            <div class="checkout_card">
+                <img src="{{ url_for('static', filename='./productpics/apple.jpg') }}" alt="Product Name">
+                <h3>Product Name</h3>
+                <p>$19.99</p>
+                <button>Remove</button>
+            </div>
+            <div class="checkout_card">
+                <img src="{{ url_for('static', filename='./productpics/apple.jpg') }}" alt="Product Name">
+                <h3>Product Name</h3>
+                <p>$19.99</p>
+                <button>Remove</button>
+            </div>
+        </div>
+
+        <div class="checkout">
+            <div class="checkout_contents">
+            <a href="{{ url_for('orders.checkout')}}">Checkout</a>
+            </div>  
+        </div>
+    </div>
+</div> 
+<h4 id="Suggesteditems">Suggested Items</h4>
+=======
 <h1>Shopping Cart</h1>
 <div class="container">
 
@@ -56,4 +85,5 @@
     </div>
 </div>
 
+>>>>>>> 5b81803ecb70c63512d396e8efa637a98ad8e92c
 {% endblock %}
