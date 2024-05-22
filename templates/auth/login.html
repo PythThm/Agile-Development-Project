@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1 class="title">Login</h1>
 <section class="loginform">
-    <h1 class="title">Login</h1>
-
+    
     <form method="post" action="{{ url_for('auth.login') }}">
         <div class="form-align login">
             <div class="form-label">
@@ -17,14 +17,14 @@
             <div class="form-label">
                 <label class="checkbox">
                     <!-- 1 -->
-                    <input class="checkbox" type="checkbox" name="remember" value="Remember me">
                     Remember Me
+                    <input class="checkbox" type="checkbox" name="remember" value="Remember me">
                 </label>
             </div>
             <br>
             <small>Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign Up</a></small>
             <br><br>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" class="button">
         </div>
     </form>
 </section>

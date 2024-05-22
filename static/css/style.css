@@ -30,17 +30,15 @@ header {
   text-decoration: none;
   color: white;
 }
-
+/* 
 .banner {
   margin-top: 150px;
   display: flex;
   position: relative;
   align-items: center;
   justify-content: space-between;
-  /* background-size: cover; */
   height: 346px;
   margin-top: 160px;
-  /* position: absolute; */
   z-index: -1;
 }
 .banner #left {
@@ -48,7 +46,7 @@ header {
 }
 .banner #right {
   background-position: right;
-}
+} */
 .title {
   text-align: center;
 }
@@ -139,7 +137,7 @@ nav a {
   width: 100%;
   top: 160px;
   text-align: center;
-  padding: 20px 0;
+  padding-top: 20px;
 }
 
 .product-header {
@@ -156,7 +154,7 @@ nav a {
 .product-card {
   display: inline-block;
   width: 234px;
-  height: 424px;
+  height: 400px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
@@ -198,8 +196,23 @@ input {
   padding: 10px;
   border-radius: 5px;
 }
-/* For Login.html page */
+/* For about section */
 
+div.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  text-decoration: none;
+  background-color: #ad4d27;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 90px;
+}
+
+/* For Login.html and signup.html page */
 .form-align {
   display: flex;
   flex-direction: column;
@@ -207,7 +220,7 @@ input {
   align-items: center;
   margin-top: 30px;
 }
-.login {
+.login , .signup {
   align-items: center;
   margin-top: 30px;
   padding: 20px;
@@ -218,10 +231,26 @@ input {
   font-size: 18px;
 }
 .loginform {
-  position: absolute;
   top: 200px;
 }
-
+div.form-label label{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: smaller;
+  /* align-items: flex-end; */
+}
+div.form-label label input{
+  padding: 0;
+  margin: 0;
+  margin-left: 20px;
+  width: 20px;
+  height: 20px;
+}
+div.form-align input.button {
+  background-color: #87A922;
+  color: white;
+}
 /* For Profile Page */
 .title {
   text-align: center;
@@ -251,53 +280,6 @@ input {
   
 }
 
-/* code for left nav bar. But it is now removed. */
-
-/* #profile_photo img{
-  display: flex;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin: 20px 20px 0px 20px;
-  padding: 10px;
-}
-.profile_nav .leftNav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 250px;
-  height: 500px;
-  flex-shrink: 0;
-  border-radius: 15px;
-  border: 3px solid #87A922;
-  justify-content: center;
-  margin: 0px 30px;
-}
-.leftNav ul li{
-  padding: 10px;
-  margin: 20px;
-  border-radius: 10px;
-  background-color: #F3F6E9;
-  color: black;
-  text-align: center;
-  width: 200px;
-  height: 40px;
-}
-.leftNav a{
-  text-decoration: none;
-}
-.leftNav ul{
-  margin: 0px 0px 25px 0px;
-} */
-.profile_nav .rightNav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-  height: auto;
-  justify-content: left;
-  /* padding-left: 100px; */
-}
 .rightNav {
   display: flex;
   flex-direction: column;
@@ -330,17 +312,6 @@ input {
   height: 40px;
   border: 2px solid #6b8716;
   border-radius: 10px;
-}
-
-.about {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 600px; /* change to stick to bottom of page*/
-  padding: 30px 0;
-  text-decoration: none;
-  background-color: #ad4d27;
-  color: white;
 }
 
 /* cart page */
