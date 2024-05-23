@@ -3,7 +3,7 @@
 # Prep for First Launch
 ## 1. Install dependencies
 - pip install -r requirements.txt
-![pipinstall](static\documentation\requirements_install.PNG)
+![pipinstall](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/flasked.PNG?raw=true)
 - Wait for extentions to download and install
 ![installed](static\documentation\pipinstalled.PNG)
 
