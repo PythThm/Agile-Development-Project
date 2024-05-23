@@ -5,12 +5,12 @@
 - pip install -r requirements.txt
 ![pipinstall](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/flasked.PNG?raw=true)
 - Wait for extentions to download and install
-![installed](static\documentation\pipinstalled.PNG)
+![installed](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/pipinstalled.PNG?raw=true)
 
 
 ## 2. Create Database
 - In the terminal, enter "py manage.py"
-![manage](static\documentation\manage.PNG)
+![manage](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/manage.PNG?raw=true)
 
 ***
 
@@ -22,8 +22,8 @@
 1. Run "py app.py" in the terminal
 
 2. Once you see
-![flask](static\documentation\flasked.PNG)
+![flask](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/flasked.PNG?raw=true)
 go to your browser and enter "http://127.0.0.1:8888" in the search bar
 3. Congratulations! You will now see your new beautiful site.
-![site](static\documentation\website.PNG)
+![site](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/website.PNG?raw=true)
 
