@@ -1,0 +1,30 @@
+name: Python application
+
+on:
+  push:
+    branches:
+      - unit-test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create database
+        run: python manage.py
+
+      - name: Test with Pytest & Coverage
+        run: |
+          pip install coverage
+          coverage run -m pytest
+          coverage report

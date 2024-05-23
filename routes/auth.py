@@ -6,12 +6,6 @@ from flask_login import login_user, logout_user, login_required
 
 auth_bp = Blueprint("auth", __name__)
 
-
-# Login
-# @auth_bp.route('/login')
-# def login():
-#     return render_template('auth/login.html')
-
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -56,7 +50,8 @@ def signup():
         print(email)
         user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
 
-        if user: # if a user is found, we want to redirect back to signup page so user can try again
+        if user is not None: # if a user is found, we want to redirect back to signup page so user can try again
+            logout_user()
             flash('Email address already exists')
             return redirect(url_for('auth.signup'))
 
@@ -67,9 +62,10 @@ def signup():
         db.session.add(new_user)
         
         db.session.commit()
+        login_user(new_user)
         return redirect(url_for('auth.login'))
-    else: 
-        return render_template('auth/signup.html')
+    
+    return render_template('auth/signup.html')
 
 
 # Logout
