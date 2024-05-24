@@ -1,16 +1,12 @@
 # How to launch website
 ***
 # Prep for First Launch
-## 1. Install dependencies
+
+Install dependencies
 - pip install -r requirements.txt
 ![pipinstall](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/flasked.PNG?raw=true)
 - Wait for extentions to download and install
 ![installed](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/pipinstalled.PNG?raw=true)
-
-
-## 2. Create Database
-- In the terminal, enter "py manage.py"
-![manage](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/manage.PNG?raw=true)
 
 ***
 
