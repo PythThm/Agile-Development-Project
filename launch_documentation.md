@@ -4,7 +4,7 @@
 
 Install dependencies
 - pip install -r requirements.txt
-![pipinstall](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/flasked.PNG?raw=true)
+![pipinstall](https://github.com/PythThm/Agile-Development-Project/blob/main/static/documentation/requirements_install.PNG?raw=true)
 - Wait for extentions to download and install
 ![installed](https://github.com/PythThm/Agile-Development-Project/blob/develop/static/documentation/pipinstalled.PNG?raw=true)
 
