@@ -15,6 +15,7 @@
         <a href="{{ url_for('products.additem') }}">Add Product</a>
         <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
     </div>
+
     <div class="admin-contents">
 
         <div class="table-header">
@@ -50,9 +51,8 @@
             {% endfor %}
         </table>
         <br>
-
         <a href="{{ url_for('admin.admin') }}" class="btn-back">Go Back</a>
     </div>
 </div>
-</div>
+
 {% endblock %}
