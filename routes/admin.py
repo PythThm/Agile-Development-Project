@@ -41,7 +41,6 @@ def stats():
 @admin_bp.route('/category')
 def category():
         categories = Category.query.all()
-
         return render_template('admin/category.html', categories = categories)
 
 

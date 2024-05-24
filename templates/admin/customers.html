@@ -1,40 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Customers</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th scope="col" width="20">ID</th>
-            <th scope="col" width="90">Name</th>
-            <th scope="col" width="90">Phone</th>
-            <th scope="col" width="90">Email</th>
-            <th scope="col" width="40">History</th>
-            <th scope="col" width="70">Options</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.email }}</td>
-            <td>
-                <!-- This is a link to the customer_detail page -->
-                <a href="{{ url_for('users.user_detail', user_id=user.id) }}" class="btn">View</a>
-            </td>
-            <td>
-                <a href="/users/{{user.id}}/update" class="btn">Edit</a>
-                <a href="/users/{{user.id}}/delete" class="btn"
-                    onclick="return confirm('Are you sure to delete?')">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+<div class="admin-container">
 
-</table>
-<br>
-<a href="{{ url_for('admin.admin') }}">Go Back</a>
+    <div class="admin-navigation">
+        <a href="{{ url_for('admin.admin') }}">
+            <h3>Admin Dashboard</h3>
+        </a>
+        <a href="{{ url_for('admin.view_issues') }}">Issues</a>
+        <a href="{{ url_for('products.products') }}">Products</a>
+        <a href="{{ url_for('admin.category') }}">Category</a>
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('products.additem') }}">Add Product</a>
+        <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
+    </div>
+    <div class="admin-contents">
+
+        <div class="table-header">
+            <h3>Customer Information</h3>
+        </div>
+        <table class="dashboard-table">
+            <tr>
+                <th>ID</th>
+                <th width="40%">Name</th>
+                <th width="40%">Phone</th>
+                <th width="100%">Email</th>
+                <th width="100%">History</th>
+                <th width="100%">Edit</th>
+                <th width="100%">Delete</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <!-- This is a link to the customer_detail page -->
+                    <a href="{{ url_for('users.user_detail', user_id=user.id) }}" class="btn"><small>View</small></a>
+                </td>
+                <td>
+                    <a href="/users/update/{{user.id}}" class="btn"><small>Edit</small></a>
+
+                </td>
+                <td><a href="/users/{{user.id}}/delete" class="btn"
+                        onclick="return confirm('Are you sure to delete?')"><small>Delete</small></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+        <a href="{{ url_for('admin.admin') }}" class="btn-back">Go Back</a>
+    </div>
+</div>
+</div>
 {% endblock %}
