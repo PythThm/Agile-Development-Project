@@ -231,6 +231,27 @@
 .form-add-product .btn-add-item {
   margin-left: 80px;
 }
+
+.admin-contents .card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: #f1f1f1;
+  color: var(--bg-variant);
+  padding: 5px 50px;
+  padding-bottom: 30px;
+}
+
+.admin-contents .card a {
+  color: var(--background);
+  text-decoration: none;
+}
+
+.admin-contents .card .date {
+  display: flex;
+  justify-content: space-between;
+}
+
 /*
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
