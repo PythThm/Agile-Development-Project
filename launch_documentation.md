@@ -14,7 +14,7 @@ Install dependencies
 # Website is now ready to be deployed
 ***
 
-## 3. Enter Flask
+## Enter Flask
 1. Run "py app.py" in the terminal
 
 2. Once you see
