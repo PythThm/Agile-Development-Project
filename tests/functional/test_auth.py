@@ -33,12 +33,6 @@ def test_login_post_invalid_password(test_client, add_user):
     assert response.status_code == 200
     assert not current_user.is_authenticated
 
-def test_login_post_admin(test_client, add_admin):
-    response = test_client.post('/auth/login', data=dict(email='admin@test.com', password='adminpassword'), follow_redirects=True)
-    print(response.data)
-    assert response.status_code == 200
-    assert current_user.is_authenticated
-    assert current_user.is_admin
 
 def test_login_post_admin1(test_client, add_admin):
     response = test_client.post('/auth/login', data=dict(email='admin@test.com', password='adminpassword'))
