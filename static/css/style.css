@@ -47,9 +47,15 @@ header {
 .banner #right {
   background-position: right;
 } */
+
 .title {
   text-align: center;
 }
+
+.center {
+  text-align: center;
+}
+
 header {
   display: flex;
   border-bottom: 2px solid #ad4d27;
@@ -134,5 +140,7 @@ nav a {
 
 footer {
   background-color: #87a922;
+  color: white;
   padding: 10px;
+  display: block;
 }

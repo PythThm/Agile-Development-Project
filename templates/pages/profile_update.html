@@ -2,30 +2,30 @@
 
 {% block content %}
 <div class="content">
-    <h1>Update Profile</h1>
+    <h1 class="title">Update Profile</h1>
     <table class="task_table">
 
         <form action="/users/update/{{user.id}}" method="POST">
-            <div class="form-align">
-                <input type="hidden" name="id" value="{{user.id}}">
+            <div class="form-align profile_nav rightNav">
+                <input type="hidden" name="id" value="{{user.id}}" class="box">
                 <div class="form-label">
                     <p>Name</p>
-                    <input type="text" name="name" value="{{user.name}}">
+                    <input type="text" name="name" value="{{user.name}}" class="box">
                 </div>
                 <div class="form-label">
                     <p>Phone</p>
-                    <input type="text" name="phone" value="{{user.phone}}">
+                    <input type="text" name="phone" value="{{user.phone}}" class="box">
                 </div>
                 <div class="form-label">
                     <p>Email</p>
-                    <input type="text" name="email" value="{{user.email}}">
+                    <input type="text" name="email" value="{{user.email}}" class="box">
                 </div>
                 <div class="form-label">
                     <p>Password</p>
-                    <input type="text" name="password" value="{{user.password}}">
+                    <input type="text" name="password" value="{{user.password}}" class="box">
                 </div>
                 <br>
-                <input type="submit" value="Update Profile">
+                <input type="submit" value="Update Profile" class="PButton">
             </div>
         </form>
 

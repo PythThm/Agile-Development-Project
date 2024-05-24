@@ -2,22 +2,23 @@
 
 {% block content %}
 
-<h1>Support</h1>
+<h1 class="title">Support</h1>
 {% if not current_user.is_authenticated %}
-<h3>Please Log in first.</h3>
-<a href="{{ url_for('auth.login') }}">Login</a>
+
+<h3 class="center">Please Log in first.</h3>
+<a href="{{ url_for('auth.login') }}" class="center">Login</a>
 {% else %}
-<p>For any questions or concerns, please fill out the form below:</p>
-<form action="{{ url_for('supports.submit_issues') }}" method="POST">
-  <div class="form-group">
+<p class="center">For any questions or concerns, please fill out the form below:</p>
+<form action="{{ url_for('supports.submit_issues') }}" method="POST" class="form-align profile_nav rightNav">
+  <div class="form-group form-label">
     <label for="issue_title">Issue Title:</label>
-    <input type="text" id="issue_title" name="issue_title" class="form-control" required>
+    <input type="text" id="issue_title" name="issue_title" class="form-control box" required>
   </div>
-  <div class="form-group">
+  <div class="form-group form-label">
     <label for="issue_description">Issue Description:</label>
-    <textarea id="issue_description" name="issue_description" class="form-control" rows="5" required></textarea>
+    <textarea id="issue_description" name="issue_description" class="form-control box" rows="5" required></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary PButton">Submit</button>
 </form>
 {% endif %}
 
