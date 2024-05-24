@@ -2,21 +2,38 @@
 
 {% block content %}
 
-<div class="container">
-    <h1>Create Category</h1>
-    <form action="{{ url_for( 'admin.addcategory' ) }}" method="POST">
-        <input type="text" name="category" placeholder="Enter Name"><br>
-        <input type="submit" value="Add Category">
-    </form>
+<div class="admin-container">
 
-    <table class="table">
-        <thead>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </thead>
-        <tbody>
+    <div class="admin-navigation">
+        <a href="{{ url_for('admin.admin') }}">
+            <h3>Admin Dashboard</h3>
+        </a>
+        <a href="{{ url_for('admin.view_issues') }}">Issues</a>
+        <a href="{{ url_for('products.products') }}">Products</a>
+        <a href="{{ url_for('admin.category') }}">Category</a>
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('products.additem') }}">Add Product</a>
+        <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
+    </div>
+
+    <div class="admin-contents">
+
+        <div class="table-header">
+            <h3>Create Category</h3>
+        </div>
+
+        <form action="{{ url_for( 'admin.addcategory' ) }}" method="POST">
+            <input type="text" name="category" placeholder="Enter Name"><br>
+            <input type="submit" value="Add Category">
+        </form>
+
+        <table class="dashboard-table" style="margin-top: 20px;">
+            <tr>
+                <th width="10%">ID</th>
+                <th width="80%">Name</th>
+                <th width="100%">Edit</th>
+                <th width="100%">Delete</th>
+            </tr>
             {% if categories %}
             {% for category in categories %}
             <tr>
@@ -26,13 +43,13 @@
                 <td><a href="/admin/delete-category/{{ category.id }}"
                         onclick="return confirm('Are you sure to delete?')">Delete</a>
                 </td>
-
-
             </tr>
             {% endfor %}
             {% endif %}
-        </tbody>
-    </table>
+        </table>
+        <br>
+        <a href="{{ url_for('admin.admin') }}" class="btn-back">Go Back</a>
+    </div>
 </div>
-<a href="{{ url_for('admin.admin') }}">Go Back</a>
+
 {% endblock %}

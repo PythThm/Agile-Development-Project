@@ -10,7 +10,7 @@ products_bp = Blueprint("products", __name__)
 @products_bp.route("/")
 def products():
     products = Product.query.all()
-    return render_template('pages/products.html', products=products)
+    return render_template('admin/products.html', products=products)
 
 @products_bp.route('/<productname>')
 def product_detail(productname):

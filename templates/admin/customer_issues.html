@@ -1,16 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>View Issues</h1>
-{% for issue in issues %}
-<h2>{{ issue.title }}</h2>
-<p>{{ issue.description }}</p>
-<p>Submitted by: {{ issue.user }}</p>
-<p>Submitted on: {{ issue.created }}</p>
-<p>Status: {{ issue.resolved }}</p>
-<a href="{{ url_for('admin.issue_detail', issue_id=issue.id) }}">View Issue</a>
-<a href="/admin/{{issue.id}}/delete" class="btn" onclick="return confirm('Are you sure to delete?')">Delete</a>
-{% endfor %}
-<br><br>
-<a href="{{ url_for('admin.admin') }}">Go Back</a>
+<div class="admin-container">
+
+    <div class="admin-navigation">
+        <a href="{{ url_for('admin.admin') }}">
+            <h3>Admin Dashboard</h3>
+        </a>
+        <a href="{{ url_for('admin.view_issues') }}">Issues</a>
+        <a href="{{ url_for('products.products') }}">Products</a>
+        <a href="{{ url_for('admin.category') }}">Category</a>
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('products.additem') }}">Add Product</a>
+        <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
+    </div>
+    <div class="admin-contents">
+        <div class="table-header">
+            <h3>Issues</h3>
+        </div>
+        {% for issue in issues %}
+        <div class="card">
+            <div>
+                <h2>{{ issue.title }}</h2>
+            </div>
+            <div class="date">
+                <h5>{{ issue.created }}</h5>
+                <h5>{{ issue.user }}</h5>
+            </div>
+            <div>
+                <p>{{ issue.description }}</p>
+            </div>
+            <h5>Status: {{ issue.resolved }}</h5>
+            <div class="options"><a href="{{ url_for('admin.issue_detail', issue_id=issue.id) }}"><small>View
+                        Details</small></a>
+                <a href="/admin/{{issue.id}}/delete" class="btn"
+                    onclick="return confirm('Are you sure to delete?')"><small>Delete</small></a>
+            </div>
+
+        </div>
+        <br>
+        {% endfor %}
+
+
+        <a href="{{ url_for('admin.admin') }}" class="btn-back">Go Back</a>
+    </div>
+</div>
 {% endblock %}

@@ -18,7 +18,7 @@ def user_detail(user_id):
     return render_template('pages/customer_detail.html', user=user)
 
 # Update user
-@users_bp.route("/update/<int:user_id>/", methods=["GET", "POST"])
+@users_bp.route("/update/<int:user_id>", methods=["GET", "POST"])
 def update_user(user_id):
 
     user = db.get_or_404(User, user_id)

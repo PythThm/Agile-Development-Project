@@ -57,8 +57,8 @@
         </div> -->
     </header>
 
+    {% if categories and not current_user.is_admin %}
     <div id="productbar">
-        {% if categories %}
         <ul>
             {% for category in categories %}
             <a href="{{url_for('products.getcategory', id=category.id)}}">
