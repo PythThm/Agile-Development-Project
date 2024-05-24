@@ -51,11 +51,6 @@ header {
 .title {
   text-align: center;
 }
-
-.center {
-  text-align: center;
-}
-
 header {
   display: flex;
   border-bottom: 2px solid #ad4d27;
@@ -138,9 +133,347 @@ nav a {
   object-fit: cover;
 }
 
-footer {
+.products {
+  position: absolute;
+  width: 100%;
+  top: 160px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.product-header {
+  position: relative;
+}
+
+.product-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0px 222px;
+}
+
+.product-card {
+  display: inline-block;
+  width: 234px;
+  height: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  text-align: center;
+  vertical-align: top;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-card h3,
+.product-card p {
+  margin: 5px 0;
+}
+
+.product-card button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+input {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #87a922;
+  width: 300px;
+}
+.checkbox {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+/* For about section */
+
+div.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  text-decoration: none;
+  background-color: #ad4d27;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 90px;
+}
+
+/* For Login.html and signup.html page */
+.form-align {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.login , .signup {
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #87a922;
+  background-color: rgba(190, 190, 190, 0.2);
+  margin: 0px 37vw;
+  font-size: 18px;
+}
+.loginform {
+  top: 200px;
+}
+div.form-label label{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: smaller;
+  /* align-items: flex-end; */
+}
+div.form-label label input{
+  padding: 0;
+  margin: 0;
+  margin-left: 20px;
+  width: 20px;
+  height: 20px;
+}
+div.form-align input.button {
+  background-color: #87A922;
+  color: white;
+}
+/* For Profile Page */
+.title {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 50px;
+}
+
+.profile_pg {
+  position: absolute;
+  top: 125px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.profile_nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+}
+.profile_nav div ul,
+.profile_nav div li {
+  list-style-type: none;
+  text-decoration: none;
+  padding: 0px;
+  color: black;
+}
+
+.rightNav {
+  display: flex;
+  flex-direction: column;
+}
+.box {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 5px 0px 20px 0px;
+  border: 2px solid #87a922;
+  border-radius: 10px;
+  color: black;
+  background-color: rgba(190, 190, 190, 0.3);
+  text-align: center;
+  text-indent: 10px;
+  width: 500px;
+  height: 40px;
+}
+
+.PButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0px 20px 0px;
+  /* padding: 10px 0; */
+  text-decoration: none;
   background-color: #87a922;
   color: white;
-  padding: 10px;
+  width: 500px;
+  height: 40px;
+  border: 2px solid #6b8716;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* cart page */
+.cart_pg {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  top: 150px;
+
+  /* position:absolute;
+  top: 150px;
+  left:50%;
+  transform: translateX(-50%);
+  display: inline; */
+}
+#mycart {
   display: block;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline;
+}
+.cart_row {
+  display: flex;
+  width: 50%;
+}
+.cart_itms {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 5px 0px 20px 0px;
+  border: 2px solid #87a922;
+  border-radius: 10px;
+  width: 500px;
+  height: auto;
+}
+.checkout_card {
+  height: 100px;
+  width: 500px;
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: flex-start;
+}
+.checkout_card img {
+  height: 85px;
+  width: 85px;
+  margin: 10px 10px;
+}
+.checkout_card h3 {
+  display: block;
+  position: relative;
+  margin-left: 10px;
+}
+.checkout_card p {
+  display: block;
+  position: relative;
+  left: 30%;
+  top: 20%;
+}
+.checkout_card button {
+  text-decoration: none;
+  position: relative;
+  right: 150px;
+  top: 70px;
+  height: 20px;
+}
+.checkout {
+  display: flex;
+  flex: 2;
+  margin: 5px 0px 20px 0px;
+  border: 2px solid #87a922;
+  border-radius: 10px;
+  width: 400px;
+  height: auto;
+}
+.checkout_contents {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.checkout_contents a {
+  text-decoration: none;
+}
+#suggesteditems {
+  display: flex;
+  width: 600px;
+  height: 100px;
+}
+
+footer {
+  background-color: #87a922;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  header {
+    padding: 16px 206px 9.75px 34px;
+  }
+  header nav {
+    display: none;
+  }
+  .product-header h2 {
+    margin: 222px 103px 30px;
+  }
+  #productbar a {
+    margin: 13px 9.5px;
+
+    color: #fff;
+    text-align: center;
+    /* font-family: Montserrat; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 30px */
+    letter-spacing: -0.44px;
+  }
+  #productbar ul {
+    padding-inline-start: 0px;
+  }
+  .banner img {
+    display: none;
+  }
+  .product-card {
+    display: inline-block;
+    width: fit-content;
+    height: 219px;
+    width: 331px;
+    color: #87a922;
+  }
+  .product-card img {
+    display: inline-block;
+    width: fit-content;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    margin: 19px 220px 82px 23px;
+  }
+  .product-card h3 {
+    z-index: 1;
+    position: relative;
+    margin: 28px 20px 133px 138px;
+
+    width: 218px;
+    height: 53px;
+    flex-shrink: 0;
+
+    color: #1e1e1e;
+    /* font-family: Montserrat;*/
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: -0.44px;
+  }
+  .product-list {
+    margin: 0px 0px;
+  }
+  .icons {
+    display: none;
+  }
 }
