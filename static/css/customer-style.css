@@ -533,7 +533,7 @@ div.form-align input.button {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 0 40px;
+  padding: 20px 40px;
 }
 .order_summary > .summary_container > .contents {
   display: flex;

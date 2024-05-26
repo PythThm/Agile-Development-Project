@@ -478,3 +478,10 @@ footer {
     display: none;
   }
 }
+
+.cart-btn {
+  color: #f44336;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
