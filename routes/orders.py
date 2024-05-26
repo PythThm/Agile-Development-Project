@@ -65,7 +65,7 @@ def getcart():
         tax = ("%.2f" % (0.06 * float(subtotal)))
         estimated = float("%.2f" % (1.06 * subtotal))
 
-    return render_template('pages/cart.html', tax = tax, estimated = estimated)
+    return render_template('pages/cart.html', tax = tax, estimated = estimated, subtotal = subtotal)
 
 # function to combine items with items in session
 def mergeDicts(dict1, dict2):

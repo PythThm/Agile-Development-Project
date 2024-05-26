@@ -47,8 +47,8 @@
                             <td>${{product.price}}</td>
                             <td><input type="number" name="quantity" min="1" max="10" value="{{product.quantity}}"
                                     class="quantbtn"></td>
-                            {% set subtotal = product.quantity|int * product.price|float %}
-                            <td>${{ subtotal|round(2) }}</td>
+                            {% set eachtotal = product.quantity|int * product.price|float %}
+                            <td>${{ eachtotal|round(2) }}</td>
                             <td><input type="submit" value="Update" class="updatebtn"></td>
                         </form>
                         <td><a href="{{url_for('orders.deletecartitem', id=key )}}" class="btn">Delete</a></td>
@@ -62,9 +62,9 @@
                     <tr>
                         <td><a href="{{ url_for('home') }}" class="small_btn">Continue Shopping</a></td>
                         <!-- <td width="31%"></td> -->
-                        <td>Tax ${{ tax }}</td>
+                        <td></td>
                         <td>
-                            <h4>Total ${{ estimated }}</h4>
+                            <h4>Subtotal ${{ subtotal }}</h4>
                         </td>
                         <td width="15%"><a href="{{ url_for('orders.clearcart') }}" class="btn">Clear Cart</a></td>
                     </tr>
@@ -74,6 +74,26 @@
 
         <div class="order_summary">
             <h3> Order Summary</h3>
+            <div class="summary_container">
+                <div class="contents">
+                    <div>Sub Total</div>
+                    <div>${{ subtotal|round(2) }}</div>
+                </div>
+                <div class="contents">
+                    <div>Tax</div>
+                    <div>${{ tax }}</div>
+                </div>
+                <div class="contents-total">
+                    <div>
+                        <h3>Total</h3>
+                    </div>
+                    <div>
+                        <h3>${{ estimated }}</h3>
+                    </div>
+                </div>
+            </div>
+
+
             <a href="{{ url_for('orders.checkout')}}">
                 <h2>Checkout</h2>
             </a>

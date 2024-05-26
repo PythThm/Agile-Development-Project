@@ -528,3 +528,20 @@ div.form-align input.button {
     display: none;
   }
 }
+
+.order_summary > .summary_container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 40px;
+}
+.order_summary > .summary_container > .contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order_summary > .summary_container > .contents-total {
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
