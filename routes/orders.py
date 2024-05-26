@@ -17,20 +17,22 @@ def order_detail(order_id):
 
 @orders_bp.route("/<int:order_id>/delete", methods=["GET", "POST"])
 def order_delete(order_id):
-    order = db.get_or_404(Order, order_id)
+    order = Order.query.get_or_404(order_id)
     db.session.delete(order)
     db.session.commit()
     return redirect(url_for("orders.orders"))
 
 @orders_bp.route("/<int:order_id>/process", methods=["POST"])
 def order_process_web(order_id):
-    order = db.get_or_404(Order, order_id)
+    order = Order.query.get_or_404(order_id)
     success, message = order.process()
     if not success:
         return message, 400
     db.session.commit()
     return redirect(url_for("orders.orders"))
 
+# Cart Functionality
+# Checkout
 # Cart Functionality
 # Checkout
 @orders_bp.route('/checkout', methods = ['POST', 'GET'])

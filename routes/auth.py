@@ -6,12 +6,6 @@ from flask_login import login_user, logout_user, login_required
 
 auth_bp = Blueprint("auth", __name__)
 
-
-# Login
-# @auth_bp.route('/login')
-# def login():
-#     return render_template('auth/login.html')
-
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -19,11 +13,10 @@ def login():
         password = request.form.get('password')
         remember = True if request.form.get('remember') else False
 
-
         # Retrieve the user based on the provided email
         user = User.query.filter_by(email=email).first()
 
-         # Check if the user is an admin
+        # Check if the user is an admin
         if user.is_admin:
             # Log in the admin user
             login_user(user, remember=remember)
@@ -31,18 +24,20 @@ def login():
 
         # Check if a user with the provided email exists
         if not user:
+            logout_user()
             flash('User with this email does not exist.')
             return redirect(url_for('auth.login'))
 
         # Check if the password is correct
-        # if not check_password_hash(user.password, password) :
-        #     flash('Incorrect password.')
-        #     return redirect(url_for('auth.login'))
+        if not check_password_hash(user.password, password) or user is None:
+            logout_user()
+            flash('Please check your login details and try again.')
+            return redirect(url_for('auth.login'))
+
 
         # Log in the regular user
-        if  user.email == email or check_password_hash(user.password, password) :
-            login_user(user, remember=remember)
-            return redirect(url_for('home'))
+        login_user(user, remember=remember)
+        return redirect(url_for('home'))
 
     return render_template('auth/login.html')
 
@@ -56,7 +51,8 @@ def signup():
         print(email)
         user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
 
-        if user: # if a user is found, we want to redirect back to signup page so user can try again
+        if user is not None: # if a user is found, we want to redirect back to signup page so user can try again
+            logout_user()
             flash('Email address already exists')
             return redirect(url_for('auth.signup'))
 
@@ -67,9 +63,10 @@ def signup():
         db.session.add(new_user)
         
         db.session.commit()
+        login_user(new_user)
         return redirect(url_for('auth.login'))
-    else: 
-        return render_template('auth/signup.html')
+    
+    return render_template('auth/signup.html')
 
 
 # Logout
@@ -77,4 +74,4 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return render_template('index.html')

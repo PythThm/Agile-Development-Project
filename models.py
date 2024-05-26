@@ -5,15 +5,15 @@ from datetime import datetime
 from db import db
 from flask_login import UserMixin
 
-class User( UserMixin, db.Model):
+class User(UserMixin, db.Model):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(200), nullable=False)
     phone = mapped_column(String(20), nullable=True, default="604-245-1256")
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
-    email =  mapped_column(String(200), nullable=True)
+    email = mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)
     is_admin = mapped_column(Boolean, default=False)
-
+    balance = mapped_column(Numeric, default=0)
 
     def to_json(self):
         return {
@@ -22,7 +22,8 @@ class User( UserMixin, db.Model):
             "phone": self.phone,
             "email": self.email,
             "password": self.password,
-            "is_admin": self.is_admin
+            "is_admin": self.is_admin,
+            "balance": float(self.balance)
         }
 
     def validation(self):
@@ -40,6 +41,7 @@ class User( UserMixin, db.Model):
             raise ValueError("Phone cannot be empty")
         return self.phone
 
+
 class Order(db.Model):
     id = mapped_column(Integer, primary_key=True)
     user_id = mapped_column(Integer, ForeignKey(User.id), nullable=False)
@@ -48,7 +50,7 @@ class Order(db.Model):
     item = relationship("ProductOrder", back_populates="order", cascade="all, delete-orphan")
     created = mapped_column(DateTime(timezone=True), default=datetime.now().replace(microsecond=0))
     processed = mapped_column(DateTime(timezone=True), nullable=True)
-    strategy = mapped_column(String(20))  # Add a column to store the strategy used
+    strategy = mapped_column(String(20))
 
     def total_calc(self):
         total = 0
@@ -56,7 +58,7 @@ class Order(db.Model):
             total += i.product.price * i.quantity
         if self.total < 0:
             return 0
-        return round(total, 2)
+        return round(float(total),       2)
     
     def update(self):
         self.total = self.total_calc()
@@ -106,6 +108,17 @@ class Category(db.Model):
     name = mapped_column(String(30), nullable=False, unique=True)
     cat = relationship("Product", back_populates="category", cascade="all, delete-orphan")
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name
+        }
+    
+    def validation_name(self):
+        if not self.name.strip():
+            raise ValueError("Name cannot be empty")
+        return self.name
+
 
 class Product(db.Model):
     desc = "An apple is a round, edible fruit produced by an apple tree. Apple trees are cultivated worldwide and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found. Apples have been grown for thousands of years in Eurasia and were introduced to North America by European colonists."
@@ -133,7 +146,7 @@ class Product(db.Model):
             "available": self.available
         }
 
-    def validation(self):
+    def validation_price(self):
         if float(self.price) < 0:
             return 0
         return self.price
