@@ -51,6 +51,25 @@
       <a href="{{ url_for('users.update_user', user_id=user.id)}}"><button class="PButton">Edit Profile</button></a>
     </div>
   </div>
+  <div class="profile-order-history">
+    {% if histories %}
+    <h1>My Orders</h1>
+    <table>
+      <tr>
+        <th>Order_ID</th>
+        <th>Created</th>
+        <th>Details</th>
+      </tr>
+      {% for history in histories %}
+      <tr>
+        <td>{{ history.id }}</td>
+        <td>{{ history.created }}</td>
+        <td><a href="{{ url_for('orders.orderdetails', id=history.id)}}">Details</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
 </section>
 
 
