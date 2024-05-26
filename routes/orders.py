@@ -76,6 +76,7 @@ def checkout():
 
 @orders_bp.route('/success')
 def success():
+    session.pop('shoppingcart', None)
     return render_template('pages/success.html')
 
 @orders_bp.route('/failure')
