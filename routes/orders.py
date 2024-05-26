@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, url_for, render_template, request, session, flash
 from db import db 
-from models import Order, Product
+from models import Order, Product, User, OrderHistory, OrderProduct
+from flask_login import current_user
 from time import sleep
 
 orders_bp = Blueprint("orders", __name__)
@@ -33,16 +34,45 @@ def order_process_web(order_id):
 
 # Cart Functionality
 # Checkout
-# Cart Functionality
-# Checkout
 @orders_bp.route('/checkout', methods = ['POST', 'GET'])
 def checkout():
     if request.method == 'POST':
+        
         creditcard = request.form['ccn']
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+
+        if not user:
+            user = email
+        else:
+            user = user.email
+
+        subtotal = 0
+        total = 0
+
+        for key, product in session['shoppingcart'].items():
+            quantity = product['quantity']
+            subtotal += float(product['price'] * int(product['quantity']))
+            total = float("%.2f" % (1.06 * subtotal))
+
+
+        order = OrderHistory(user_email=user, total=total)
+            
         if creditcard == '4444 4444 4444 4444':
             return redirect(url_for('orders.failure'))
+        
+
+        for key, product in session['shoppingcart'].items():
+            quantity = product['quantity']
+            product_name = product['name']
+            product = Product.query.filter_by(name=product_name).first()
+
+            new_order = OrderProduct( order=order, product=product, quantity=quantity) 
+            db.session.add(new_order) 
+            db.session.commit()
+
         return redirect(url_for('orders.success'))
-    return render_template('pages/checkout.html')
+    return render_template('pages/checkout.html', user=current_user)
 
 @orders_bp.route('/success')
 def success():
@@ -143,3 +173,8 @@ def deletecartitem(id):
             session['shoppingcart'].pop(key, None)
             flash(" Item is deleted ")
             return redirect(url_for('orders.getcart'))
+        
+@orders_bp.route('/order-history/<int:id>')
+def orderdetails(id):
+    orders = OrderProduct.query.filter_by(order_id=id)
+    return render_template("pages/order_detail.html", orders=orders)

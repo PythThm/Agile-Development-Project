@@ -5,7 +5,11 @@
     <form action="{{ url_for('orders.checkout') }}" method="post" class="checkout_form">
         <h1>Checkout</h1>
         <h2>Contact Info</h2>
+        {% if user.email %}
+        <input type="email" name="email" value="{{ user.email }}" required>
+        {% else %}
         <input type="email" name="email" placeholder="Email" required>
+        {% endif %}
         <input type="text" name="Phone Number" placeholder="Phone Number (optional)">
 
         <h2>Billing/Delivery Info</h2>
