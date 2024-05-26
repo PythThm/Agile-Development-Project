@@ -4,10 +4,12 @@ from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import functions as func
 from models import User, Product, Order, ProductOrder, Issue, Category
 import csv
-from app import app 
+from app import create_app
 from pathlib import Path
 import random
 from datetime import datetime
+
+app = create_app()
 
 def drop_table():
         db.drop_all()
