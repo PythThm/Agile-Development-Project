@@ -1,29 +1,25 @@
-/* For Profile Page and edit profile page */
+/* For Profile Page */
 .title {
   text-align: center;
   padding: 20px 0;
   margin-top: 50px;
-  font-size: 26px;
 }
 
-/* .profile_pg {
-    position: absolute;
-    top: 125px;
-    left: 50%;
-    transform: translate(-50%);
-  } */
-
+.profile_pg {
+  position: absolute;
+  top: 125px;
+  left: 50%;
+  transform: translate(-50%);
+}
 .profile_nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 10px 0; */
+  padding: 10px 0;
   text-decoration: none;
 }
-
 .profile_nav div ul,
-.profile_nav div li,
-.profile_nav div {
+.profile_nav div li {
   list-style-type: none;
   text-decoration: none;
   padding: 0px;
@@ -43,20 +39,10 @@
   border-radius: 10px;
   color: black;
   background-color: rgba(190, 190, 190, 0.3);
-  text-align: left;
+  text-align: center;
   text-indent: 10px;
   width: 500px;
   height: 40px;
-}
-
-div.profile_nav div p {
-  margin: 0;
-}
-div.profile_nav div p,
-div.profile_nav div input,
-div.profile_nav div textarea,
-#issue_title {
-  font-size: 15px;
 }
 
 .PButton {
@@ -73,14 +59,6 @@ div.profile_nav div textarea,
   border: 2px solid #6b8716;
   border-radius: 10px;
   cursor: pointer;
-}
-
-.form-label textarea.box {
-  height: 100px;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  text-indent: 20px;
-  padding-top: 5px;
 }
 
 /* old cart page */
@@ -428,10 +406,10 @@ input {
 
 /* For about section */
 div.about {
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 20vw;
+  padding: 30px 0;
   text-decoration: none;
   background-color: #ad4d27;
   color: white;
@@ -439,10 +417,6 @@ div.about {
   bottom: 0;
   width: 100%;
   margin-top: 90px;
-}
-
-div.about p {
-  font-weight: lighter;
 }
 
 /* For Login.html and signup.html page */
@@ -471,7 +445,7 @@ div.form-label label {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  /* font-size: smaller; */
+  font-size: smaller;
   /* align-items: flex-end; */
 }
 div.form-label label input {
