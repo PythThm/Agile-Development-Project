@@ -221,7 +221,8 @@ div.about {
   align-items: center;
   margin-top: 30px;
 }
-.login , .signup {
+.login,
+.signup {
   align-items: center;
   margin-top: 30px;
   padding: 20px;
@@ -234,14 +235,14 @@ div.about {
 .loginform {
   top: 200px;
 }
-div.form-label label{
+div.form-label label {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
   font-size: smaller;
   /* align-items: flex-end; */
 }
-div.form-label label input{
+div.form-label label input {
   padding: 0;
   margin: 0;
   margin-left: 20px;
@@ -249,7 +250,7 @@ div.form-label label input{
   height: 20px;
 }
 div.form-align input.button {
-  background-color: #87A922;
+  background-color: #87a922;
   color: white;
 }
 /* For Profile Page */
