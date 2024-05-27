@@ -16,28 +16,25 @@ def login():
         # Retrieve the user based on the provided email
         user = User.query.filter_by(email=email).first()
 
-        # Check if the user is an admin
-        if user.is_admin:
-            # Log in the admin user
-            login_user(user, remember=remember)
-            return redirect(url_for('admin.admin'))
-
-        # Check if a user with the provided email exists
         if not user:
-            # logout_user()
+            # User with this email does not exist
             flash('User with this email does not exist.')
             return redirect(url_for('auth.login'))
 
         # Check if the password is correct
-        # if not check_password_hash(user.password, password) or user is None:
-        #     logout_user()
-        #     flash('Please check your login details and try again.')
-        #     return redirect(url_for('auth.login'))
-
-        # Log in the regular user
         if check_password_hash(user.password, password) or password == user.password:
-            login_user(user, remember=remember)
-            return redirect(url_for('home'))
+            if user.is_admin:
+                # Log in the admin user
+                login_user(user, remember=remember)
+                return redirect(url_for('admin.admin'))
+            else:
+                # Log in the regular user
+                login_user(user, remember=remember)
+                return redirect(url_for('home'))
+        else:
+            # Incorrect password
+            flash('Please check your login details and try again.')
+            return redirect(url_for('auth.login'))
 
     return render_template('auth/login.html')
 
