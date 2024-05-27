@@ -314,6 +314,7 @@ input.quantbtn {
   color: #666;
   margin-bottom: 10px;
 }
+.checkout_form input[type="password"],
 .checkout_form input[type="text"],
 .checkout_form input[type="email"],
 .checkout_form input[type="tel"],
@@ -544,4 +545,61 @@ div.form-align input.button {
   border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
+}
+
+.pick-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.pick-options > div {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pick-options > div > input {
+  width: 14px;
+}
+
+.profile-table {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-collapse: collapse;
+  width: 500px;
+  border: 1px solid #ddd;
+}
+
+.profile-table td,
+.profile-table th {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+}
+
+.profile-table th {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  text-align: left;
+  background-color: #f2f2f2;
+  font-size: 1em;
+  font-weight: 200;
+}
+
+.profile-table a {
+  color: var(--font-color);
+  text-decoration: none;
+}
+
+.profile-table td {
+  font-size: 0.9em;
+}
+
+.profile-table h3 {
+  color: var(--bg-variant);
+}
+
+.profile-tables h3 {
+  color: var(--bg-variant);
 }

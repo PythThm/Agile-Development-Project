@@ -122,7 +122,7 @@ class Category(db.Model):
 
 
 class Product(db.Model):
-    desc = "An apple is a round, edible fruit produced by an apple tree. Apple trees are cultivated worldwide and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found. Apples have been grown for thousands of years in Eurasia and were introduced to North America by European colonists."
+    desc = "An apple is a round, edible fruit produced by an apple tree. Apple trees are cultivated worldwide and are the most widely grown species in the genus Malus."
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(String(30), nullable=False, unique=True)
     price = mapped_column(Integer, nullable=True)

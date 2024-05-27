@@ -4,11 +4,14 @@
 
 <h1 class="title">Support</h1>
 {% if not current_user.is_authenticated %}
-
-<h3 class="center">Please Log in first.</h3>
-<a href="{{ url_for('auth.login') }}" class="center">Login</a>
+<div class="container-center">
+  <h3 class="center">Please Log in first.</h3>
+  <a href="{{ url_for('auth.login') }}" class="center btn">Go to Login Page</a>
+</div>
 {% else %}
-<p class="center">For any questions or concerns, please fill out the form below:</p>
+<div class="container-center">
+  <p>For any questions or concerns, please fill out the form below:</p>
+</div>
 <form action="{{ url_for('supports.submit_issues') }}" method="POST" class="form-align profile_nav rightNav">
   <div class="form-group form-label">
     <label for="issue_title">Issue Title:</label>

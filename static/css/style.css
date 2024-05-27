@@ -211,6 +211,7 @@ div.about {
   bottom: 0;
   width: 100%;
   margin-top: 90px;
+  flex-direction: column;
 }
 
 /* For Login.html and signup.html page */
@@ -484,4 +485,42 @@ footer {
   text-decoration: none;
   border-radius: 5px;
   text-align: center;
+}
+
+.about-contents {
+  width: 60%;
+}
+
+.container-center,
+.container-center > .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-add {
+  padding: 8px 16px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button-add:hover {
+  background-color: #4caf50;
+}
+
+.profile-order-history {
+  padding-bottom: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color);
+  height: 100%;
 }
