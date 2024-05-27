@@ -53,17 +53,22 @@
   </div>
   <div class="profile-order-history">
     {% if histories %}
-    <h1>My Orders</h1>
-    <table>
+    <div class="table-header">
+      <h1>My Orders</h1>
+    </div>
+
+    <table class="profile-table">
       <tr>
-        <th>Order_ID</th>
-        <th>Created</th>
-        <th>Details</th>
+        <th width="40%">OrderID</th>
+        <th width="50%">Created</th>
+        <th width="100%">Total</th>
+        <th width="100%">Option</th>
       </tr>
       {% for history in histories %}
       <tr>
         <td>{{ history.id }}</td>
         <td>{{ history.created }}</td>
+        <td>{{ history.total | round(2) }}</td>
         <td><a href="{{ url_for('orders.orderdetails', id=history.id)}}">Details</a></td>
       </tr>
       {% endfor %}
