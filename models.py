@@ -1,4 +1,4 @@
-from sqlalchemy import DateTime, Numeric, ForeignKey, Integer, String, Boolean
+from sqlalchemy import DateTime, Numeric, ForeignKey, Integer, String, Boolean, JSON
 from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.sql import func
 from datetime import datetime
@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     name = mapped_column(String(200), nullable=False)
     phone = mapped_column(String(20), nullable=True, default="604-245-1256")
     orders = relationship("Order", back_populates="user", cascade="all, delete-orphan")
+    history = relationship("OrderHistory", back_populates="user", cascade="all, delete-orphan")
     email = mapped_column(String(200), nullable=True, unique=True)
     password = mapped_column(String(200), nullable=True)
     is_admin = mapped_column(Boolean, default=False)
@@ -135,6 +136,7 @@ class Product(db.Model):
     photo = mapped_column(String(10), nullable=False, default='item.jpg')   
 
     orders = relationship("ProductOrder", back_populates="product", cascade="all, delete-orphan")
+    order = relationship("OrderProduct", back_populates="product", cascade="all, delete-orphan")
 
     def to_json(self):
         self.price = round(self.price, 2)
@@ -210,4 +212,20 @@ class Issue(db.Model):
 
 
         
-        
+class OrderHistory(db.Model):
+    id = mapped_column(Integer, primary_key=True)
+    user_email = mapped_column(String(50), ForeignKey(User.email), nullable=False)
+    user = relationship("User", back_populates="history")
+    total = mapped_column(Numeric, nullable=False, default=0)
+    item = relationship("OrderProduct", back_populates="order", cascade="all, delete-orphan")
+    created = mapped_column(DateTime(timezone=True), default=datetime.now().replace(microsecond=0))
+
+class OrderProduct(db.Model):
+    id = mapped_column(Integer, primary_key=True)
+    order_id = mapped_column(Integer, ForeignKey(OrderHistory.id), nullable=False)
+    order = relationship("OrderHistory", back_populates="item")
+    product_id = mapped_column(Integer, ForeignKey("product.id"), nullable=False)
+    product = relationship("Product", back_populates="order")
+    quantity = mapped_column(Integer, nullable=False, default=0)
+
+

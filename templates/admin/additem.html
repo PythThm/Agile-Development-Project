@@ -1,52 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="admin-container">
 
-
-<h1>Add Item</h1>
-<form action="" method="POST" enctype="multipart/form-data">
-    <div class="form-label">
-        <p>Category</p>
-        <select name="category" id="category" class="custom-select" required>
-            <option value="">Add a category</option>
-            {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
+    <div class="admin-navigation">
+        <a href="{{ url_for('admin.admin') }}">
+            <h3>Admin Dashboard</h3>
+        </a>
+        <a href="{{ url_for('admin.view_issues') }}">Issues</a>
+        <a href="{{ url_for('products.products') }}">Products</a>
+        <a href="{{ url_for('admin.category') }}">Category</a>
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('products.additem') }}">Add Product</a>
+        <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
     </div>
-    <br>
-    <div class="form-align">
-        <div class="form-label">
-            <p>Name</p>
-            <input type="text" name="name" placeholder="Name" required>
+    <div class="admin-contents">
+        <div class="table-header">
+            <h3>Add Product</h3>
         </div>
-
-        <div class="form-label">
-            <p>Price</p>
-            <input type="text" name="price" placeholder="Price" required>
-        </div>
-        <div class="form-label">
-            <p>Quantity</p>
-            <input type="text" name="quantity" placeholder="Quantity" required>
-        </div>
-        <div class="form-label">
-            <p>Description</p>
-            <!-- <input type="text" name="description" placeholder="Description" required> -->
-            <textarea name="description" placeholder="Description" style="width: 400px; height: 200px;"
-                required>   </textarea>
-        </div><br>
-        <div class="form-label">
-            <p>Photo</p>
-            <input type="file" name="item-photo" required>
-        </div>
-
         <br>
-        <input type="submit" value="Add Item">
-</form>
+        <form class="form-add-product" action="" method="POST" enctype="multipart/form-data">
+            <div>Category
+                <select class="category" name="category" id="category" class="custom-select" required>
+                    <option value="">Add a category</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>Name <input class="name" type="text" name="name" placeholder="Name" required>
+            </div>
+            <div>
+                Price
+                <input type="text" class="price" name="price" placeholder="Price" required>
+            </div>
+            <div>
+                Quantity
+                <input type="text" class="quantity" name="quantity" placeholder="Quantity" required>
+            </div>
+            <div class="textarea-title">
+                <div>Description</div>
+                <!-- <input type="text" name="description" placeholder="Description" required> -->
+                <textarea class="description" name="description" style="width: 300px; height: 200px;"
+                    required></textarea>
+            </div>
+            <div>
+                Photo
+                <input class="photo" type="file" name="item-photo" required>
+            </div>
+            <br>
+            <input type="submit" value="Add Item" class="btn-add-item">
+        </form>
+        <br>
 
-<br>
-
-
+    </div>
 </div>
-<a href="{{ url_for('admin.admin') }}">Go Back</a>
 {% endblock %}

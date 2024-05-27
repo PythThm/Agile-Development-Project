@@ -3,7 +3,7 @@
 {% block content %}
 <h1 class="title">Login</h1>
 <section class="loginform">
-    
+
     <form method="post" action="{{ url_for('auth.login') }}">
         <div class="form-align login">
             <div class="form-label">
@@ -28,11 +28,11 @@
         </div>
     </form>
 </section>
-{% with messages = get_flashed_messages() %}
+<!-- {% with messages = get_flashed_messages() %}
 {% if messages %}
 <div class="notification is-danger">
     {{ messages[0] }}
 </div>
 {% endif %}
-{% endwith %}
+{% endwith %} -->
 {% endblock %}

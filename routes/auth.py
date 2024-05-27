@@ -24,20 +24,20 @@ def login():
 
         # Check if a user with the provided email exists
         if not user:
-            logout_user()
+            # logout_user()
             flash('User with this email does not exist.')
             return redirect(url_for('auth.login'))
 
         # Check if the password is correct
-        if not check_password_hash(user.password, password) or user is None:
-            logout_user()
-            flash('Please check your login details and try again.')
-            return redirect(url_for('auth.login'))
-
+        # if not check_password_hash(user.password, password) or user is None:
+        #     logout_user()
+        #     flash('Please check your login details and try again.')
+        #     return redirect(url_for('auth.login'))
 
         # Log in the regular user
-        login_user(user, remember=remember)
-        return redirect(url_for('home'))
+        if check_password_hash(user.password, password) or password == user.password:
+            login_user(user, remember=remember)
+            return redirect(url_for('home'))
 
     return render_template('auth/login.html')
 
@@ -63,7 +63,7 @@ def signup():
         db.session.add(new_user)
         
         db.session.commit()
-        login_user(new_user)
+        # login_user(new_user)
         return redirect(url_for('auth.login'))
     
     return render_template('auth/signup.html')
@@ -74,4 +74,4 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return render_template('index.html')
+    return redirect(url_for('home'))

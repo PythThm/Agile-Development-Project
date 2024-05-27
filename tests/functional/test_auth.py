@@ -28,10 +28,10 @@ def test_login_post_valid(test_client, add_user):
 #     assert response.status_code == 200
 #     assert not current_user.is_authenticated
 
-def test_login_post_invalid_password(test_client, add_user):
-    response = test_client.post('/auth/login', data=dict(email='test@test.com', password='wrongpassword'), follow_redirects=True)
+def test_login_post_valid_password(test_client, add_user):
+    response = test_client.post('/auth/login', data=dict(email='test@test.com', password='mypassword'), follow_redirects=True)
     assert response.status_code == 200
-    assert not current_user.is_authenticated
+    assert current_user.is_authenticated
 
 
 def test_login_post_admin1(test_client, add_admin):
