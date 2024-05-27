@@ -18,18 +18,25 @@
         <input type="text" name="city" placeholder="City" required>
         <input type="text" name="postalcode" placeholder="Postal Code" required>
 
-        <h2>Pick your option...</h2>
-        <h3>Delivery</h3>
-        <input type="radio" name="deliveryorpickup" value='delivery' required>
-        <h3>Pick up</h3>
-        <input type="radio" name="deliveryorpickup" value="pick up at store">
+        <h2>Pick your option</h2>
+        <div class="pick-options">
+            <div>
+                <p>Delivery</p><input type="radio" name="deliveryorpickup" value='delivery' required>
+            </div>
+            <div>
+                <p>Pick up</p><input type="radio" name="deliveryorpickup" value="pick up at store">
+            </div>
+        </div>
+
+
 
         <h2>Credit Card Info</h2>
         <!-- <input type="text" name="Creditcard" placeholder="Card number" minlength=16 maxlength=16  required> -->
         <input name="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number"
             maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required>
         <input type="text" name="cardexpiry" placeholder="Card expiry" minlength=4 maxlength=4 required>
-        <input type="text" name="Creditpin" placeholder="Card pin" minlength=3 maxlength=3 placeholder='pin' required>
+        <input type="password" name="Creditpin" placeholder="Card pin" minlength=3 maxlength=3 placeholder='pin'
+            required>
 
 
         <input type="submit" value="Pay now">

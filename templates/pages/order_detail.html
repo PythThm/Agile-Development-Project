@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container-center">
+    <div class="table-header">
+        <h1>Order details</h1>
+    </div>
+    <table class="profile-table">
+        <tr>
+            <th width="40%">ProductID</th>
+            <th width="50%">Name</th>
+            <th width="100%">Quantity</th>
+            <!-- <th width="100%">Price</th> -->
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.product_id }}</td>
+            <td>{{ order.product.name }}</td>
+            <td>{{ order.quantity }}</td>
 
-<h2>Order details</h2>
-{% for order in orders %}
-<li>
-    <span>Product_id: {{ order.product_id }}</span>
-    <span>Product: {{ order.product.name }}</span>
-    <span>Quantity: {{ order.quantity }}</span>
-    <span>Individual Price: {{ order.product.price|round(2) }}</span>
-</li>
+            <!-- <td>${{ order.product.price|round(2) }}</td> -->
+        </tr>
 
-{% endfor %}
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('users.profile') }}" class="btn">Go Back</a>
+</div>
 {% endblock %}

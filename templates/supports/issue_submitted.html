@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">Issue Submitted</h1>
-<p class="center">Thank you for submitting your issue. We will get back to you as soon as possible.</p>
+<div class="container-center">
+    <h1 class="title">Issue Submitted</h1>
+    <p class="center">Thank you for submitting your issue. We will get back to you as soon as possible.</p>
+    <a href="{{ url_for('supports.supports') }}" class="btn">Go Back</a>
+</div>
 {% endblock %}
-{ % endblock %}

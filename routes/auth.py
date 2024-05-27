@@ -64,6 +64,7 @@ def signup():
         
         db.session.commit()
         # login_user(new_user)
+        logout_user()
         return redirect(url_for('auth.login'))
     
     return render_template('auth/signup.html')

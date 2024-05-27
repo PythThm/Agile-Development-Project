@@ -48,10 +48,11 @@
                             <td><input type="number" name="quantity" min="1" max="10" value="{{product.quantity}}"
                                     class="quantbtn"></td>
                             {% set eachtotal = product.quantity|int * product.price|float %}
-                            <td>${{ eachtotal|round(2) }}</td>
+                            <td>${{ eachtotal| round(2) }}</td>
                             <td><input type="submit" value="Update" class="updatebtn"></td>
                         </form>
-                        <td><a href="{{url_for('orders.deletecartitem', id=key )}}" class="btn">Delete</a></td>
+                        <td><a href="{{url_for('orders.deletecartitem', id=key )}}" class="btn"
+                                onclick="return confirm('Are you sure to delete?')">Delete</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -64,7 +65,7 @@
                         <!-- <td width="31%"></td> -->
                         <td></td>
                         <td>
-                            <h4>Subtotal ${{ subtotal }}</h4>
+                            <h4>Subtotal ${{ subtotal| round(2) }}</h4>
                         </td>
                         <td width="15%"><a href="{{ url_for('orders.clearcart') }}" class="btn">Clear Cart</a></td>
                     </tr>

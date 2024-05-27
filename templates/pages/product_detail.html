@@ -1,45 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container-center">
+    <h1>Product details</h1>
+    <br>
+    <div class="column" style="width: 350px; ">
+        <img src="{{ url_for('static', filename='productpics/' + product.photo)}}" alt={{product.name}}
+            style="width: 310px; height: 310px;" class="productpic">
+        <div class="card">
+            <div class="info">
+                <h3>{{product.name}}</h2>
+                    <p>${{product.price|round(2)}}</p>
+            </div>
+            <div class="details">
+                <p><strong>Quantities:</strong> {{ product.available }}</p>
+                <p><strong>Product description</strong><br>{{ product.description }}</p>
+            </div>
+            {% if not current_user.is_admin %}
+            <div class="options">
+                <form action="{{ url_for('orders.addcart') }}" method="post">
+                    <div>
+                        {% if product.available == 0 %}
+                        <br>
+                        <strong class="out-of-stock btn">Out of Stock</strong>
+                        {% else %}
+                        <label for="">Qty: </label><input style="width: 50px;" type="number" name="quantity" value="1"
+                            min="1" max="{{ product.available }}">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" class="button-add">Add to Cart</button>
+                        {% endif %}
+                    </div>
+                </form>
 
-<h1>Product details</h1>
-<br>
-<div class="column" style="width: 350px; ">
-    <img src="{{ url_for('static', filename='productpics/' + product.photo)}}" alt={{product.name}}
-        style="width: 350px; height: 350px;" class="productpic">
-    <div class="card">
-        <div class="info">
-            <h3>{{product.name}}</h2>
-                <p>${{product.price|round(2)}}</p>
+            </div>
+            {% endif %}
         </div>
-        <div class="details">
-            <p><strong>Quantities:</strong> {{ product.available }}</p>
-            <p><strong>Product description</strong><br>{{ product.description }}</p>
-        </div>
-        {% if not current_user.is_admin %}
-        <div class="options">
-            <form action="{{ url_for('orders.addcart') }}" method="post">
-                <div>
-                    {% if product.available == 0 %}
-                    <br>
-                    <strong class="out-of-stock btn">Out of Stock</strong>
-                    {% else %}
-                    <label for="">Qty: </label><input style="width: 50px;" type="number" name="quantity" value="1"
-                        min="1" max="{{ product.available }}">
-                    <input type="hidden" name="product_id" value="{{ product.id }}">
-                    <button type="submit">Add to Cart</button>
-                    {% endif %}
-                </div>
-            </form>
-
-        </div>
-        {% endif %}
     </div>
+    <br>
+    {% if current_user.is_authenticated and current_user.is_admin %}
+    <a href="{{ url_for('admin.admin') }}" class="btn">Go Back</a>
+    {% else %}
+    <a href="{{ url_for('home') }}" class="btn">Go Back</a>
+    {% endif %}
 </div>
-<br>
-{% if current_user.is_authenticated and current_user.is_admin %}
-<a href="{{ url_for('admin.admin') }}">Go Back</a>
-{% else %}
-<a href="{{ url_for('home') }}">Go Back</a>
-{% endif %}
 
 {% endblock %}
