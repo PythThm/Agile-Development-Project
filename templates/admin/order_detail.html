@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <div class="admin-container">
 
     <div class="admin-navigation">
@@ -18,33 +17,28 @@
     </div>
 
     <div class="admin-contents">
-
         <div class="table-header">
-            <h3>Orders</h3>
+            <h1>Order details</h1>
         </div>
-        <table class="dashboard-table">
+        <table class="profile-table">
             <tr>
-                <th>OrderID</th>
-                <th width="50%">Email</th>
-                <th width="50%">Created</th>
-                <th width="50%">Total</th>
-                <th width="100%">Option</th>
+                <th width="40%">ProductID</th>
+                <th width="50%">Name</th>
+                <th width="100%">Quantity</th>
+                <!-- <th width="100%">Price</th> -->
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.product_id }}</td>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.quantity }}</td>
+
+                <!-- <td>${{ order.product.price|round(2) }}</td> -->
             </tr>
 
-            {% for history in histories %}
-            <tr>
-                <td>{{ history.id }}</td>
-                <td>{{ history.user_email }}</td>
-                <td>{{ history.created }}</td>
-                <td>{{ history.total | round(2) }}</td>
-                <td><a href="{{ url_for('admin.adminorderdetails', id=history.id)}}">Details</a></td>
-            </tr>
             {% endfor %}
-
         </table>
-        <br>
-        <a href="{{ url_for('admin.admin') }}" class="btn-back">Go Back</a>
+        <a href="{{ url_for('admin.adminorders') }}" class="btn">Go Back</a>
     </div>
 </div>
-
 {% endblock %}

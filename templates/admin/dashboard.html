@@ -12,6 +12,7 @@
         <a href="{{ url_for('admin.category') }}">Category</a>
         <a href="{{ url_for('users.users') }}">Customers</a>
         <a href="{{ url_for('products.additem') }}">Add Product</a>
+        <a href="{{ url_for('admin.adminorders') }}">Orders</a>
         <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
     </div>
 
@@ -76,6 +77,34 @@
 
             </table>
         </div>
+
+        <div>
+            <div class="table-header">
+                <h3>Orders</h3><a href="{{ url_for('admin.adminorders') }}"><small>More</small></a>
+            </div>
+            <table class="dashboard-table">
+                <tr>
+                    <th>OrderID</th>
+                    <th width="50%">Email</th>
+                    <th width="50%">Created</th>
+                    <th width="100%">Total</th>
+
+                </tr>
+
+                {% for history in histories %}
+                <tr>
+                    <td>{{ history.id }}</td>
+                    <td>{{ history.user_email }}</td>
+                    <td>{{ history.created }}</td>
+                    <td>{{ history.total | round(2) }}</td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
         <div>
             <div class="table-header">
                 <h3>Products</h3><a href="{{ url_for('products.products') }}"><small>More</small></a>

@@ -18,7 +18,7 @@ def login():
 
         if not user:
             # User with this email does not exist
-            flash('User with this email does not exist.')
+            flash('Your email or password is incorrect. Please try again.')
             return redirect(url_for('auth.login'))
 
         # Check if the password is correct
