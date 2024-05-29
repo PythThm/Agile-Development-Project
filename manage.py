@@ -44,7 +44,13 @@ def import_data():
             elif is_admin == 'False':
                 is_admin = False
                 
-            user = User(name=record["name"], phone=record["phone"], email=record["email"], password=record["password"], is_admin=is_admin)
+            user = User(name=record["name"],
+                        phone=record["phone"],
+                        email=record["email"],
+                        password=record["password"],
+                        is_admin=is_admin,
+                        is_confirmed=record["is_confirmed"],
+                        confirmed_on=record["confirmed_on"])
             db.session.add(user)
         db.session.commit()
 

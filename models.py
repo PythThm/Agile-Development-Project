@@ -15,6 +15,8 @@ class User(UserMixin, db.Model):
     password = mapped_column(String(200), nullable=True)
     is_admin = mapped_column(Boolean, default=False)
     balance = mapped_column(Numeric, default=0)
+    is_confirmed = mapped_column(Boolean, nullable=False, default=False)
+    confirmed_on = mapped_column(DateTime, nullable=True)
 
     def to_json(self):
         return {
@@ -24,7 +26,9 @@ class User(UserMixin, db.Model):
             "email": self.email,
             "password": self.password,
             "is_admin": self.is_admin,
-            "balance": float(self.balance)
+            "balance": float(self.balance),
+            "is_confirmed": self.is_confirmed,
+            "confirmed_on": self.confirmed_on
         }
 
     def validation(self):

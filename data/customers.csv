@@ -1,5 +1,5 @@
 name,phone,email,password,is_admin
-Green Ross,778-230-5730,green@gmail.com,green,True
+Green Ross,778-230-5730,green@gmail.com,green,True,True
 Robert Mann,778-159-1152,basket@gmail.com,basket,False
 Joshua Meyer,778-500-6113,joshua@gmail.com
 Rachel Sanchez,236-057-9517,rachel@gmail.com
