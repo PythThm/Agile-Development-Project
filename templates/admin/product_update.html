@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="content">
+<div class="container-center">
+    <br>
     <h1>Update Product</h1>
     <table class="task_table">
-
         <form action="/products/{{product.id}}" method="POST">
             <div class="form-align">
                 <input type="hidden" name="id" value="{{product.id}}">
