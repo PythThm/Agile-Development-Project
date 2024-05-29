@@ -1,29 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="content">
-    <h1>Update Product</h1>
-    <table class="task_table">
+<div class="admin-container">
 
-        <form action="/products/{{product.id}}" method="POST">
-            <div class="form-align">
-                <input type="hidden" name="id" value="{{product.id}}">
-                <div class="form-label">
-                    <p>Name</p>
-                    <input type="text" name="name" value="{{product.name}}">
-                </div>
-                <div class="form-label">
-                    <p>Price</p>
-                    <input type="text" name="price" value="{{product.price}}">
-                </div>
-                <div class="form-label">
-                    <p>Available</p>
-                    <input type="text" name="available" value="{{product.available}}">
-                </div>
+    <div class="admin-navigation">
+        <a href="{{ url_for('admin.admin') }}">
+            <h3>Admin Dashboard</h3>
+        </a>
+        <a href="{{ url_for('admin.view_issues') }}">Issues</a>
+        <a href="{{ url_for('products.products') }}">Products</a>
+        <a href="{{ url_for('admin.category') }}">Category</a>
+        <a href="{{ url_for('users.users') }}">Customers</a>
+        <a href="{{ url_for('products.additem') }}">Add Product</a>
+        <a href="{{ url_for('admin.adminorders') }}">Orders</a>
+        <!-- <a href="{{ url_for('admin.stats') }}">Sales Statistics</a> -->
+    </div>
+
+    <div class="admin-contents">
+        <div class="container-center">
+            <br>
+            <h1>Update Product</h1>
+            <table class="task_table">
+                <form action="/products/{{product.id}}" method="POST">
+                    <div class="form-align">
+                        <input type="hidden" name="id" value="{{product.id}}">
+                        <div class="form-label">
+                            <p>Name</p>
+                            <input type="text" name="name" value="{{product.name}}">
+                        </div>
+                        <div class="form-label">
+                            <p>Price</p>
+                            <input type="text" name="price" value="{{product.price}}">
+                        </div>
+                        <div class="form-label">
+                            <p>Available</p>
+                            <input type="text" name="available" value="{{product.available}}">
+                        </div>
+                        <br>
+                        <input type="submit" value="Update Product">
+                </form>
                 <br>
-                <input type="submit" value="Update Product">
-        </form>
-        <br>
-        <a href="{{ url_for('products.products') }}" class="btn-back">Go Back</a>
+                <a href="{{ url_for('products.products') }}" class="btn-back">Go Back</a>
+        </div>
+    </div>
 </div>
 {% endblock %}

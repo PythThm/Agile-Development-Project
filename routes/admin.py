@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from routes import api_orders
-from models import Category, Issue, User, Product
+from models import Category, Issue, User, Product, OrderProduct, OrderHistory
 from db import db
 
 admin_bp = Blueprint("admin", __name__)
@@ -21,8 +21,10 @@ def admin():
     yearly = get_stats(api_orders.yearly, 'yearlysales')
     total = get_stats(api_orders.total, 'totalsales')
     monthly = get_stats(api_orders.monthly, 'monthlysales')
-    
-    return render_template('admin/dashboard.html', users=users, products=products, issues=issues, daily=daily, yearly=yearly, total=total, monthly=monthly)
+
+    histories = OrderHistory.query.order_by(OrderHistory.id.desc()).limit(3).all()
+
+    return render_template('admin/dashboard.html', histories=histories, users=users, products=products, issues=issues, daily=daily, yearly=yearly, total=total, monthly=monthly)
 
 @admin_bp.route('/stats')
 def stats():
@@ -36,6 +38,12 @@ def stats():
     total = get_stats(api_orders.total, 'totalsales')
     monthly = get_stats(api_orders.monthly, 'monthlysales')
     return render_template('admin/stats.html', daily=daily, yearly=yearly, total=total, monthly=monthly)
+
+#Get All Orders
+@admin_bp.route('/admin-orders')
+def adminorders():
+        histories = OrderHistory.query.all()
+        return render_template('admin/orders.html', histories = histories)
 
 # Get All Categories
 @admin_bp.route('/category')
@@ -104,3 +112,9 @@ def delete_product(issue_id):
     db.session.delete(issue)
     db.session.commit()
     return redirect(url_for("admin.view_issues"))
+
+
+@admin_bp.route('/order-history/<int:id>')
+def adminorderdetails(id):
+    orders = OrderProduct.query.filter_by(order_id=id)
+    return render_template("admin/order_detail.html", orders=orders)
